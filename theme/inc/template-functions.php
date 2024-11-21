@@ -120,6 +120,7 @@ add_filter( 'the_content_more_link', 'tw_continue_reading_link' );
  * @param array      $args    An array of arguments.
  * @param int        $depth   Depth of the current comment.
  */
+
 function tw_html5_comment( $comment, $args, $depth ) {
 	$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
 
@@ -205,7 +206,6 @@ function tw_html5_comment( $comment, $args, $depth ) {
 	<?php
 }
 
-
 function register_custom_post_type() {
 	register_post_type('excursion', [
 			'labels' => [
@@ -252,16 +252,13 @@ function register_custom_taxonomy() {
 }
 add_action('init', 'register_custom_taxonomy');
 
+add_action('pre_get_posts', 'set_home_to_category');
 function set_home_to_category($query) {
 	if ($query->is_main_query() && $query->is_home() && !is_admin()) {
 		$query->set('taxonomy', 'excursion');
 		$query->set('term', 'ekskursii-peterburg');
 	}
 }
-add_action('pre_get_posts', 'set_home_to_category');
-
-
-
 
 // add optionpage
 if( function_exists('acf_add_options_page') ) {
@@ -273,16 +270,13 @@ if( function_exists('acf_add_options_page') ) {
 	));
 }
 
-
 # Добавляет SVG в список разрешенных для загрузки файлов.
-add_filter( 'upload_mimes', 'svg_upload_allow' );
 function svg_upload_allow( $mimes ) {
 	$mimes['svg']  = 'image/svg+xml';
 
 	return $mimes;
 }
-
-add_filter( 'wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5 );
+add_filter( 'upload_mimes', 'svg_upload_allow' );
 
 # Исправление MIME типа для SVG файлов.
 function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
@@ -315,7 +309,7 @@ function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
 
 	return $data;
 }
-
+add_filter( 'wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5 );
 
 function get_nested_categories($taxonomy = 'category') {
 	// Получаем все категории таксономии
@@ -407,33 +401,31 @@ function get_nested_categories_by_parent($parent_id, $taxonomy = 'category') {
 	return $categories;
 }
 
-function render_children_categories($children) {
-	?>
-		<ul class="ps-4 pt-4">
-	<?php
-	foreach ($children as $child) {
-		echo '<li>';
-		echo '<a href="' . esc_url($child['link']) . '" class="flex items-center gap-2 group"><span class="w-10 h-10 border-2 rounded-md border-black flex items-center justify-center group-active:bg-gray-200 group-[.active]:text-red-500 group-[.active]:border-red-500">
+function render_children_categories($children) { ?>
+	<div class="ps-4 pt-4">
+			<?php foreach ($children as $category) : ?>
+				<div>
+					<a href="<?php echo esc_url($category['link']); ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
+						<span class="w-10 h-10 border-2 rounded-md border-black flex items-center justify-center group-active:bg-gray-200 group-[.active]:text-red-500 group-[.active]:border-red-500">
 									<span class="invisible group-[.active]:visible">✓</span>
-							</span><span class="text-black group-[.active]:text-red-500">' . esc_html($child['name']) . '</span></a>';
-
-		if (!empty($child['children'])) {
-			render_children_categories($child['children']);
-		}
-		echo '</li>';
-	}
-	echo '</ul>';
+							</span>
+						<span class="text-black group-[.active]:text-red-500"><?php echo esc_html($category['name']); ?></span>
+					</a>
+					<?php if(!empty($child['children'])) {
+						render_children_categories($child['children']);
+					}?>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	<?php
 }
 
 function set_default_discount_price($post_id) {
-	// Проверяем, что это не автосохранение и не админка
 	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-	// Получаем данные для текущего поста
-	$price = get_field('price', $post_id); // Поле price
-	$discount_price = get_field('discount_price', $post_id); // Поле discount_price
+	$price = get_field('price', $post_id);
+	$discount_price = get_field('discount_price', $post_id);
 
-	// Если discount_price пустое, установим его равным price
 	if (empty($discount_price) && !empty($price)) {
 		update_field('discount_price', $price, $post_id);
 	}
