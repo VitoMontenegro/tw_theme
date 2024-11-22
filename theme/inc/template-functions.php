@@ -442,3 +442,7 @@ function is_current_category($term_id) {
 	return false;
 }
 
+function my_custom_template($id, $part) {
+	set_query_var('custom_id', $id);
+	get_template_part($part);
+}
