@@ -311,6 +311,18 @@ function fix_svg_mime_type( $data, $file, $filename, $mimes, $real_mime = '' ){
 }
 add_filter( 'wp_check_filetype_and_ext', 'fix_svg_mime_type', 10, 5 );
 
+function set_default_discount_price($post_id) {
+	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+
+	$price = get_field('price', $post_id);
+	$discount_price = get_field('discount_price', $post_id);
+
+	if (empty($discount_price) && !empty($price)) {
+		update_field('discount_price', $price, $post_id);
+	}
+}
+add_action('acf/save_post', 'set_default_discount_price', 10, 1);
+
 function get_nested_categories($taxonomy = 'category') {
 	// Получаем все категории таксономии
 	$terms = get_terms([
@@ -376,7 +388,7 @@ function get_top_parent_category($term_id, $taxonomy = 'category') {
 	return $term;
 }
 
-function get_nested_categories_by_parent($parent_id, $taxonomy = 'category') {
+function get_nested_categories_by_parent($parent_id, $taxonomy = 'excursion_category') {
 	$terms = get_terms([
 			'taxonomy' => $taxonomy,
 			'hide_empty' => false,
@@ -389,13 +401,57 @@ function get_nested_categories_by_parent($parent_id, $taxonomy = 'category') {
 
 	$categories = [];
 	foreach ($terms as $term) {
+		$all_category_ids = get_all_descendant_categories($term->term_id, $taxonomy);
+
+		$posts_in_categories = get_posts([
+				'post_type' => 'excursion',
+				'post_status' => 'publish',
+				'tax_query' => [
+						[
+								'taxonomy' => $taxonomy,
+								'field' => 'term_id',
+								'terms' => $all_category_ids,
+								'include_children' => false,
+						],
+				],
+				'fields' => 'ids',
+		]);
+
+		$unique_post_ids = array_unique($posts_in_categories);
+		$post_count = count($unique_post_ids);
+
+		$single_post_slug = null;
+		if ($post_count === 1) {
+			$single_post = get_post(reset($unique_post_ids));
+			if ($single_post) {
+				$single_post_slug = $single_post->post_name;
+			}
+		}
+
 		$categories[] = [
 				'id' => $term->term_id,
 				'name' => $term->name,
 				'slug' => $term->slug,
 				'link' => get_term_link($term),
-				'children' => get_nested_categories_by_parent($term->term_id, $taxonomy), // Рекурсивный вызов
+				'post_count' => $post_count,
+				'single_post_slug' => $single_post_slug,
+				'children' => get_nested_categories_by_parent($term->term_id, $taxonomy)
 		];
+	}
+
+	return $categories;
+}
+
+function get_all_descendant_categories($parent_id, $taxonomy) {
+	$categories = [$parent_id];
+	$terms = get_terms([
+			'taxonomy' => $taxonomy,
+			'hide_empty' => false,
+			'parent' => $parent_id,
+	]);
+
+	foreach ($terms as $term) {
+		$categories = array_merge($categories, get_all_descendant_categories($term->term_id, $taxonomy));
 	}
 
 	return $categories;
@@ -404,8 +460,9 @@ function get_nested_categories_by_parent($parent_id, $taxonomy = 'category') {
 function render_children_categories($children) { ?>
 	<div class="ps-4 pt-4">
 			<?php foreach ($children as $category) : ?>
+				<?php $link = $category["single_post_slug"] ?? $category['link']; ?>
 				<div>
-					<a href="<?php echo esc_url($category['link']); ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
+					<a href="<?php echo $link; ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
 						<span class="w-10 h-10 border-2 rounded-md border-black flex items-center justify-center group-active:bg-gray-200 group-[.active]:text-red-500 group-[.active]:border-red-500">
 									<span class="invisible group-[.active]:visible">✓</span>
 							</span>
@@ -419,18 +476,6 @@ function render_children_categories($children) { ?>
 		</div>
 	<?php
 }
-
-function set_default_discount_price($post_id) {
-	if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-
-	$price = get_field('price', $post_id);
-	$discount_price = get_field('discount_price', $post_id);
-
-	if (empty($discount_price) && !empty($price)) {
-		update_field('discount_price', $price, $post_id);
-	}
-}
-add_action('acf/save_post', 'set_default_discount_price', 10, 1);
 
 function is_current_category($term_id) {
 	if (is_tax() || is_category()) {
@@ -446,3 +491,10 @@ function my_custom_template($id, $part) {
 	set_query_var('custom_id', $id);
 	get_template_part($part);
 }
+
+function getYoutubeEmbedUrl($url) {
+	$pattern = '#^(?:https?://)?(?:www\.)?(?:youtu\.be/|youtube\.com(?:/embed/|/v/|/watch\?v=|/watch\?.+&v=))([\w-]{11})(?:.+)?$#x';
+	preg_match($pattern, $url, $matches);
+	return (isset($matches[1])) ? $matches[1] : false;
+}
+

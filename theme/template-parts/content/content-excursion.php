@@ -9,6 +9,7 @@
 
 $fields = get_fields();
 
+$video_after_gates = $fields['video_after_gates'] ?? '';
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="container mx-auto">
@@ -27,32 +28,17 @@ $fields = get_fields();
 				</svg>
 			</div>
 		</button>
-		<div class="grid grid-cols-4 gap-6 w-full">
+		<div class="grid grid-cols-4 gap-6 w-full mb-7">
 			<?php foreach ($fields["gallery"] as $image) : ?>
 				<img src="<?php echo $image["sizes"]["medium_large"] ?>" alt="<?php $image["name"]; ?>">
 			<?php endforeach; ?>
 		</div>
+		<?php if ($video_after_gates && !empty($video_after_gates)): ?>
+			<iframe style="width: 100%;height: 440px;" src="//www.youtube.com/embed/<?php echo getYoutubeEmbedUrl($video_after_gates)?>" allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media" frameborder="0" scrolling="no" allowfullscreen></iframe>
+		<?php endif; ?>
 
-
-		<div <?php tw_content_class( 'entry-content' ); ?>>
-			<?php
-			the_content(
-					sprintf(
-							wp_kses(
-							/* translators: %s: Name of current post. Only visible to screen readers. */
-									__( 'Continue reading<span class="sr-only"> "%s"</span>', 'tw' ),
-									array(
-											'span' => array(
-													'class' => array(),
-											),
-									)
-							),
-							get_the_title()
-					)
-			);
-
-
-			?>
+		<div class="entry-content">
+			<?php the_content(); ?>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-footer">

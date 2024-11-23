@@ -11,6 +11,7 @@ get_header();
 
 	<section id="primary">
 		<main id="main">
+			<?php get_template_part( 'template-parts/layout/breadcrumbs', 'content' ); ?>
 
 			<?php
 			/* Start the Loop */

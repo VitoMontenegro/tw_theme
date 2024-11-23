@@ -69,6 +69,85 @@ if ($current_category && isset($current_category->term_id)) {
 				</div>
 
 				<div class="flex gap-1 flex-col w-full mb-[30px]">
+					<label for="posts_per_page">Возрастная группа/класс:</label>
+					<div class="flex gap-4 flex-wrap">
+
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="" class="hidden peer" checked  />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	Все
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="1" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	1
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="2" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	2
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="3" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	3
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="4" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	4
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="5" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	5
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="6" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	6
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="7" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	7
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="8" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	8
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="9" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	9
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="10" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	10
+						</span>
+						</label>
+						<label class="flex items-center cursor-pointer">
+							<input type="radio" name="grade" value="d" class="hidden peer" />
+							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
+						  	Дошкольники
+						</span>
+						</label>
+					</div>
+				</div>
+
+				<div class="flex gap-1 flex-col w-full mb-[30px]">
 					<div class="text-grey">Продолжительность</div>
 					<div class="flex gap-4 flex-wrap">
 
@@ -134,8 +213,9 @@ if ($current_category && isset($current_category->term_id)) {
 				<div class="title_sidebar">Виды экскурсий</div>
 			<div class="flex flex-col gap-4">
 				<?php foreach ($categories_tree as $category) : ?>
+					<?php $link = $category["single_post_slug"] ?? $category['link']; ?>
 					<div>
-						<a href="<?php echo esc_url($category['link']); ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
+						<a href="<?php echo $link; ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
 							<span class="w-10 h-10 border-2 rounded-md border-black flex items-center justify-center group-active:bg-gray-200 group-[.active]:text-red-500 group-[.active]:border-red-500">
 									<span class="invisible group-[.active]:visible">✓</span>
 							</span>

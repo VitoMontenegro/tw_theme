@@ -30,14 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
 			const duration = document.querySelector('input[name="duration"]:checked')?.value;
 			const price = document.querySelector('input[name="price"]:checked')?.value;
 			const postsPerPage = document.querySelector('input[name="posts_per_page"]:checked')?.value;
+			const grade = document.querySelector('input[name="grade"]:checked')?.value;
 			//const postsPerPage = document.getElementById('posts_per_page').value;
 
 			// Формируем параметры запроса
 			const params = new URLSearchParams({
-				duration: duration,
-				price: price, // Передаем диапазон цены
+				grade,
+				price,
+				duration,
+				page,
 				posts_per_page: postsPerPage,
-				page: page,
 				category_id: categoryId, // Добавляем category_id
 			});
 

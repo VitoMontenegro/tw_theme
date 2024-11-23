@@ -207,3 +207,9 @@ require get_template_directory() . '/inc/api-functions.php';
  * Customizer gutenberg.
  */
 require get_theme_file_path() . '/inc/gutenberg.php';
+
+function varf($param) {
+	echo '<pre>';
+	var_dump($param);
+	echo '</pre>';
+}

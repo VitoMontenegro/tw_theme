@@ -6,12 +6,12 @@ function custom_rest_filter_posts() {
 		'permission_callback' => '__return_true',
 	]);
 }
-
 add_action('rest_api_init', 'custom_rest_filter_posts');
 
 function handle_filter_posts_request(WP_REST_Request $request) {
 	$duration = $request->get_param('duration');
 	$price_range = $request->get_param('price');
+	$grade = $request->get_param('grade');
 	$posts_per_page = $request->get_param('posts_per_page') ?: 5;
 	$page = $request->get_param('page') ?: 1;
 	$category_id = $request->get_param('category_id');
@@ -48,6 +48,24 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 		],
 		'meta_query' => ['relation' => 'AND'], // Инициализация meta_query
 	];
+
+	// Обрабатываем фильтр по grade
+	if ($grade) {
+		$grade = array_map('strval', (array)$grade);
+
+		$args['meta_query'] = [
+			'relation' => 'OR',
+			[
+				'key' => 'grade',
+				'value' => '"' . implode('" OR "', $grade) . '"', // Ищем значения внутри сериализованных массивов
+				'compare' => 'LIKE',
+			],
+			[
+				'key' => 'grade',
+				'compare' => 'NOT EXISTS',
+			],
+		];
+	}
 
 	// Обрабатываем фильтр по duration
 	if ($duration) {
@@ -99,6 +117,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 				'url' => get_permalink(),
 				'price' => $fields['price'] ?? '',
 				'discount_price' => $fields['discount_price'] ?? '',
+				'grade' => $fields['grade'] ?? '',
 				'duration' => $fields['duration'] ?? '',
 				'image' => $fields['gallery'][0]['sizes']['medium_large'] ?? '',
 			];

@@ -17,13 +17,14 @@ get_header();
 
 	<section id="primary">
 		<main id="main">
+			<?php get_template_part( 'template-parts/layout/breadcrumbs', 'content' ); ?>
 
 			<div class="container mx-auto mt-4">
 				<div class="grid grid-cols-12 gap-4">
-					<div class="col-span-4 border-2 p-4">
+					<div class="col-span-3 border-2 p-4">
 						<?php get_sidebar(); ?>
 					</div>
-					<div class="col-span-8">
+					<div class="col-span-9">
 						<div class="flex flex-col">
 							<div class="main_nav">
 
