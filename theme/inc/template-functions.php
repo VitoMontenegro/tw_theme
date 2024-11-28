@@ -207,6 +207,9 @@ function tw_html5_comment( $comment, $args, $depth ) {
 }
 
 function register_custom_post_type() {
+	/**
+	 * Post Type: Экскурсии.
+	 */
 	register_post_type('excursion', [
 			'labels' => [
 					'name' => 'Экскурсии',
@@ -221,12 +224,50 @@ function register_custom_post_type() {
 			'hierarchical' => false, // Для поддержки иерархии
 			'rewrite' => ['slug' => 'excursion', 'with_front' => false], // Пустой slug
 			'supports' => ['title', 'editor', 'thumbnail'],
+			'menu_icon' => 'dashicons-admin-site-alt',
 			'taxonomies' => ['excursion_category'], // Подключаем таксономию
+	]);
+
+	/**
+	 * Post Type: Отзывы.
+	 */
+	register_post_type('reviews', [
+			'labels' => [
+					'name' => 'Отзывы',
+					'singular_name' => 'Отзыв',
+					"all_items" => "Все отзывы",
+					"add_new" => "Добавить отзыв",
+					"add_new_item" => "Добавить новый отзыв",
+					"edit_item" => "Редактировать отзыв",
+					"new_item" => "Новый отзыв",
+			],
+			"description" => "",
+			"public" => true,
+			"publicly_queryable" => false,
+			"show_ui" => true,
+			"delete_with_user" => false,
+			"show_in_rest" => true,
+			"rest_base" => "",
+			"rest_controller_class" => "WP_REST_Posts_Controller",
+			"has_archive" => false,
+			"show_in_menu" => true,
+			"show_in_nav_menus" => true,
+			"exclude_from_search" => false,
+			"capability_type" => "post",
+			"map_meta_cap" => true,
+			"hierarchical" => false,
+			'menu_icon' => 'dashicons-format-chat',
+			"rewrite" => array( "slug" => "reviews", "with_front" => true ),
+			"query_var" => true,
+			"supports" => array( "title", "editor"),
 	]);
 }
 add_action('init', 'register_custom_post_type');
 
 function register_custom_taxonomy() {
+	/**
+	 * Таксономия: Категория экскурсий.
+	 */
 	register_taxonomy('excursion_category', 'excursion', [
 			'hierarchical' => true, // Позволяет создавать подкатегории
 			'labels' => [

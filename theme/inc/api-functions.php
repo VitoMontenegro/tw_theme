@@ -1,174 +1,20 @@
 <?php
+require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php'); 
+require_once(ABSPATH . 'wp-admin/includes/image.php');
+
 function custom_rest_filter_posts() {
 	register_rest_route('my_namespace/v1', '/filter-posts/', [
 		'methods' => 'GET',
 		'callback' => 'handle_filter_posts_request',
 		'permission_callback' => '__return_true',
 	]);
+	register_rest_route('custom/v1', '/reviews-form', [
+			'methods' => 'POST',
+			'callback' => 'handle_reviews_form',
+			'permission_callback' => '__return_true',
+	]);
 }
 add_action('rest_api_init', 'custom_rest_filter_posts');
-
-
-
-
-
-
-function handle_filter_posts_request_NEW(WP_REST_Request $request) {
-	$duration = $request->get_param('duration');
-	$price_range = $request->get_param('price');
-	$grade = $request->get_param('grade');
-	$posts_per_page = $request->get_param('posts_per_page') ?: 5;
-	$page = $request->get_param('page') ?: 1;
-	$category_id = $request->get_param('category_id');
-
-	// Разделяем цену на минимальное и максимальное значение
-	$min_price = $max_price = null;
-	if ($price_range) {
-		list($min_price, $max_price) = explode('-', $price_range);
-		$min_price = floatval($min_price);
-		$max_price = floatval($max_price);
-	}
-
-	// Получаем дочерние категории
-	$child_categories = get_terms([
-		'taxonomy' => 'excursion_category',
-		'child_of' => $category_id,
-		'fields' => 'ids',
-		'hide_empty' => true,
-	]);
-	$categories = array_merge([$category_id], $child_categories);
-
-	// Настройка WP_Query
-	$args = [
-		'post_type' => 'excursion',
-		'posts_per_page' => $posts_per_page,
-		'paged' => $page,
-		'tax_query' => [
-			[
-				'taxonomy' => 'excursion_category',
-				'field' => 'term_id',
-				'terms' => $categories,
-				'include_children' => false,
-			],
-		],
-		'meta_query' => ['relation' => 'AND'], // Инициализация meta_query
-	];
-
-	// Обрабатываем фильтр по grade
-	if ($grade) {
-		// Декодируем JSON-строку в массив
-		$grade_values = json_decode($grade);
-		if (!empty($grade_values)) {
-			// Настроим meta_query для поиска каждого значения отдельно
-			$args['meta_query'] = [
-				'relation' => 'OR', // Связываем условия через OR
-			];
-
-			foreach ($grade_values as $grade_value) {
-				$args['meta_query'][] = [
-					'key'     => 'grade',
-					'value'   => ':"' . $grade_value . '"', // Ищем каждое значение в сериализованном поле
-					'compare' => 'LIKE',                      // Используем LIKE для поиска в сериализованном массиве
-				];
-			}
-
-			// Условия для отсутствующего поля или NULL
-			$args['meta_query'][] = [
-				'key'     => 'grade',
-				'compare' => 'NOT EXISTS', // Если поле не существует
-			];
-
-			$args['meta_query'][] = [
-				'key'     => 'grade',
-				'value'   => '',            // Для проверки на NULL
-				'compare' => 'IS NULL',     // Проверка на NULL
-			];
-		}
-
-	}
-
-	// Обрабатываем фильтр по duration
-	if ($duration) {
-		// Декодируем массив значений для duration
-		$duration_values = json_decode($duration);
-
-		// Проверяем, что массив не пустой
-		if (!empty($duration_values)) {
-			// Инициализируем meta_query, если он еще не существует
-			if (!isset($args['meta_query'])) {
-				$args['meta_query'] = ['relation' => 'AND'];
-			}
-
-			// Создаем meta_query для поля duration
-			$duration_query = [
-				'relation' => 'OR', // Условия объединяем через OR
-			];
-
-			// Добавляем условие для каждого значения в массиве
-			foreach ($duration_values as $value) {
-				$duration_query[] = [
-					'key'     => 'duration',
-					'value'   => $value,  // Значение для фильтрации
-					'compare' => '=',     // Точное совпадение
-				];
-			}
-
-			// Добавляем условие для NULL
-			$duration_query[] = [
-				'key'     => 'duration',
-				'compare' => 'NOT EXISTS', // Если поле не существует
-			];
-			$duration_query[] = [
-				'key'     => 'duration',
-				'value'   => '',          // Для проверки на NULL
-				'compare' => 'IS NULL',   // Проверка на NULL
-			];
-
-			// Добавляем созданные условия в meta_query
-			$args['meta_query'][] = $duration_query;
-		}
-	}
-
-
-//var_dump($args);
-	// Выполнение запроса
-	$query = new WP_Query($args);
-
-	// Формируем ответ
-	$posts = [];
-	if ($query->have_posts()) {
-		while ($query->have_posts()) {
-			$query->the_post();
-			$fields = get_fields();
-			$posts[] = [
-				'title' => get_the_title(),
-				'url' => get_permalink(),
-				'price' => $fields['price'] ?? '',
-				'discount_price' => $fields['discount_price'] ?? '',
-				'grade' => $fields['grade'] ?? '',
-				'duration' => $fields['duration'] ?? '',
-				'image' => $fields['gallery'][0]['sizes']['medium_large'] ?? '',
-			];
-		}
-	}
-
-	// Формируем пагинацию
-	$total_pages = $query->max_num_pages;
-	$pagination = [];
-	if ($total_pages > 1) {
-		for ($i = 1; $i <= $total_pages; $i++) {
-			$pagination[] = [
-				'page' => $i,
-			];
-		}
-	}
-
-	// Возвращаем ответ
-	return rest_ensure_response([
-		'posts' => $posts,
-		'pagination' => $pagination,
-	]);
-}
 
 
 function handle_filter_posts_request(WP_REST_Request $request) {
@@ -328,4 +174,157 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 
 }
 
+
+function handle_reviews_form(WP_REST_Request $request) {
+	$params = $request->get_params();
+	$files = $_FILES['file'] ?? null;
+
+	$recepient = 'testdev@kometatek.ru';
+	$sitename = "Flagman";
+	$name = sanitize_text_field($params["name"]);
+	$email = sanitize_email($params["email"]);
+	$text = sanitize_textarea_field($params["message"]);
+
+	$excurs = isset($params["excurs"]) ? wp_strip_all_tags($params["excurs"]) : '';
+	$rating = isset($params["rating"]) ? (int)$params["rating"] : 0;
+
+	$message = "Дата: " . date('d/m/Y') . "<br/><br/>\r\n";
+	$message .= "Имя: " .  $name . "<br/><br/>\r\n";
+	$message .= "Экскурсия: " .  $excurs . "<br/><br/>";
+	$message .= "Рейтинг: " .  $rating . "<br/><br/>";
+	$message .= "Телефон или Email: " .  $email . "<br/><br/>";
+	$message .= "Сообщение: " .  $text . "<br/><br/>";
+
+	$pagetitle = "Новый отзыв с сайта \"$sitename\"";
+
+	// Создание записи "Отзыв"
+	$post_data = [
+			'post_title'   => $name,
+			'post_content' => $text,
+			'post_status'  => 'pending',
+			'post_author'  => 1,
+			'post_type'    => 'reviews',
+	];
+	$post_id = wp_insert_post($post_data);
+
+	// Обработка файлов
+	if ($files) {
+		$uploaded_files = array_map('RemapFilesArray',
+				$files['name'],
+				$files['type'],
+				$files['tmp_name'],
+				$files['error'],
+				$files['size']
+		);
+
+		$gallery = [];
+		
+		foreach ($uploaded_files as $file) {
+			if($file["name"] && $file["type"] && $file["tmp_name"]) {
+				$attachment = my_update_attachment($file, $post_id);
+				if (isset($attachment['attach_id'])) {
+					$gallery[] = $attachment['attach_id'];
+				}
+			}
+		}
+
+		// Сохранение дополнительных полей (ACF или meta)
+		update_field('field_5fad894783054', $gallery, $post_id); // Поле для галереи
+	}
+
+	// Сохранение дополнительных данных
+	update_field('field_5fad895583055', $excurs, $post_id);
+	update_field('field_5fad897183057', $rating, $post_id);
+	update_field('field_612cc6d2ad914', $email, $post_id);
+
+	// Добавление ссылки на запись в сообщение
+	$message .= "Ссылка на отзыв: https://parus-peterburg.ru/wp-admin/post.php?post=$post_id&action=edit<br/><br/>";
+
+	// Возвращаем ответ REST API
+	return rest_ensure_response([
+			'success' => true,
+			'message' => 'Отзыв успешно отправлен!',
+			'post_id' => $post_id,
+	]);
+}
+
+// Вспомогательная функция для обработки массива файлов
+function RemapFilesArray($name, $type, $tmp_name, $error, $size) {
+    return array(
+        'name' => $name,
+        'type' => $type,
+        'tmp_name' => $tmp_name,
+        'error' => $error,
+        'size' => $size,
+    );
+}
+
+// Вспомогательная функция для загрузки вложений
+
+function my_update_attachment($f,$pid,$t='',$c='') {
+  wp_update_attachment_metadata( $pid, $f );
+  if( !empty( $f['name'] )) { //New upload
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+    $override['test_form'] = false;
+    $file = wp_handle_upload( $f, $override );
+
+    if ( isset( $file['error'] )) {
+      return new WP_Error( 'upload_error', $file['error'] );
+    }
+
+    $file_type = wp_check_filetype($f['name'], array(
+      'jpg|jpeg' => 'image/jpeg',
+      'gif' => 'image/gif',
+      'png' => 'image/png',
+    ));
+    if ($file_type['type']) {
+      $name_parts = pathinfo( $file['file'] );
+      $name = $f['name'];
+      $type = $file['type'];
+      $title = $t ? $t : $name;
+      $content = $c;
+
+      $attachment = array(
+        'post_title' => $title,
+        'post_type' => 'attachment',
+        'post_content' => $content,
+        'post_parent' => $pid,
+        'post_mime_type' => $type,
+        'guid' => $file['url'],
+      );
+
+
+      foreach( get_intermediate_image_sizes() as $s ) {
+        $sizes[$s] = array( 'width' => '', 'height' => '', 'crop' => true );
+        $sizes[$s]['width'] = get_option( "{$s}_size_w" ); // For default sizes set in options
+        $sizes[$s]['height'] = get_option( "{$s}_size_h" ); // For default sizes set in options
+        $sizes[$s]['crop'] = get_option( "{$s}_crop" ); // For default sizes set in options
+      }
+
+      $sizes = apply_filters( 'intermediate_image_sizes_advanced', $sizes );
+
+      foreach( $sizes as $size => $size_data ) {
+        $resized = image_make_intermediate_size( $file['file'], $size_data['width'], $size_data['height'], $size_data['crop'] );
+        if ( $resized )
+          $metadata['sizes'][$size] = $resized;
+      }
+
+      $attach_id = wp_insert_attachment( $attachment, $file['file'] /*, $pid - for post_thumbnails*/);
+
+      if ( !is_wp_error( $attach_id )) {
+        $attach_meta = wp_generate_attachment_metadata( $attach_id, $file['file'] );
+        wp_update_attachment_metadata( $attach_id, $attach_meta );
+      }
+
+   return array(
+  'pid' =>$pid,
+  'url' =>$file['url'],
+  'file'=>$file,
+  'attach_id'=>$attach_id
+   );
+    }
+  }
+}
 
