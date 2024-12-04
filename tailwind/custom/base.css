@@ -12,5 +12,17 @@
  * editor.
 */
 body {
-	@apply bg-background text-foreground font-sans;
+	@apply bg-background text-foreground font-['Mulish'] text-[#373f41] bg-[#F2F1FA];
+}
+#primary-menu {
+	@apply flex gap-2 items-center
+}
+#primary-menu li a {
+	@apply  px-4 py-2
+}
+#primary-menu li.current_page_item  a {
+	@apply  text-[#ff7642]
+}
+.container {
+	@apply !max-w-[1176px];
 }

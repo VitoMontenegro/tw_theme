@@ -11,7 +11,3 @@
  * the block editor.
  */
 
-.entry-header,
-.entry-content {
-	@apply px-8;
-}

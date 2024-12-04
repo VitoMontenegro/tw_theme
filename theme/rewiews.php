@@ -11,7 +11,7 @@ get_header();
 
 ?>
 	<section class="content content--reviews">
-		<div class="container mx-auto">
+		<div class=container mx-auto px-4">
 			<h1><?php the_title() ?></h1>
 
 			<?php the_content(); ?>
@@ -36,7 +36,7 @@ get_header();
 
 		</div>
 
-		<div class="container mx-auto">
+		<div class=container mx-auto px-4">
 			<form id="rev_form" class="content__form form reviews_form contact_page">
 				<h3>Поделитесь впечатлениями</h3>
 				<div class="form-wrap">

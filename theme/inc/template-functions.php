@@ -374,7 +374,6 @@ function get_nested_categories($taxonomy = 'category') {
 
 	if (empty($terms) || is_wp_error($terms)) {
 		//return [];
-
 	}
 
 	$categories = [];

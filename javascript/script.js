@@ -126,20 +126,46 @@ document.addEventListener('DOMContentLoaded', function() {
 
 			// Сохраняем обновленные куки
 			setCookie('product', JSON.stringify(currentProducts), 7);
+			updateProductCount('product', '#product-count span');
 		});
 	}
 
-	// Функция получения куки
+
+	// Функция для получения значения куки по имени
 	function getCookie(name) {
-		const cookieArr = document.cookie.split(";");
+		let cookieArr = document.cookie.split(';');
 		for (let i = 0; i < cookieArr.length; i++) {
 			let cookie = cookieArr[i].trim();
-			if (cookie.startsWith(name + "=")) {
-				return cookie.substring(name.length + 1);
+			if (cookie.startsWith(name + '=')) {
+				return cookie.substring(name.length + 1, cookie.length);
 			}
 		}
 		return null;
 	}
+	// Функция для обновления количества продуктов, используя куку
+	function updateProductCount(cookieName, elementSelector) {
+		// Получаем значение куки по имени
+		let productCookie = getCookie(cookieName);
+
+		// Если куки существует, парсим строку и подсчитываем количество элементов
+		if (productCookie) {
+			try {
+				let productArray = JSON.parse(productCookie); // Парсим строку как JSON
+				if (Array.isArray(productArray)) {
+					// Обновляем текст в указанном элементе
+					document.querySelector(elementSelector).textContent = productArray.length;
+				}
+			} catch (e) {
+				console.error("Ошибка при парсинге куки '" + cookieName + "':", e);
+			}
+		} else {
+			// Если куки нет, показываем 0
+			document.querySelector(elementSelector).textContent = 0;
+		}
+	}
+
+	// Пример вызова функции для обновления счетчика продуктов
+	updateProductCount('product', '#product-count span');
 
 	// Функция установки куки
 	function setCookie(name, value, days) {
@@ -270,5 +296,9 @@ document.addEventListener('DOMContentLoaded', function() {
 				});
 		});
 	}
+
+
+
+
 
 });

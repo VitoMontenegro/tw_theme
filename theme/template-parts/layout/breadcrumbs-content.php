@@ -6,7 +6,7 @@ $fields = get_fields();
 $i=0
 ?>
 <section class="breadcrumbs">
-	<div class="container mx-auto">
+	<div class=container mx-auto px-4">
 		<ol itemscope itemtype="http://schema.org/BreadcrumbList" class="flex gap-4">
 			<?php if(is_category()): ?>
 				<li itemprop="itemListElement" itemscope

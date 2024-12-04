@@ -10,7 +10,7 @@
 ?>
 
 <footer id="colophon">
-	<div class="container mx-auto">
+	<div class=container mx-auto px-4">
 		<?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
 			<aside role="complementary" aria-label="<?php esc_attr_e( 'Footer', 'tw' ); ?>">
 				<?php dynamic_sidebar( 'sidebar-1' ); ?>
@@ -50,4 +50,4 @@
 		</div>
 	</div>
 
-</footer><!-- #colophon -->
+</footer>
