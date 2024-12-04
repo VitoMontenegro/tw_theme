@@ -14,12 +14,12 @@ $rating = isset($_POST["rating"]) ? (int)$_POST["rating"] : '';
 
 
 
-$message = "Дата: " . $name . "<br/><br/>\r\n";
-$message = "Имя: " .  $name . "<br/><br/>\r\n";
-$message .= "Экскурсия: " .  $excurs . "<br/><br/>";
-$message .= "Рейтинг: " .  $rating . "<br/><br/>";
-$message .= "Телефон или Email: " .  $email . "<br/><br/>";
-$message .= "Cообщение: " .  $text . "<br/><br/>";
+$message = "Дата: " . $name . "<br><br>\r\n";
+$message = "Имя: " .  $name . "<br><br>\r\n";
+$message .= "Экскурсия: " .  $excurs . "<br><br>";
+$message .= "Рейтинг: " .  $rating . "<br><br>";
+$message .= "Телефон или Email: " .  $email . "<br><br>";
+$message .= "Cообщение: " .  $text . "<br><br>";
 $pagetitle = "Новый отзыв с сайта \"$sitename\"";
 
 $post_data = array(
@@ -54,8 +54,8 @@ if ($_FILES['file']){
 
 }
 
-$message .= "Дата:  " . date('d/m/Y') . "<br/><br/>";
-$message .= "Ссылка на отзыв : https://parus-peterburg.ru/wp-admin/post.php?post=" . $post_id . "&action=edit<br/><br/>";
+$message .= "Дата:  " . date('d/m/Y') . "<br><br>";
+$message .= "Ссылка на отзыв : https://parus-peterburg.ru/wp-admin/post.php?post=" . $post_id . "&action=edit<br><br>";
 
 //mail($recepient, $pagetitle, $message, "Content-type: text/html; charset=\"utf-8\"\r\n From: admin@parus-peterburg.ru\r\n".'X-Mailer: PHP/' . phpversion());
 //mail('world.julia1@gmail.com', $pagetitle, $message, "Content-type: text/html; charset=\"utf-8\"\r\n From: admin@parus-peterburg.ru\r\n".'X-Mailer: PHP/' . phpversion());

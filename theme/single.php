@@ -25,10 +25,10 @@ get_header();
 					the_post_navigation(
 						array(
 							'next_text' => '<span aria-hidden="true">' . __( 'Next Post', 'tw' ) . '</span> ' .
-								'<span class="sr-only">' . __( 'Next post:', 'tw' ) . '</span> <br/>' .
+								'<span class="sr-only">' . __( 'Next post:', 'tw' ) . '</span> <br>' .
 								'<span>%title</span>',
 							'prev_text' => '<span aria-hidden="true">' . __( 'Previous Post', 'tw' ) . '</span> ' .
-								'<span class="sr-only">' . __( 'Previous post:', 'tw' ) . '</span> <br/>' .
+								'<span class="sr-only">' . __( 'Previous post:', 'tw' ) . '</span> <br>' .
 								'<span>%title</span>',
 						)
 					);

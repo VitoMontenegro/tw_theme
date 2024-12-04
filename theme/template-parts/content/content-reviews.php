@@ -54,7 +54,7 @@ $date = ($fields['date_reviews']) ?? get_the_date('j F Y');
 				<?php foreach( $images as $image ): ?>
 					<div>
 						<a data-fancybox="gallery<?php echo get_the_ID(); ?>" href="<?php echo $image['url']; ?>">
-							<img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+							<img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>">
 						</a>
 					</div>
 				<?php endforeach; ?>

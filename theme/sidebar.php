@@ -30,84 +30,84 @@ if ($current_category && isset($current_category->term_id)) {
 		$categories_tree = get_nested_categories_by_parent($top_parent->term_id, 'excursion_category');
 		if (!empty($categories_tree)) : ?>
 			<form id="filter-form" class="mb-7">
-				<input type="hidden" id="category_id" value="<?php echo $current_category->term_id; ?>" />
+				<input type="hidden" id="category_id" value="<?php echo $current_category->term_id; ?>">
 				<div class="flex gap-1 flex-col w-full mb-[30px]">
-					<label for="posts_per_page">Возрастная группа/класс:</label>
+					<div>Возрастная группа/класс:</div>
 					<div class="flex gap-4 flex-wrap radio-group">
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="d" class="hidden peer" />
+							<input type="checkbox" name="grade" value="d" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	Дошкольники
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="n" class="hidden peer" />
+							<input type="checkbox" name="grade" value="n" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	Начальные классы
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="1" class="hidden peer" />
+							<input type="checkbox" name="grade" value="1" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	1
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="2" class="hidden peer" />
+							<input type="checkbox" name="grade" value="2" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	2
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="3" class="hidden peer" />
+							<input type="checkbox" name="grade" value="3" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	3
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="4" class="hidden peer" />
+							<input type="checkbox" name="grade" value="4" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	4
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="5" class="hidden peer" />
+							<input type="checkbox" name="grade" value="5" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	5
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="6" class="hidden peer" />
+							<input type="checkbox" name="grade" value="6" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	6
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="7" class="hidden peer" />
+							<input type="checkbox" name="grade" value="7" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	7
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="8" class="hidden peer" />
+							<input type="checkbox" name="grade" value="8" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	8
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="9" class="hidden peer" />
+							<input type="checkbox" name="grade" value="9" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	9
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="10" class="hidden peer" />
+							<input type="checkbox" name="grade" value="10" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	10
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="grade" value="10" class="hidden peer" />
+							<input type="checkbox" name="grade" value="11" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	11
 						</span>
@@ -120,25 +120,25 @@ if ($current_category && isset($current_category->term_id)) {
 					<div class="flex gap-4 flex-wrap radio-group">
 
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="duration" value="12" class="hidden peer" />
+							<input type="checkbox" name="duration" value="12" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	1-2 часа
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="duration" value="23" class="hidden peer" />
+							<input type="checkbox" name="duration" value="23" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	2-3 часа
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="duration" value="45" class="hidden peer" />
+							<input type="checkbox" name="duration" value="45" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	4-5 часов
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="duration" value="67" class="hidden peer" />
+							<input type="checkbox" name="duration" value="67" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	6-7 часов
 						</span>
@@ -150,19 +150,19 @@ if ($current_category && isset($current_category->term_id)) {
 					<div class="text-grey">Цена:</div>
 					<div class="flex gap-4 flex-wrap radio-group">
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="price" value="1000-1500" class="hidden peer" />
+							<input type="checkbox" name="price" value="1000-1500" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	1000₽ - 1500₽
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="price" value="1500-2000" class="hidden peer" />
+							<input type="checkbox" name="price" value="1500-2000" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	1500₽ - 2000₽
 						</span>
 						</label>
 						<label class="flex items-center cursor-pointer">
-							<input type="checkbox" name="price" value="2000-10000" class="hidden peer" />
+							<input type="checkbox" name="price" value="2000-10000" class="hidden peer">
 							<span class="px-4 py-2 border rounded-xl bg-gray-200 text-black peer-checked:bg-gray-400 peer-checked:text-white transition">
 						  	2000₽ - 10000₽
 						</span>

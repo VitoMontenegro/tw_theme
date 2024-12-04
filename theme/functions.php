@@ -148,6 +148,7 @@ function tw_scripts() {
 	//wp_enqueue_style( 'tw-slick-style', get_stylesheet_uri().'/css/slick.css', array(), TW_VERSION );
 
 	wp_enqueue_style( 'tw-style', get_stylesheet_uri(), array(), TW_VERSION );
+	wp_enqueue_style( 'tw-custom-style', get_template_directory_uri() . '/css/custom.css', TW_VERSION );
 	wp_enqueue_script( 'tw-script', get_template_directory_uri() . '/js/script.min.js', array(), TW_VERSION, true );
 	//wp_enqueue_script( 'tw-slick-script', get_template_directory_uri() . '/js/slick.min.js', array(), TW_VERSION, true );
 
@@ -213,3 +214,10 @@ function varf($param) {
 	var_dump($param);
 	echo '</pre>';
 }
+function remove_wp_block_styles() {
+	wp_dequeue_style( 'wp-block-library' );  // Стили для блоков
+	wp_dequeue_style( 'wp-block-library-theme' );  // Стили для тем блоков
+}
+add_action( 'wp_enqueue_scripts', 'remove_wp_block_styles', 100 );
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );

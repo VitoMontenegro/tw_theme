@@ -1,5 +1,5 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php'); 
+require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 require_once(ABSPATH . 'wp-admin/includes/image.php');
 
 function custom_rest_filter_posts() {
@@ -148,12 +148,12 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 				<div class="flex flex-wrap text-xl text-global-luckypush font-400">
 					<span class="mr-1"><?php echo $fields['price']; ?> / <?php echo $fields['discount_price']; ?></span>
 				</div>
-				<button class="wish-btn content__tour__wish-btn group" data-wp-id="<?php echo get_the_ID(); ?>">
-					<div class="icon">
+				<button class="wish-btn content__tour__wish-btn group" data-wp-id="<?php echo get_the_ID(); ?>" aria-label="Добавить в избранное">
+					<span class="icon">
 						<svg class="w-6 h-6 fill-current text-[#A5A5A5] group-[.active]:text-red-600">
 							<path class="icon-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
 						</svg>
-					</div>
+					</span>
 				</button>
 				<?php if (!empty($fields['video_after_gates'])): ?>
 					<span class="has_video" data-ll-status="observed">
@@ -188,12 +188,12 @@ function handle_reviews_form(WP_REST_Request $request) {
 	$excurs = isset($params["excurs"]) ? wp_strip_all_tags($params["excurs"]) : '';
 	$rating = isset($params["rating"]) ? (int)$params["rating"] : 0;
 
-	$message = "Дата: " . date('d/m/Y') . "<br/><br/>\r\n";
-	$message .= "Имя: " .  $name . "<br/><br/>\r\n";
-	$message .= "Экскурсия: " .  $excurs . "<br/><br/>";
-	$message .= "Рейтинг: " .  $rating . "<br/><br/>";
-	$message .= "Телефон или Email: " .  $email . "<br/><br/>";
-	$message .= "Сообщение: " .  $text . "<br/><br/>";
+	$message = "Дата: " . date('d/m/Y') . "<br><br>\r\n";
+	$message .= "Имя: " .  $name . "<br><br>\r\n";
+	$message .= "Экскурсия: " .  $excurs . "<br><br>";
+	$message .= "Рейтинг: " .  $rating . "<br><br>";
+	$message .= "Телефон или Email: " .  $email . "<br><br>";
+	$message .= "Сообщение: " .  $text . "<br><br>";
 
 	$pagetitle = "Новый отзыв с сайта \"$sitename\"";
 
@@ -218,7 +218,7 @@ function handle_reviews_form(WP_REST_Request $request) {
 		);
 
 		$gallery = [];
-		
+
 		foreach ($uploaded_files as $file) {
 			if($file["name"] && $file["type"] && $file["tmp_name"]) {
 				$attachment = my_update_attachment($file, $post_id);
@@ -238,7 +238,7 @@ function handle_reviews_form(WP_REST_Request $request) {
 	update_field('field_612cc6d2ad914', $email, $post_id);
 
 	// Добавление ссылки на запись в сообщение
-	$message .= "Ссылка на отзыв: https://parus-peterburg.ru/wp-admin/post.php?post=$post_id&action=edit<br/><br/>";
+	$message .= "Ссылка на отзыв: https://parus-peterburg.ru/wp-admin/post.php?post=$post_id&action=edit<br><br>";
 
 	// Возвращаем ответ REST API
 	return rest_ensure_response([

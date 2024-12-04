@@ -50,7 +50,7 @@ get_header();
 
 						<div class="step-field hide text-excurs to">
 							<label class="form__label">
-								<input class="field form__input name_field" name="excurs" placeholder="Напишите название экскурсии" type="text" />
+								<input class="field form__input name_field" name="excurs" placeholder="Напишите название экскурсии" type="text">
 							</label>
 						</div>
 
