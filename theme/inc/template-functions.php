@@ -223,7 +223,7 @@ function register_custom_post_type() {
 			'public' => true,
 			'hierarchical' => false, // Для поддержки иерархии
 			'rewrite' => ['slug' => 'excursion', 'with_front' => false], // Пустой slug
-			'supports' => ['title', 'editor', 'thumbnail'],
+			'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
 			'menu_icon' => 'dashicons-admin-site-alt',
 			'taxonomies' => ['excursion_category'], // Подключаем таксономию
 	]);
@@ -510,25 +510,6 @@ function get_all_descendant_categories($parent_id, $taxonomy) {
 	return $categories;
 }
 
-function render_children_categories($children) { ?>
-	<div class="ps-4 pt-4">
-			<?php foreach ($children as $category) : ?>
-				<?php $link = $category["single_post_slug"] ?? $category['link']; ?>
-				<div>
-					<a href="<?php echo $link; ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
-						<span class="w-10 h-10 border-2 rounded-md border-black flex items-center justify-center group-active:bg-gray-200 group-[.active]:text-red-500 group-[.active]:border-red-500">
-									<span class="invisible group-[.active]:visible">✓</span>
-							</span>
-						<span class="text-black group-[.active]:text-red-500"><?php echo esc_html($category['name']); ?></span>
-					</a>
-					<?php if(!empty($child['children'])) {
-						render_children_categories($child['children']);
-					}?>
-				</div>
-			<?php endforeach; ?>
-		</div>
-	<?php
-}
 
 function is_current_category($term_id) {
 	if (is_tax() || is_category()) {
@@ -550,4 +531,6 @@ function getYoutubeEmbedUrl($url) {
 	preg_match($pattern, $url, $matches);
 	return (isset($matches[1])) ? $matches[1] : false;
 }
+
+
 

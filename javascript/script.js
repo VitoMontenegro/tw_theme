@@ -13,18 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	//filter excursion
 	const categoryIdElem = document.getElementById('category_id');
-
 	if(categoryIdElem) {
 		const categoryId = document.getElementById('category_id').value;
 		document.getElementById('filter-form').addEventListener('change', function() {
 			loadPosts(1);
 		});
-		document.getElementById('pagination').addEventListener('click', function(event) {
+		/*document.getElementById('pagination').addEventListener('click', function(event) {
 			if (event.target.classList.contains('pagination-link')) {
 				const page = parseInt(event.target.dataset.page);
 				loadPosts(page);
 			}
-		});
+		});*/
 		function loadPosts(page) {
 			// Собираем массив значений выбранных чекбоксов
 			const getCheckedValues = (name) => {
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			};
 			const duration = getCheckedValues('duration');
 			const price = getCheckedValues('price');
-			const postsPerPage = 10
+			const postsPerPage = -1
 			const grade = getCheckedValues('grade');
 
 			const params = new URLSearchParams({
@@ -53,56 +52,50 @@ document.addEventListener('DOMContentLoaded', function() {
 				})
 				.then(html => {
 					document.getElementById('posts-container').innerHTML = html;
-					const wishBtns = document.getElementById('posts-container').querySelectorAll('.wish-btn');
-					if (wishButtons) {
-						let currentProducts = getCookie('product');
-						try {
-							currentProducts = currentProducts ? JSON.parse(currentProducts) : [];
-						} catch (e) {
-							console.error("Error parsing cookies:", e);
-							currentProducts = []; // Сбрасываем в пустой массив при ошибке
-						}
-						wishBtns.forEach(button => {
-							const productId = button.getAttribute('data-wp-id');
-							if (currentProducts.includes(productId)) {
-								button.classList.add('active');
-							}
-						});
-					}
+					adjustCardLayout();
+					adjustWishBtn();
 				})
 				.catch(error => console.error('Error loading posts:', error));
 		}
 	}
 
 
-	//wishlist
-	const wishButtons = document.querySelectorAll('.wish-btn');
-	if (wishButtons) {
-		let currentProducts = getCookie('product');
-		try {
-			currentProducts = currentProducts ? JSON.parse(currentProducts) : [];
-		} catch (e) {
-			console.error("Error parsing cookies:", e);
-			currentProducts = []; // Сбрасываем в пустой массив при ошибке
-		}
+	function adjustWishBtn() {
+		const devContainer = document.getElementById('posts-container');
 
-		wishButtons.forEach(button => {
-			const productId = button.getAttribute('data-wp-id');
+		if (!devContainer) return;  // Если контейнера нет, выходим
 
-			// Добавляем класс active на кнопки, которые соответствуют продуктам в куки
-			if (currentProducts.includes(productId)) {
-				button.classList.add('active');
-			}
+		const wishButtons = devContainer.querySelectorAll('.wish-btn');
+		updateWishBtns(wishButtons);
 
-		});
-	}
-	const devContainer = document.getElementById('posts-container');
+		if (devContainer.dataset.initialized) return;
 
-	if (devContainer) {
+		devContainer.dataset.initialized = true;
 		devContainer.addEventListener('click', (event) => {
 			const button = event.target.closest('.wish-btn');
 			if (!button) return; // Если клик не по wish-btn, выходим
+			handleWishButtonClick(button);
+		});
 
+		function updateWishBtns(buttons) {
+			let currentProducts = getCookie('product');
+			try {
+				currentProducts = currentProducts ? JSON.parse(currentProducts) : [];
+			} catch (e) {
+				console.error("Error parsing cookies:", e);
+				currentProducts = []; // Сбрасываем в пустой массив при ошибке
+			}
+
+			buttons.forEach(button => {
+				const productId = button.getAttribute('data-wp-id');
+				// Добавляем класс active на кнопки, которые соответствуют продуктам в куки
+				if (currentProducts.includes(productId)) {
+					button.classList.add('active');
+				}
+			});
+		}
+
+		function handleWishButtonClick(button) {
 			let currentProducts = getCookie('product');
 			try {
 				currentProducts = currentProducts ? JSON.parse(currentProducts) : [];
@@ -124,12 +117,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				button.classList.add('active');
 			}
 
+			console.log('productId', currentProducts);
+
 			// Сохраняем обновленные куки
 			setCookie('product', JSON.stringify(currentProducts), 7);
 			updateProductCount('product', '#product-count span');
-		});
+		}
 	}
-
+	adjustWishBtn();
 
 	// Функция для получения значения куки по имени
 	function getCookie(name) {
@@ -142,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		return null;
 	}
+
 	// Функция для обновления количества продуктов, используя куку
 	function updateProductCount(cookieName, elementSelector) {
 		// Получаем значение куки по имени
@@ -297,6 +293,88 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
+	function adjustCardLayout() {
+		let cards = document.querySelectorAll('.card');
+		if (cards) {
+			cards.forEach(card => {
+				const title = card.querySelector('.card-title');
+				const description = card.querySelector('.card-description');
+
+				// Получаем line-height, если он задан, или используем размер шрифта как запасной вариант
+				const computedStyle = window.getComputedStyle(title);
+				let lineHeight = parseInt(computedStyle.lineHeight, 10);
+
+				// Если lineHeight не удалось получить, пытаемся использовать размер шрифта
+				if (isNaN(lineHeight)) {
+					const fontSize = parseInt(computedStyle.fontSize, 10);
+					lineHeight = fontSize * 1.2;  // Обычно line-height примерно в 1.2 раза больше font-size
+				}
+
+				// Получаем высоту заголовка
+				const titleHeight = title.offsetHeight;
+
+				// Вычисляем, сколько строк занимает заголовок
+				const titleLines = Math.floor(titleHeight / lineHeight);
+
+				// Применяем стили в зависимости от числа строк в заголовке
+				if (titleLines >= 3) {
+					title.classList.add('three-lines', 'mb-3');
+					description.classList.add('two-lines');
+				} else {
+					title.classList.add('two-lines', 'mb-4');
+					description.classList.add('three-lines');
+				}
+			});
+		}
+	}
+	adjustCardLayout();
+
+	// Находим элемент с data-category-id
+	const container = document.querySelector('.excursions-container');
+	if(container) {
+		const categoryId = container ? container.getAttribute('data-category-id') : null;
+
+		if (!categoryId) {
+			console.error('Категория не найдена');
+			return;
+		}
+
+		// Обработка клика по кнопке "Ещё"
+		document.addEventListener('click', function(event) {
+			const button = event.target.closest('.load-more');
+
+			if (button) {
+				const page = button.getAttribute('data-page');
+
+				// Отправка запроса с использованием fetch
+				fetch('/wp-json/my-api/v1/load-more/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						category_id: categoryId,
+						page: page
+					})
+				})
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Failed to fetch the template.');
+						}
+						return response.text();
+					})
+					.then(html => {
+						document.querySelector('.load-more').remove();
+						//document.getElementById('posts-container').innerHTML = html;
+						document.getElementById('posts-container').insertAdjacentHTML('beforeend', html);
+
+						adjustCardLayout();
+						adjustWishBtn();
+					})
+					.catch(error => console.error('Error loading posts:', error));
+			}
+		});
+	}
 
 
 

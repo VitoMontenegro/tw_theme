@@ -9,7 +9,7 @@ if ($sidebar_term) {
 
 if ($current_category && isset($current_category->term_id)) : ?>
 		<div class="bg-white p-4 rounded-lg">
-			<form id="filter-form" class="mb-7">
+			<form id="filter-form" class="mb-7 excursions-container" data-category-id="<?php echo $current_category->term_id; ?>">
 				<div class="text-lg font-bold mb-6">Фильтр</div>
 				<input type="hidden" id="category_id" value="<?php echo $current_category->term_id; ?>">
 

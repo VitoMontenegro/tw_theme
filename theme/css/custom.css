@@ -1,4 +1,27 @@
 
+.card-title, .card-description {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.card-title.two-lines {
+	-webkit-line-clamp: 2;
+}
+
+.card-title.three-lines {
+	-webkit-line-clamp: 3;
+}
+
+.card-description.two-lines {
+	-webkit-line-clamp: 2;
+}
+
+.card-description.three-lines {
+	-webkit-line-clamp: 3;
+}
+
 @media (max-width: 1024px) {
 	.clouds {
 		background-image: none!important;

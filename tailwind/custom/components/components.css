@@ -32,11 +32,7 @@
  *
  * https://make.wordpress.org/core/2021/06/29/on-layout-and-content-width-in-wordpress-5-8/
  */
-.page-content > *,
-.entry-content > * {
-	/* Content width from the `theme.json` file */
-	@apply max-w-content mx-auto;
-}
+
 
 .entry-content > .alignwide {
 	/* Wide width from the `theme.json` file */
@@ -53,4 +49,7 @@
 
 .entry-content > .alignright {
 	@apply float-right ml-8;
+}
+.entry-content h2 {
+	@apply text-[#373f41] text-3xl font-bold tracking-tight mt-10 mb-6
 }

@@ -16,12 +16,12 @@
 		<div class="flex justify-between items-center">
 			<?php $categories = get_nested_categories('excursion_category'); ?>
 			<?php if (!empty($categories)) : ?>
-				<ul class="flex items-center gap-8 hidden sm:flex">
+				<ul class="flex items-center gap-8 hidden md:flex">
 					<?php foreach ($categories as $category) : ?>
 						<li class="group relative">
-							<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-semibold  flex items-center gap-2">
+							<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-semibold items-center sm:items-start lg:items-center  flex items-center gap-2 max-w-none sm:max-v-[165px] lg:max-w-none">
 								<?php echo esc_html($category['name'])?>
-								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+								<svg class="mt-0 sm:mt-1 lg:mt-0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 									<g clip-path="url(#clip0_135_6833)">
 										<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 									</g>
