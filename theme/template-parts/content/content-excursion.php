@@ -12,7 +12,7 @@ $fields = get_fields();
 $video_after_gates = $fields['video_after_gates'] ?? '';
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class=container mx-auto px-4">
+	<div class="container mx-auto px-4">
 		<header class="entry-header">
 			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 

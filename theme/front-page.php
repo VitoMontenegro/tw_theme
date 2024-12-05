@@ -153,14 +153,14 @@ get_header();
 
 	</section>
 
-	<div class="container mx-auto mt-4 px-4">
+	<div class="container mx-auto mt-14 px-4">
 		<div class="flex gap-6">
 			<aside class="filter w-full lg:w-[256px] min-w-[256px]">
 				<?php get_sidebar(); ?>
 			</aside>
 
 			<section class="product-cards">
-				<h2>Наши товары</h2>
+				<h2 class="font-bold text-3xl">Выберите экскурсию</h2>
 				<div class="flex flex-col">
 
 					<div class="grid grid-cols-4 gap-6 w-full mt-5"  id="posts-container">

@@ -428,6 +428,19 @@ function get_top_parent_category($term_id, $taxonomy = 'category') {
 	return $term;
 }
 
+function get_top_categorios($taxonomy = 'excursion_category') {
+	$top_level_categories = get_terms( array(
+			'taxonomy' => 'excursion_category', // Замените на нужную таксономию
+			'parent'   => 0,                   // Получаем только категории верхнего уровня
+			'hide_empty' => false               // Не скрывать пустые категории (по желанию)
+	) );
+
+	if ( ! empty( $top_level_categories ) && ! is_wp_error( $top_level_categories ) ) {
+		return $top_level_categories;
+	}
+	return [];
+}
+
 function get_nested_categories_by_parent($parent_id, $taxonomy = 'excursion_category') {
 	$terms = get_terms([
 			'taxonomy' => $taxonomy,
