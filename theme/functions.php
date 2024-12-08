@@ -145,12 +145,11 @@ add_action( 'widgets_init', 'tw_widgets_init' );
  * Enqueue scripts and styles.
  */
 function tw_scripts() {
-	//wp_enqueue_style( 'tw-slick-style', get_stylesheet_uri().'/css/slick.css', array(), TW_VERSION );
-
+	wp_enqueue_style('tw-swiper-style', get_template_directory_uri() . '/css/swiper-bundle.min.css');
+	wp_enqueue_script('tw-swiper-init', get_template_directory_uri() . '/js/swiper-bundle.min.js', array(), TW_VERSION, true);
 	wp_enqueue_style( 'tw-style', get_stylesheet_uri(), array(), TW_VERSION );
 	wp_enqueue_style( 'tw-custom-style', get_template_directory_uri() . '/css/custom.css', TW_VERSION );
 	wp_enqueue_script( 'tw-script', get_template_directory_uri() . '/js/script.min.js', array(), TW_VERSION, true );
-	//wp_enqueue_script( 'tw-slick-script', get_template_directory_uri() . '/js/slick.min.js', array(), TW_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

@@ -7,18 +7,31 @@ if ($sidebar_term) {
 	$current_category = get_queried_object(); // Текущая категория
 }
 
-if ($current_category && isset($current_category->term_id)) : ?>
-		<div class="bg-white p-4 rounded-lg  h-screen lg:h-full">
-			<form id="filter-form" class="mb-7 excursions-container" data-category-id="<?php echo $current_category->term_id; ?>">
-				<div class="flex justify-between items-center">
-					<div class="text-lg font-bold mb-6">Фильтр</div>
-					<div class="close-filter-btn block lg:hidden cursor-pointer">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-							<rect x="1.35156" y="15.4482" width="20.3974" height="1.69979" rx="0.849893" transform="rotate(-45 1.35156 15.4482)" fill="#999999"/>
-							<rect x="2.2019" y="1" width="20.3974" height="1.69979" rx="0.849893" transform="rotate(45 2.2019 1)" fill="#999999"/>
-						</svg>
-					</div>
-				</div>
+if ($current_category && isset($current_category->term_id)) {
+	// Получаем самого верхнего родителя
+	$top_parent = get_top_parent_category($current_category->term_id, 'excursion_category');
+	if ($top_parent) {
+		// Получаем все категории, у которых родительский ID равен ID верхнего родителя
+		/*
+			$sibling_categories = get_sibling_categories($top_parent->term_id, 'excursion_category');
+
+			if (!empty($sibling_categories)) : ?>
+				<ul class="categories">
+					<?php foreach ($sibling_categories as $category) : ?>
+						<li>
+							<a href="<?php echo esc_url($category['link']); ?>">
+								<?php echo esc_html($category['name']); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php endif;
+		*/
+		$categories_tree = get_nested_categories_by_parent($top_parent->term_id, 'excursion_category');
+		if (!empty($categories_tree)) : ?>
+		<div class="bg-white p-4 rounded-lg">
+			<form id="filter-form" class="mb-7">
+				<div class="text-lg font-bold mb-6">Фильтр</div>
 				<input type="hidden" id="category_id" value="<?php echo $current_category->term_id; ?>">
 
 				<div class="flex gap-3 flex-col w-full mb-6">
@@ -158,40 +171,29 @@ if ($current_category && isset($current_category->term_id)) : ?>
 						</label>
 					</div>
 				</div>
-
-				<div class="block lg:hidden">
-					<button type="button" class="close-filter-btn flex text-white px-8 py-2.5 bg-[#ff7642] rounded-full justify-center items-center gap-2 mb-3">
-						<span class="text-center text-white text-sm font-bold  leading-tight  close-filter-btn">Показать</span>
-					</button>
-					<button type="button"  id="clearForm" class="flex px-8 py-2.5 bg-[#F2F1FA] rounded-full justify-center items-center gap-2 mb-3">
-						<span class="text-center text-sm font-bold  leading-tight">Сбросить все фильтры</span>
-					</button>
-				</div>
 			</form>
-			<div class="hidden lg:block">
-				<?php $categories = get_nested_categories_by_parent(0,'excursion_category'); ?>
-				<?php if (!empty($categories)) : ?>
-					<ul class="flex flex-col gap-5">
-						<?php foreach ($categories as $category) : ?>
-							<li class="flex flex-col gap-3">
-								<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-bold">
-									<?php $fields = get_fields('excursion_category_' . $category['id']); ?>
-									<?php echo esc_html($fields['title_double'])?>
-								</a>
-								<ul class="flex flex-col gap-1.5">
-									<?php foreach ($category["children"] as $child) : ?>
-										<li class="group<?php echo is_current_category($child["id"]) ? ' active' : ''; ?>">
-											<?php $link = $child["single_post_slug"] ?? $child['link']; ?>
-											<a href="<?php echo $link; ?>" class="group-[.active]:text-[#927CF5]">
-												<?php echo esc_html($child['name'])?>
-											</a>
-										</li>
-									<?php endforeach; ?>
-								</ul>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-				<?php endif; ?>
+			<div class="flex flex-col gap-1">
+				<div class="title_sidebar">Виды экскурсий</div>
+				<div class="flex flex-col gap-4">
+					<?php foreach ($categories_tree as $category) : ?>
+						<?php $link = $category["single_post_slug"] ?? $category['link']; ?>
+						<div>
+							<a href="<?php echo $link; ?>" class="flex items-center gap-2 group<?php echo is_current_category($category["id"]) ? ' active' : ''; ?>">
+							<span class="w-10 h-10 border-2 rounded-md border-black flex items-center justify-center group-active:bg-gray-200 group-[.active]:text-red-500 group-[.active]:border-red-500">
+									<span class="invisible group-[.active]:visible">✓</span>
+							</span>
+								<span class="text-black group-[.active]:text-red-500"><?php echo esc_html($category['name']); ?></span>
+							</a>
+							<?php if (!empty($category['children'])) : ?>
+								<?php render_children_categories($category['children']); ?>
+							<?php endif; ?>
+						</div>
+
+					<?php endforeach; ?>
+				</div>
 			</div>
 		</div>
-<?php endif; ?>
+		<?php endif;
+	}
+}
+

@@ -10,6 +10,10 @@ $current_term = get_term_by('slug', 'ekskursii-peterburg','excursion_category');
 set_query_var('sidebar_term', $current_term);
 $sidebar_term = get_query_var('sidebar_term');
 
+$sub = array(".01." => " января ", ".02." => " февраля ",
+		".03." => " марта ", ".04." => " апреля ", ".05." => " мая ", ".06." => " июня ",
+		".07." => " июля ", ".08." => " августа ", ".09." => " сентября ",
+		".10." => " октября ", ".11." => " ноября ", ".12." => " декабря ", "2022" => '', '2023' => '', '2024'=>'', '2025'=>'','2026'=>'','00:00'=>'');
 get_header();
 ?>
 
@@ -18,7 +22,7 @@ get_header();
 	<section class="hero container mx-auto mt-4 px-4">
 		<div class="flex gap-3 flex-col lg:flex-row">
 			<div class="main_slide">
-				<div class="flex flex-col lg:flex-row px-4 bg-[#A392EE] rounded-xl py-8 ps-6 pe-6 lg:ps-[55px] lg:pe-3 lg:py-[65px]">
+				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-xl py-8 ps-6 pe-6 lg:ps-[55px] lg:pe-3 lg:py-[65px]">
 					<div class="title_block w-full lg:w-1/2">
 						<h1 class="text-white text-[20px] lg:text-[28px] font-normal font-['Kaph'] mb-8 leading-loose lg:leading-[38px]">
 							Экскурсии <br>
@@ -155,15 +159,16 @@ get_header();
 
 	<div class="container mx-auto mt-14 px-4">
 		<div class="flex gap-6">
-			<aside class="hidden lg:block filter w-full lg:w-[256px] min-w-[256px]">
+			<!--<aside class="hidden lg:block filter w-full lg:w-[256px] min-w-[256px]">-->
+			<aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[256px] min-w-[256px]">
 				<?php get_sidebar(); ?>
 			</aside>
 
 			<section class="product-cards">
+				<h2 class="mt-0">Выберите экскурсию</h2>
 				<div class="flex w-full justify-between items-end mb-6">
 					<div class="flex flex-col gap-2">
-						<h2 class="font-bold text-3xl">Выберите экскурсию</h2>
-						<div class="flex items-center gap-1.5 lg:hidden">
+						<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5995 4.55965H8.87945V3.35965C8.87945 2.962 8.5571 2.63965 8.15945 2.63965C7.76181 2.63965 7.43945 2.962 7.43945 3.35965V7.19965C7.43945 7.59729 7.76181 7.91965 8.15945 7.91965C8.5571 7.91965 8.87945 7.59729 8.87945 7.19965V5.99965H21.5995C21.9971 5.99965 22.3195 5.67729 22.3195 5.27965C22.3195 4.882 21.9971 4.55965 21.5995 4.55965ZM21.6002 17.9996H13.6802V16.7996C13.6802 16.4019 13.3579 16.0796 12.9602 16.0796C12.5626 16.0796 12.2402 16.4019 12.2402 16.7996V20.6396C12.2402 21.0372 12.5626 21.3596 12.9602 21.3596C13.3579 21.3596 13.6802 21.0372 13.6802 20.6396V19.4396H21.6002C21.9979 19.4396 22.3202 19.1172 22.3202 18.7196C22.3202 18.3219 21.9979 17.9996 21.6002 17.9996ZM2.39969 5.99965C2.00204 5.99965 1.67969 5.6773 1.67969 5.27965C1.67969 4.88201 2.00204 4.55965 2.39969 4.55965H5.20621C5.60386 4.55965 5.92621 4.88201 5.92621 5.27965C5.92621 5.6773 5.60386 5.99965 5.20621 5.99965H2.39969ZM1.67969 18.7197C1.67969 19.1173 2.00204 19.4397 2.39969 19.4397H10.042C10.4397 19.4397 10.762 19.1173 10.762 18.7197C10.762 18.322 10.4397 17.9997 10.042 17.9997H2.39969C2.00204 17.9997 1.67969 18.322 1.67969 18.7197Z" fill="#2E2E2E"/>
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5991 11.2804H18.4791V10.0804C18.4791 9.68271 18.1567 9.36035 17.7591 9.36035C17.3614 9.36035 17.0391 9.68271 17.0391 10.0804V13.9204C17.0391 14.318 17.3614 14.6404 17.7591 14.6404C18.1567 14.6404 18.4791 14.318 18.4791 13.9204V12.7204H21.5991C21.9967 12.7204 22.3191 12.398 22.3191 12.0004C22.3191 11.6027 21.9967 11.2804 21.5991 11.2804ZM1.67969 12.0004C1.67969 12.398 2.00204 12.7204 2.39969 12.7204H14.7502C15.1478 12.7204 15.4702 12.398 15.4702 12.0004C15.4702 11.6027 15.1478 11.2804 14.7502 11.2804H2.39969C2.00204 11.2804 1.67969 11.6027 1.67969 12.0004Z" fill="#2E2E2E"/>
@@ -221,17 +226,112 @@ get_header();
 		</div>
 	</div>
 
-	<main>
-		<section class="info-blocks">
-			<div class="container mx-auto mt-14 px-4">
+	<?php
+		$args = array(
+				'post_type'      => 'faqs',      // Тип записи 'faqs'
+				'posts_per_page' => -1,          // Выводим все записи
+				'meta_query'     => array(       // Мета-запрос для поля 'is_show'
+						array(
+								'key'     => 'is_show',   // Ключ поля ACF
+								'value'   => '1',         // Значение поля (true)
+								'compare' => '=',         // Сравниваем с true
+						),
+				),
+		);
 
-				<?php while ( have_posts() ) : the_post(); ?>
+		$query = new WP_Query( $args );
+
+		// Если записи найдены
+		if ( $query->have_posts() ) : ?>
+			<section class="bg-white">
+				<div class="container mx-auto px-4">
+					<div class="gap-6 grid grid-cols-12 w-full">
+						<div class="col-span-12 lg:col-span-3"></div>
+						<div class="entry-content col-span-12 lg:col-span-9">
+							<h2>Популярные вопросы</h2>
+							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+
+								<details class="details w-full border border-[#e8e8e8] rounded-3xl relative block mb-4" name="faq">
+									<summary class="details__title py-4 ps-4 pe-10 text-[#393488] font-bold cursor-pointer list-none"><?php echo get_the_title(); ?></summary>
+									<div class="details__content px-4 pb-4 text-[#393488]">
+										<?php the_content(); ?>
+									</div>
+								</details>
+
+							<?php endwhile; ?>
+						</div>
+					</div>
+				</div>
+			</section>
+		<?php else :
+			echo 'Нет вопросов для отображения.';
+		endif;
+
+		// Восстановление оригинального поста
+		wp_reset_postdata();
+	?>
 
 
-				<?php endwhile; ?>
-			</div>
-		</section>
-	</main>
+	<?php
+		$args = array(
+				'post_type'      => 'reviews',      // Тип записи 'faqs'
+				'posts_per_page' => 7,          // Выводим все записи
+		);
+
+		$query = new WP_Query( $args );
+
+		// Если записи найдены
+		if ( $query->have_posts() ) : ?>
+			<section class="swiper_reviews">
+				<div class="container mx-auto px-4">
+					<div class="gap-6 grid grid-cols-12 w-full">
+						<div class="col-span-12 lg:col-span-3"></div>
+						<div class="entry-content col-span-12 lg:col-span-9">
+							<h2>Отзывы</h2>
+							<div class="swiper mySwiper3">
+								<div class="swiper-wrapper">
+									<?php while ( $query->have_posts() ) : $query->the_post(); $fieldsRev = get_fields();?>
+										<div class="swiper-slide h-[268px] bg-white flex flex-col gap-2 py-8 px-4">
+											<div class="text-[#393488] lines min-h-[18px]">
+												<div class="one-lines"><?php the_title() ?></div>
+											</div>
+											<div class="lines h-[118px]">
+												<div class="six-lines"><?php the_content(); ?></div>
+											</div>
+											<div class="text-[12px] text-[#abb7b9] font-semibold">
+												<?php if($fieldsRev['date']) :?>
+													<?php echo strtr($fieldsRev['date'], $sub);?>
+												<?php endif;?>
+
+												<?php if($fieldsRev['date'] && $fieldsRev['excursion']) :?>
+													,
+												<?php endif; ?>
+
+												<?php if( $fieldsRev['excursion']) :?>
+													<?php echo $fieldsRev['excursion'];?>
+												<?php endif; ?>
+											</div>
+										</div>
+									<?php endwhile; ?>
+								</div>
+
+								<div class="swiper-pagination"></div>
+							</div>
+
+							<div class="flex mt-6 mb-[64px] items-center justify-center">
+								<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Все отзывы</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		<?php else :
+			echo 'Нет вопросов для отображения.';
+		endif;
+
+		// Восстановление оригинального поста
+		wp_reset_postdata();
+	?>
 
 <?php
 get_footer();

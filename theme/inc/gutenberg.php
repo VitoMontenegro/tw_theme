@@ -1,5 +1,5 @@
 <?php
-/*
+
 // Добавляем свой раздел блоков
 add_filter( 'block_categories_all', 'custom_block_category', 10, 2 );
 function custom_block_category( $default_categories, $post ) {
@@ -26,9 +26,9 @@ function review_block_init() {
 
 
         acf_register_block_type(array(
-            'name'              => 'headerblock',
-            'title'             => 'Блок шапки сайта',
-            'description'       => 'Блок шапки сайта',
+            'name'              => 'helpchoose',
+            'title'             => 'Баннер поможем выбрать',
+            'description'       => 'Баннер поможем выбрать',
             'render_callback'   => 'my_acf_block_render_callback',
             'category'          => 'bdt-category',
             'icon' => array(
@@ -42,9 +42,9 @@ function review_block_init() {
             'example'           => [],
         ));
         acf_register_block_type(array(
-            'name'      => 'counter',
-            'title'     => 'Блок с цифрами',
-            'description'       => 'Блок с цифрами',
+            'name'      => 'checklist',
+            'title'     => 'Блок со списком чек-лист',
+            'description'       => 'Блок с Чек-листом',
             'render_callback'   => 'my_acf_block_render_callback',
             'category'      => 'bdt-category',
             'icon' => array(
@@ -58,9 +58,9 @@ function review_block_init() {
             'example'           => [],
         ));
         acf_register_block_type(array(
-            'name'      => 'services',
-            'title'     => 'Блок с услугами',
-            'description'       => 'Блок с услугами',
+            'name'      => 'smallcard',
+            'title'     => 'Блок с цветными карточками',
+            'description'       => 'Блок с цветными карточками',
             'render_callback'   => 'my_acf_block_render_callback',
             'category'      => 'bdt-category',
             'icon' => array(
@@ -74,9 +74,9 @@ function review_block_init() {
             'example'           => [],
         ));
         acf_register_block_type(array(
-            'name'      => 'aboutblog',
-            'title'     => 'Блок о нас',
-            'description'       => 'Блок о нас',
+            'name'      => 'needtotrip',
+            'title'     => 'Блок карточки со списком',
+            'description'       => 'Блок карточки со списком',
             'render_callback'   => 'my_acf_block_render_callback',
             'category'      => 'bdt-category',
             'icon' => array(
@@ -90,9 +90,9 @@ function review_block_init() {
             'example'           => [],
         ));
         acf_register_block_type(array(
-            'name'      => 'wecan',
-            'title'     => 'Блок мы умеем',
-            'description'       => 'Блок мы умеем',
+            'name'      => 'withimage',
+            'title'     => 'Блок контент с картинкой',
+            'description'       => 'Блок контент с картинкой',
             'render_callback'   => 'my_acf_block_render_callback',
             'category'      => 'bdt-category',
             'icon' => array(
@@ -105,6 +105,23 @@ function review_block_init() {
             ),
             'example'           => [],
         ));
+        acf_register_block_type(array(
+            'name'      => 'orderblock',
+            'title'     => 'Блок заявки',
+            'description'       => 'Блок заявки',
+            'render_callback'   => 'my_acf_block_render_callback',
+            'category'      => 'bdt-category',
+            'icon' => array(
+                // Specifying a background color to appear with the icon e.g.: in the inserter.
+                'background' => '#eccb13',
+                // Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)
+                'foreground' => '#fff',
+                // Specifying a dashicon for the block
+                'src' => 'lpb',
+            ),
+            'example'           => [],
+        ));
+
     }
 }
 
@@ -118,5 +135,5 @@ function my_acf_block_render_callback( $block ) {
             include( get_theme_file_path("/template-parts/block/content-{$slug}.php") );
     }
 }
-*/
+
 

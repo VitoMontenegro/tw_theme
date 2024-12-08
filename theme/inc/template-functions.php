@@ -261,6 +261,40 @@ function register_custom_post_type() {
 			"query_var" => true,
 			"supports" => array( "title", "editor"),
 	]);
+
+	/**
+	 * Post Type: Популярные вопросы.
+	 */
+	register_post_type('faqs', [
+			'labels' => [
+					'name' => 'Популярные вопросы',
+					'singular_name' => 'Популярные вопросы',
+					"all_items" => "Все вопросы",
+					"add_new" => "Добавить вопрос",
+					"add_new_item" => "Добавить новый вопрос",
+					"edit_item" => "Редактировать вопросы",
+					"new_item" => "Новый вопрос",
+			],
+			"description" => "",
+			"public" => true,
+			"publicly_queryable" => false,
+			"show_ui" => true,
+			"delete_with_user" => false,
+			"show_in_rest" => true,
+			"rest_base" => "",
+			"rest_controller_class" => "WP_REST_Posts_Controller",
+			"has_archive" => false,
+			"show_in_menu" => true,
+			"show_in_nav_menus" => true,
+			"exclude_from_search" => false,
+			"capability_type" => "post",
+			"map_meta_cap" => true,
+			"hierarchical" => false,
+			'menu_icon' => 'dashicons-money',
+			"rewrite" => array( "slug" => "faqs", "with_front" => true ),
+			"query_var" => true,
+			"supports" => array( "title", "editor"),
+	]);
 }
 add_action('init', 'register_custom_post_type');
 

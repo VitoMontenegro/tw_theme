@@ -14,7 +14,7 @@ $options = get_fields( 'option');
 	<div class="container mx-auto px-4">
 		<div class="flex justify-between py-4 items-center">
 			<div class="flex gap-6 items-center">
-				<button aria-controls="primary-menu" aria-expanded="false" class="group is-active block md:hidden" aria-label="открыть меню">
+				<button id="menu-toggle" aria-controls="primary-menu" aria-expanded="false" class="group is-active block md:hidden" aria-label="открыть меню">
 					<span class="hidden group-[.is-active]:block">
 						<svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<rect width="24" height="2" fill="#393488"/>
@@ -29,7 +29,6 @@ $options = get_fields( 'option');
 						</svg>
 					</span>
 				</button>
-
 				<?php if ( is_front_page() ) : ?>
 					<span class="block w-[103px] sm:w-[165px]">
 						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="flagman" class="w-full object-cover">
@@ -39,11 +38,9 @@ $options = get_fields( 'option');
 						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg" alt="flagman" class="w-full object-cover">
 					</a>
 				<?php endif; ?>
-
 				<nav id="site-navigation" aria-label="<?php esc_attr_e( 'Main Navigation', 'tw' ); ?>" class="hidden md:block">
 					<?php wp_nav_menu([ 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>']); ?>
 				</nav>
-
 			</div>
 			<div class="flex gap-2 lg:ap-8 items-center">
 				<a href="tel:<?php echo  preg_replace('/[^0-9+]/', '', $options['phone']);  ?>" class="flex gap-1 items-center min-h-7" >
@@ -79,7 +76,7 @@ $options = get_fields( 'option');
 							</defs>
 						</svg>
 					</a>
-					<a href="tg://resolve?domain=<?php echo $options['telegram'];  ?>">
+					<a target="_blank" href="tg://resolve?domain=<?php echo $options['telegram'];  ?>">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g id="Telegram" clip-path="url(#clip0_135_7003)">
 								<g id="Telegram_2">
@@ -106,6 +103,12 @@ $options = get_fields( 'option');
 				</div>
 			</div>
 		</div>
+
+
 	</div>
 
 </header><!-- #masthead -->
+
+<!-- Меню для мобильной версии -->
+<?php get_template_part( 'template-parts/layout/m_menu', 'content' ); ?>
+

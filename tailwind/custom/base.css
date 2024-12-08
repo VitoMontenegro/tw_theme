@@ -26,3 +26,9 @@ body {
 .container {
 	@apply !max-w-[1176px];
 }
+#colophon li {
+	@apply my-1
+}
+#colophon li a {
+	@apply  py-1.5 block
+}

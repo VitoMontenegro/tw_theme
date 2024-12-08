@@ -91,14 +91,14 @@ if (isset($category_id)) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2.5 px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
 					</div>
 				</div>
 			</div>
 			<?php
 		}
 		if ($query->found_posts > $query->current_post + 1) {
-			echo '<button class="col-span-12 pt-3 load-more" data-page="2"><span class="inline-block font-bold text-[#ff7642] py-2.5 px-8 border-2 border-[#ff7642] rounded-3xl">Загрузить ещё</span></button>';
+			echo '<button class="col-span-12 pt-3 load-more" data-page="2"><span class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Загрузить ещё</span></button>';
 		}
 	} else {
 		echo '<p>Нет записей для выбранной категории.</p>';

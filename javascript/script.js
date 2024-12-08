@@ -11,6 +11,76 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
+	// Получаем элементы мобильного меню
+	const menuToggle = document.getElementById('menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+
+	if (menuToggle && mobileMenu ) {
+		menuToggle.addEventListener('click', (event) => {
+			event.stopPropagation(); // предотвращаем всплытие события, чтобы не закрывать меню сразу после его открытия
+
+			// Переключаем меню
+			if (menuToggle.classList.contains('is-active')) {
+				mobileMenu.classList.remove('-translate-x-full');
+				mobileMenu.classList.add('translate-x-0');
+				document.body.style.overflow = 'hidden'; // Отключаем прокрутку
+			} else {
+				mobileMenu.classList.remove('translate-x-0');
+				mobileMenu.classList.add('-translate-x-full');
+				document.body.style.overflow = ''; // Включаем прокрутку обратно
+			}
+			// Переключаем класс is-active у кнопки
+			menuToggle.classList.toggle('is-active');
+		});
+
+		document.addEventListener('click', (event) => {
+			// Проверяем, был ли клик вне меню и кнопки
+			if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+				mobileMenu.classList.remove('translate-x-0');
+				mobileMenu.classList.add('-translate-x-full');
+				menuToggle.classList.add('is-active');
+				document.body.style.overflow = ''; // Включаем прокрутку обратно
+			}
+		});
+	}
+
+	// Получаем элементы мобильного меню
+	const sidebarToggle = document.getElementById('sidebar-toggle');
+	const sidebarMenu = document.getElementById('sidebar-menu');
+	if (sidebarToggle && sidebarMenu) {
+		sidebarToggle.addEventListener('click', (event) => {
+			event.stopPropagation(); // предотвращаем всплытие события, чтобы не закрывать меню сразу после его открытия
+
+			if (sidebarToggle.classList.contains('is-active')) {
+				sidebarMenu.classList.remove('-translate-x-full');
+				sidebarMenu.classList.add('translate-x-0');
+			} else {
+				sidebarMenu.classList.remove('translate-x-0');
+				sidebarMenu.classList.add('-translate-x-full');
+			}
+			// Переключаем класс is-active у кнопки
+			sidebarToggle.classList.toggle('is-active');
+		});
+		document.querySelectorAll('.close-filter-btn').forEach(button => {
+			button.addEventListener('click', () => {
+				console.log('!!!!!!!!!!!')
+				sidebarToggle.classList.toggle('is-active');
+				sidebarMenu.classList.remove('translate-x-0');
+				sidebarMenu.classList.add('-translate-x-full');
+			});
+		});
+
+		document.addEventListener('click', (event) => {
+			// Проверяем, был ли клик вне меню и кнопки
+			if (!sidebarMenu.contains(event.target) && !sidebarToggle.contains(event.target)) {
+				sidebarMenu.classList.remove('translate-x-0');
+				sidebarMenu.classList.add('-translate-x-full');
+				sidebarToggle.classList.add('is-active');
+			}
+		});
+	}
+
+
 	//filter excursion
 	const categoryIdElem = document.getElementById('category_id');
 	if(categoryIdElem) {
@@ -18,6 +88,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.getElementById('filter-form').addEventListener('change', function() {
 			loadPosts(1);
 		});
+		const clearForm = document.getElementById('clearForm');
+		if(clearForm) {
+			clearForm.addEventListener('click', function() {
+				document.getElementById('filter-form').reset();
+				loadPosts(1);
+			})
+		}
 		/*document.getElementById('pagination').addEventListener('click', function(event) {
 			if (event.target.classList.contains('pagination-link')) {
 				const page = parseInt(event.target.dataset.page);
@@ -58,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				.catch(error => console.error('Error loading posts:', error));
 		}
 	}
-
 
 	function adjustWishBtn() {
 		const devContainer = document.getElementById('posts-container');
@@ -377,6 +453,49 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 
+	// Swiper
+	const swiperTour = document.querySelectorAll('.swiper_tour');
+	const swiperRev = document.querySelectorAll('.swiper_reviews');
+	if(swiperTour) {
+		const swiper = new Swiper(".mySwiper", {
+			spaceBetween: 10,
+			slidesPerView: 4,
+			freeMode: true,
+			watchSlidesProgress: true,
+		});
+		const swiper2 = new Swiper(".mySwiper2", {
+			spaceBetween: 10,
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+			thumbs: {
+				swiper: swiper,
+			},
+		});
+
+	}
+	if(swiperRev) {
+		const swiper3 = new Swiper(".mySwiper3", {
+			slidesPerView: 1.3,
+			spaceBetween: 18,
+			pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+			},
+			breakpoints: {
+				640: {
+					slidesPerView: 2,
+					spaceBetween: 12,
+				},
+				760: {
+					slidesPerView: 3,
+					spaceBetween: 18,
+				}
+			},
+		});
+
+	}
 
 
 });

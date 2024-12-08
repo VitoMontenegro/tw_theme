@@ -194,7 +194,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2.5 px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
 					</div>
 				</div>
 			</div>
@@ -464,7 +464,7 @@ function load_more_excursions(WP_REST_Request $request) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2.5 px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
 					</div>
 				</div>
 			</div>
@@ -472,7 +472,7 @@ function load_more_excursions(WP_REST_Request $request) {
 		}
 		if ($query->found_posts > ($page*9 + $query->current_post + 1)) {
 			echo '<div class="col-span-12 mt-6 mb-11 flex justify-center items-center">';
-			echo '<button class="load-more inline-block font-bold text-[#ff7642] py-2.5 px-8 border-2 border-[#ff7642] rounded-3xl" data-page="'. $page+1 .'>Загрузить ещё</button>';
+			echo '<button class="load-more inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl" data-page="'. $page+1 .'>Загрузить ещё</button>';
 			echo '</div>';
 		}
 	} else {

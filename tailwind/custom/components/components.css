@@ -50,6 +50,6 @@
 .entry-content > .alignright {
 	@apply float-right ml-8;
 }
-.entry-content h2 {
-	@apply text-[#373f41] text-3xl font-bold tracking-tight mt-10 mb-6
+h2 {
+	@apply text-[#373f41] text-[24px] sm:text-3xl font-bold tracking-tight mt-10 mb-6
 }
