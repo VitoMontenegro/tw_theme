@@ -19,27 +19,27 @@ get_header();
 
 	<?php get_template_part( 'template-parts/layout/submenu', 'content' ); ?>
 	<!-- Блок Hero -->
-	<section class="hero container mx-auto mt-4 px-4">
+	<section class="hero container mx-auto mt-[13px] px-4">
 		<div class="flex gap-3 flex-col lg:flex-row">
 			<div class="main_slide">
-				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-xl py-8 ps-6 pe-6 lg:ps-[55px] lg:pe-3 lg:py-[65px]">
-					<div class="title_block w-full lg:w-1/2">
-						<h1 class="text-white text-[20px] lg:text-[28px] font-normal font-['Kaph'] mb-8 leading-loose lg:leading-[38px]">
+				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-2xl pt-8 pb-8 ps-6 pe-6 lg:ps-[55px] lg:pe-3 lg:pt-[65px] lg:pb-[42px] ">
+					<div class="title_block w-full lg:w-[48%]">
+						<h1 class="text-white text-[20px] lg:text-[28px] font-normal font-['Kaph'] mb-6 leading-loose lg:leading-[38px]">
 							Экскурсии <br>
 							для школьников<br>
 							в Санкт-петербурге
 						</h1>
 						<a href="#" class="px-8 py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex">
-							<span class="text-center text-white text-sm font-bold  leading-tight">Оставить заявку</span>
+							<span class="text-center text-white text-sm font-bold  leading-tight">Выбрать экскурсию</span>
 						</a>
 					</div>
-					<div class="image_block w-full lg:w-1/2 my-5 lg:my-0">
+					<div class="image_block w-full lg:w-[51%] my-5 lg:my-0">
 						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hero.webp" loading="lazy" alt="hero">
 					</div>
 				</div>
-				<div class="sub_slide -mt-8 relative">
-					<div class="flex gap-3 px-3 overflow-x-auto">
-						<div class="w-[266px] min-w-[266px] lg:w-1/3 bg-[#8fa9ff] rounded-2xl h-[108px] flex justify-center items-center px-4">
+				<div class="sub_slide -mt-6 relative">
+					<div class="flex gap-3 px-[18px] overflow-x-auto">
+						<div class="w-[266px] min-w-[266px] lg:w-1/3 bg-[#8fa9ff] rounded-2xl h-[108px] flex justify-center items-center px-4 tracking-[-0.2px] leading-[18px]">
 							<div class="flex gap-2 items-center justify-start w-full">
 								<svg class="min-w-14 h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 									<g clip-path="url(#clip0_135_6807)">
@@ -97,7 +97,7 @@ get_header();
 										</g>
 									</g>
 								</svg>
-								<div class="font-bold">Бесплатное уведомление и согласование поездки в ГИБДД</div>
+								<div class="font-bold">Бесплатное уведомление и согласование <br> поездки в ГИБДД</div>
 							</div>
 						</div>
 						<div class="w-[266px] min-w-[266px] lg:w-1/3 bg-[#FDC401] rounded-2xl h-[108px] flex justify-center items-center px-4">
@@ -121,7 +121,7 @@ get_header();
 						</div>
 
 					</div>
-					<div class="hidden lg:block absolute right-[-115px] bottom-[18px]">
+					<div class="hidden lg:block absolute right-[-108px] bottom-[16px]">
 						<svg xmlns="http://www.w3.org/2000/svg" width="126" height="60" viewBox="0 0 126 60" fill="none">
 							<path d="M83 24.5265C71.62 28.6469 58.9084 29.2243 47.1812 26.1525C42.1688 24.8406 37.1422 22.7435 33.8228 18.8679C30.5035 14.9924 29.3907 8.99198 32.3867 4.87622C35.8677 0.0906792 43.7905 -0.16338 48.4462 3.55974C53.1018 7.28285 54.6236 13.8237 53.4395 19.5654C52.2506 25.3072 48.76 30.356 44.8082 34.7813C33.5755 47.3549 17.7966 55.7896 1 59" stroke="#393488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
 							<path d="M125 6.72224L91.11 15.3466L90.2039 15.5725L90.1223 15.4447L86.3618 20.3305L87.3344 10.1369L83 4L125 6.72224Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -133,10 +133,10 @@ get_header();
 					</div>
 				</div>
 			</div>
-			<div class="clouds relative min-w-[248px] h-[146px] lg:h-[323px] bg-[#ff7642] rounded-xl py-6 px-4  bg-center bg-contain bg-no-repeat" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/clouds.webp')">
-				<div class="text-white text-lg font-bold leading-tight text-left lg:text-center">Честный абонемент экскурсий для класса</div>
-				<div class="text-xs font-semibold tracking-tight pt-[30px] pl-[30px] hidden lg:block">4 экскурсии в пакете<br>+ 1 экскурсия в подарок!</div>
-				<div class="text-xs font-semibold tracking-tight pt-[66px] pl-[85px] hidden lg:block">Бесплатная фотосессия <br>для класса </div>
+			<div class="clouds relative sm:w-[340px] h-[146px] lg:h-[323px] bg-[#ff7642] rounded-2xl py-6 px-4  bg-center bg-contain bg-no-repeat" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/clouds.webp')">
+				<div class="text-white text-lg font-bold leading-tight text-left lg:text-center leading-[20px] tracking-[-0.8px]">Честный абонемент экскурсий для класса</div>
+				<div class="text-xs font-semibold tracking-tight pt-[40px] pl-[16px] hidden lg:block">4 экскурсии в пакете<br>+ 1 экскурсия в подарок!</div>
+				<div class="text-xs font-semibold tracking-tight pt-[55px] pl-[66px] hidden lg:block">Бесплатная фотосессия <br>для класса </div>
 
 				<div class="flex items-center justify-start lg:justify-center pt-[18px] lg:pt-[36px]">
 					<a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
@@ -158,15 +158,15 @@ get_header();
 	</section>
 
 	<div class="container mx-auto mt-14 px-4">
-		<div class="flex gap-6">
+		<div class="flex gap-8">
 			<!--<aside class="hidden lg:block filter w-full lg:w-[256px] min-w-[256px]">-->
-			<aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[256px] min-w-[256px]">
+			<aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px]">
 				<?php get_sidebar(); ?>
 			</aside>
 
 			<section class="product-cards">
-				<h2 class="mt-0">Выберите экскурсию</h2>
-				<div class="flex w-full justify-between items-end mb-6">
+				<h2 class="mt-0 mb-[18px]">Выберите экскурсию</h2>
+				<div class="flex w-full justify-between items-end mb-4">
 					<div class="flex flex-col gap-2">
 						<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -203,7 +203,7 @@ get_header();
 				</div>
 				<div class="flex flex-col" >
 
-					<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-5"  id="posts-container">
+					<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1"  id="posts-container">
 						<?php
 						if ($current_term && isset($current_term->term_id)) {
 							$category_id = $current_term->term_id;
@@ -244,7 +244,7 @@ get_header();
 		// Если записи найдены
 		if ( $query->have_posts() ) : ?>
 			<section class="bg-white">
-				<div class="container mx-auto px-4">
+				<div class="container mx-auto">
 					<div class="gap-6 grid grid-cols-12 w-full">
 						<div class="col-span-12 lg:col-span-3"></div>
 						<div class="entry-content col-span-12 lg:col-span-9">
@@ -283,7 +283,7 @@ get_header();
 		// Если записи найдены
 		if ( $query->have_posts() ) : ?>
 			<section class="swiper_reviews">
-				<div class="container mx-auto px-4">
+				<div class="container mx-auto">
 					<div class="gap-6 grid grid-cols-12 w-full">
 						<div class="col-span-12 lg:col-span-3"></div>
 						<div class="entry-content col-span-12 lg:col-span-9">

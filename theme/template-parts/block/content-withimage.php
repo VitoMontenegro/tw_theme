@@ -19,15 +19,15 @@
 		</div>
 	</div>
 <?php else: ?>
-	<div class="grid grid-cols-1 md:grid-cols-12 gap-4 mt-10">
+	<div class="grid grid-cols-1 md:grid-cols-12 gap-4 mt-10" style="grid-template-rows: 110px 1fr">
 		<!-- Левый блок -->
-		<div class="md:col-span-7 order-1">
+		<div class="md:col-span-7 order-1 h-full">
 			<h2 class="!mt-0 !mb-0"><?php echo $fields['title']; ?></h2>
 		</div>
 
 		<!-- Правый блок (картинка) -->
-		<div class="md:col-span-5 order-2 md:row-span-2">
-			<img src="<?php echo $fields['img']; ?>" class="object-cover w-full sm:w-auto" loading="lazy" alt="hero">
+		<div class="md:col-span-5 order-2 md:row-span-2 rounded-xl overflow-hidden">
+			<img src="<?php echo $fields['img']; ?>" class="object-cover sm:w-auto" loading="lazy" alt="hero">
 		</div>
 
 		<!-- Контент -->

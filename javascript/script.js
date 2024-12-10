@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 		document.querySelectorAll('.close-filter-btn').forEach(button => {
 			button.addEventListener('click', () => {
-				console.log('!!!!!!!!!!!')
 				sidebarToggle.classList.toggle('is-active');
 				sidebarMenu.classList.remove('translate-x-0');
 				sidebarMenu.classList.add('-translate-x-full');
@@ -458,13 +457,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	const swiperRev = document.querySelectorAll('.swiper_reviews');
 	if(swiperTour) {
 		const swiper = new Swiper(".mySwiper", {
-			spaceBetween: 10,
-			slidesPerView: 4,
+			spaceBetween: 8,
+			direction: "horizontal", // Вертикальное направление для превью
+			slidesPerView: 5,
 			freeMode: true,
 			watchSlidesProgress: true,
+			breakpoints: {
+				640: {
+					direction: "vertical", // Горизонтальная ориентация на мобильных устройствах
+					slidesPerView: 4,
+				},
+			},
 		});
 		const swiper2 = new Swiper(".mySwiper2", {
-			spaceBetween: 10,
+			spaceBetween: 8,
 			navigation: {
 				nextEl: ".swiper-button-next",
 				prevEl: ".swiper-button-prev",
@@ -474,6 +480,59 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 		});
 
+		const swiperSlides = document.querySelectorAll('.mySwiper2 .swiper-slide img');
+
+		// Элементы попапа
+		const popup = document.getElementById('popup');
+		const popupContainer = document.getElementById('popup-media-container');
+		const popupClose = document.getElementById('popup-close');
+
+		// Открытие попапа при клике на слайд (изображение или превью)
+		swiperSlides.forEach(slide => {
+			slide.addEventListener('click', function () {
+				const mediaSrc = slide.getAttribute('src');
+				const mediaAlt = slide.getAttribute('alt');
+				const videoId = slide.getAttribute('data-video-id'); // Получаем ID видео, если это превью
+
+				popupContainer.innerHTML = ''; // Очищаем контейнер попапа
+
+				if (videoId) {
+					// Если это превью видео, создаем iframe для воспроизведения
+					const iframeElement = document.createElement('iframe');
+					iframeElement.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+					iframeElement.allow = "autoplay; fullscreen; accelerometer; gyroscope; encrypted-media; picture-in-picture";
+					iframeElement.frameBorder = '0';
+					iframeElement.allowFullscreen = true;
+					iframeElement.classList.add('max-w-full', 'max-h-full', 'object-contain');
+					popupContainer.appendChild(iframeElement);
+				} else {
+					// Если это изображение, создаем элемент img
+					const imgElement = document.createElement('img');
+					imgElement.src = mediaSrc;
+					imgElement.alt = mediaAlt;
+					imgElement.classList.add('max-w-full', 'max-h-full', 'object-contain');
+
+					popupContainer.appendChild(imgElement);
+				}
+
+				// Показываем попап
+				popup.classList.remove('hidden');
+			});
+		});
+
+		// Закрытие попапа
+		popupClose.addEventListener('click', function () {
+			popup.classList.add('hidden'); // Скрываем попап
+			popupContainer.innerHTML = ''; // Очищаем контейнер попапа
+		});
+
+		// Закрытие попапа при клике вне области контента
+		popup.addEventListener('click', function (e) {
+			if (e.target === popup) {
+				popup.classList.add('hidden');
+				popupContainer.innerHTML = ''; // очищаем контейнер
+			}
+		});
 	}
 	if(swiperRev) {
 		const swiper3 = new Swiper(".mySwiper3", {

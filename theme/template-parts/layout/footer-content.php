@@ -11,7 +11,7 @@ $options = get_fields( 'option');
 ?>
 
 <footer id="colophon" class="bg-[#393488] text-white pt-[58px] pb-[35px]">
-	<div class="container mx-auto px-4">
+	<div class="container mx-auto">
 
 		<div class="gap-6 grid grid-cols-12 w-full">
 			<div class="col-span-12 lg:col-span-3"></div>

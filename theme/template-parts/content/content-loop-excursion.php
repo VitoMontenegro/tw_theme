@@ -61,15 +61,15 @@ if (isset($category_id)) {
 							</span>
 						<?php endif ?>
 					</a>
-					<div class="absolute left-3 bottom-4 flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
-						<div class="text-white text-[11px] px-3 pt-1 pb-[5px] leading-none"><?php echo $fields['duration']['label'];?></div>
+					<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
+						<div class="text-white px-3 pt-[5px] pb-[6px] leading-none"><?php echo $fields['duration']['label'];?></div>
 					</div>
 					<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
 						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
-							<div class="text-white text-[11px] px-3 pt-1 pb-[5px] leading-none">скидка %</div>
+							<div class="text-white px-3 pt-[5px] pb-[6px] leading-none">скидка %</div>
 						</div>
 					<?php endif ?>
-					<button class="absolute right-1 top-1 wish-btn w-12 h-12 flex items-center justify-center group" data-wp-id="<?php echo get_the_ID(); ?>" aria-label="Добавить в избранное">
+					<button class="absolute right-0 top-1 wish-btn w-12 h-12 flex items-center justify-center group" data-wp-id="<?php echo get_the_ID(); ?>" aria-label="Добавить в избранное">
 					<span class="icon h-6 w-6 flex items-center justify-center bg-white rounded-full">
 						 <svg class="w-4 h-4 fill-transparent stroke-current text-[#000] group-[.active]:text-red-600 group-[.active]:fill-red-600 stroke-1" viewBox="0 0 24 24">
 							  <path class="icon-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
@@ -77,10 +77,10 @@ if (isset($category_id)) {
 					</span>
 					</button>
 				</div>
-				<div class="px-3">
+				<div class="px-4">
 					<a href="<?php echo get_permalink() ?>" class="card-title text-sm sm:text-[21px] font-bold mb-4"><?php echo get_the_title(); ?></a>
-					<div class="card-description leading-[17px] mb-4"><?php echo get_the_excerpt(); ?></div>
-					<div class="flex flex-wrap items-center gap-2 mb-4">
+					<div class="card-description leading-[17px] mb-5"><?php echo get_the_excerpt(); ?></div>
+					<div class="flex flex-wrap items-center gap-2 mb-5">
 						<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
 							от <?php echo $fields['price'];?> ₽
 						</div>
@@ -91,14 +91,14 @@ if (isset($category_id)) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
 					</div>
 				</div>
 			</div>
 			<?php
 		}
 		if ($query->found_posts > $query->current_post + 1) {
-			echo '<button class="col-span-12 pt-3 load-more" data-page="2"><span class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Загрузить ещё</span></button>';
+			echo '<button class="col-span-12 pt-1 load-more" data-page="2"><span class="inline-block font-bold text-[#ff7642] py-2  px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Загрузить ещё</span></button>';
 		}
 	} else {
 		echo '<p>Нет записей для выбранной категории.</p>';

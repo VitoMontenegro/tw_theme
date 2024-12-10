@@ -40,7 +40,7 @@ if ($fields) {
 <?php else: ?>
 	<ul class="grid grid-cols-1 sm:grid-cols-<?php echo $cols; ?> mt-4 gap-4">
 		<?php foreach ($list as $item) : ?>
-		<li class="flex gap-4 items-center">
+		<li class="flex gap-4 items-center<?php if($fields['is_margin']) echo ' mb-4'; ?>">
 			<?php if($item['element_spiska']) : ?>
 			<span class="rounded-full flex items-center justify-center" style="background: <?php echo $color; ?>">
 				<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">

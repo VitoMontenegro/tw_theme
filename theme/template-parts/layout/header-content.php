@@ -11,9 +11,9 @@ $options = get_fields( 'option');
 ?>
 
 <header id="masthead" class="bg-white">
-	<div class="container mx-auto px-4">
+	<div class="container mx-auto">
 		<div class="flex justify-between py-4 items-center">
-			<div class="flex gap-6 items-center">
+			<div class="flex gap-[12px] items-center">
 				<button id="menu-toggle" aria-controls="primary-menu" aria-expanded="false" class="group is-active block md:hidden" aria-label="открыть меню">
 					<span class="hidden group-[.is-active]:block">
 						<svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,8 +42,8 @@ $options = get_fields( 'option');
 					<?php wp_nav_menu([ 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu', 'items_wrap' => '<ul id="%1$s" class="%2$s" aria-label="submenu">%3$s</ul>']); ?>
 				</nav>
 			</div>
-			<div class="flex gap-2 lg:ap-8 items-center">
-				<a href="tel:<?php echo  preg_replace('/[^0-9+]/', '', $options['phone']);  ?>" class="flex gap-1 items-center min-h-7" >
+			<div class="flex items-center">
+				<a href="tel:<?php echo  preg_replace('/[^0-9+]/', '', $options['phone']);  ?>" class="flex gap-1 items-center min-h-7 me-[38px]" >
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g clip-path="url(#clip0_135_7015)">
 							<circle cx="12" cy="12" r="12" fill="#3A21AA"/>
@@ -60,7 +60,7 @@ $options = get_fields( 'option');
 					</span>
 				</a>
 				<div class="flex gap-2 items-center">
-					<span class="hidden lg:block">Написать:</span>
+					<span class="tracking-tight leading-[18px] font-bold hidden lg:block">Написать:</span>
 					<a target="_blank" href="https://api.whatsapp.com/send?phone=<?php echo preg_replace('/[^0-9]/', '', $options['watsapp']);  ?>&text=Здравствуйте.+Я+обращаюсь+с+сайта+flagmanspb.ru">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g id="WhatsApp" clip-path="url(#clip0_135_7009)">
@@ -76,7 +76,8 @@ $options = get_fields( 'option');
 							</defs>
 						</svg>
 					</a>
-					<a target="_blank" href="tg://resolve?domain=<?php echo $options['telegram'];  ?>">
+					<!--<a target="_blank" href="tg://resolve?domain=<?php /*echo $options['telegram'];  */?>" class="me-[26px]">-->
+					<a target="_blank" href="https://t.me/vitomonte" class="me-[26px]">
 						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g id="Telegram" clip-path="url(#clip0_135_7003)">
 								<g id="Telegram_2">
@@ -92,12 +93,12 @@ $options = get_fields( 'option');
 						</svg>
 
 					</a>
-					<a href="<?php echo esc_url(get_permalink(48)); ?>" class="relative flex items-center w-6 h-6" id="product-count">
-						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">
-							<path d="M12.9801 0C11.4862 0 10.0524 0.69543 9.11656 1.79438C8.18073 0.69543 6.74694 0 5.25306 0C2.60871 0 0.531006 2.0777 0.531006 4.72205C0.531006 7.96739 3.45009 10.6117 7.87165 14.6298L9.11656 15.7545L10.3615 14.6212C14.783 10.6117 17.7021 7.96739 17.7021 4.72205C17.7021 2.0777 15.6244 0 12.9801 0ZM9.20241 13.3505L9.11656 13.4364L9.0307 13.3505C4.94398 9.65016 2.24812 7.20328 2.24812 4.72205C2.24812 3.00494 3.53595 1.71711 5.25306 1.71711C6.57523 1.71711 7.86307 2.56708 8.3181 3.7433H9.9236C10.37 2.56708 11.6579 1.71711 12.9801 1.71711C14.6972 1.71711 15.985 3.00494 15.985 4.72205C15.985 7.20328 13.2891 9.65016 9.20241 13.3505Z" fill="#373F41"/>
+					<a href="<?php echo esc_url(get_permalink(48)); ?>" class="relative flex items-center w-6 h-6 me-0.5" id="product-count">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+							<path d="M15.449 4C13.9552 4 12.5214 4.69543 11.5856 5.79438C10.6497 4.69543 9.21594 4 7.72205 4C5.0777 4 3 6.0777 3 8.72205C3 11.9674 5.91909 14.6117 10.3406 18.6298L11.5856 19.7545L12.8305 18.6212C17.252 14.6117 20.1711 11.9674 20.1711 8.72205C20.1711 6.0777 18.0934 4 15.449 4ZM11.6714 17.3505L11.5856 17.4364L11.4997 17.3505C7.41297 13.6502 4.71711 11.2033 4.71711 8.72205C4.71711 7.00494 6.00494 5.71711 7.72205 5.71711C9.04423 5.71711 10.3321 6.56708 10.7871 7.7433H12.3926C12.839 6.56708 14.1269 5.71711 15.449 5.71711C17.1662 5.71711 18.454 7.00494 18.454 8.72205C18.454 11.2033 15.7581 13.6502 11.6714 17.3505Z" fill="#373F41"/>
 						</svg>
-						<div class="left-[9px] top-[5px] absolute flex text-center text-white font-bold bg-[#FF7643] rounded-full w-4 h-4 border-2 border-white">
-							<span class="text-[7px] w-full flex items-center justify-center">0</span>
+						<div class="left-[13px] top-[5px] absolute flex text-center text-white font-bold bg-[#FF7643] rounded-full w-[12px] h-[12px] border-2 border-white">
+							<span class="text-[6px] w-full flex items-center justify-center bold tracking-[-0.2px]">0</span>
 						</div>
 					</a>
 				</div>

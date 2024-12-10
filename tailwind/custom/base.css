@@ -15,16 +15,16 @@ body {
 	@apply bg-background text-foreground font-['Mulish'] text-[#373f41] bg-[#F2F1FA] text-sm;
 }
 #primary-menu {
-	@apply flex gap-2 items-center
+	@apply flex gap-[1px] items-center
 }
 #primary-menu li a {
-	@apply  px-4 py-2
+	@apply  px-4 py-2 tracking-[.25px]
 }
 #primary-menu li.current_page_item  a {
 	@apply  text-[#ff7642]
 }
 .container {
-	@apply !max-w-[1176px];
+	@apply !max-w-[1172px] px-[18px];
 }
 #colophon li {
 	@apply my-1
