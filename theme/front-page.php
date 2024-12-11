@@ -34,12 +34,12 @@ get_header();
 						</a>
 					</div>
 					<div class="image_block w-full lg:w-[51%] my-5 lg:my-0">
-						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hero.webp" loading="lazy" alt="hero">
+						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hero.webp" alt="hero">
 					</div>
 				</div>
 				<div class="sub_slide -mt-6 relative">
 					<div class="flex gap-3 px-[18px] overflow-x-auto">
-						<div class="w-[266px] min-w-[266px] lg:w-1/3 bg-[#8fa9ff] rounded-2xl h-[108px] flex justify-center items-center px-4 tracking-[-0.2px] leading-[18px]">
+						<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#8fa9ff] rounded-2xl h-[108px] flex justify-center items-center px-4 tracking-[-0.2px] leading-[18px]">
 							<div class="flex gap-2 items-center justify-start w-full">
 								<svg class="min-w-14 h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 									<g clip-path="url(#clip0_135_6807)">
@@ -75,7 +75,7 @@ get_header();
 									2024 г.</div>
 							</div>
 						</div>
-						<div class="w-[266px] min-w-[266px] lg:w-1/3 bg-[#FF7643] rounded-2xl h-[108px] flex justify-center items-center px-4">
+						<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7643] rounded-2xl h-[108px] flex justify-center items-center px-4">
 							<div class="flex gap-2 items-center justify-start w-full">
 								<svg class="min-w-14 h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 									<path d="M45.8484 47.7281C45.8484 49.5712 44.3696 51.0664 42.5466 51.0664H8.30026C6.47732 51.0664 5 49.5712 5 47.7281V4.33849C5 2.4954 6.47732 1.00016 8.30026 1.00016H30.174L31.7657 11.9002C33.5887 11.9002 35.0675 13.3955 35.0675 15.2386L45.8484 16.8313V47.7281Z" fill="#F0F5FA"/>
@@ -100,7 +100,7 @@ get_header();
 								<div class="font-bold">Бесплатное уведомление и согласование <br> поездки в ГИБДД</div>
 							</div>
 						</div>
-						<div class="w-[266px] min-w-[266px] lg:w-1/3 bg-[#FDC401] rounded-2xl h-[108px] flex justify-center items-center px-4">
+						<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FDC401] rounded-2xl h-[108px] flex justify-center items-center px-4">
 							<div class="flex gap-2 items-center justify-start w-full">
 								<svg class="min-w-14 h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 									<path d="M14.6704 11.6595C4.21262 18.7958 0.252476 36.4806 8.22512 46.4363C13.4078 52.9118 24.9341 57.3986 32.4479 55.5983C41.0796 53.5294 47.4725 45.9484 50.3548 37.3885C51.8483 32.9542 51.8945 27.8188 49.6927 23.6068C39.6076 4.32242 22.1411 6.55811 14.6704 11.6595Z" fill="#3B3D54"/>
@@ -133,10 +133,10 @@ get_header();
 					</div>
 				</div>
 			</div>
-			<div class="clouds relative sm:w-[340px] h-[146px] lg:h-[323px] bg-[#ff7642] rounded-2xl py-6 px-4  bg-center bg-contain bg-no-repeat" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/clouds.webp')">
+			<div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] lg:h-[323px] bg-[#ff7642] rounded-2xl py-6 px-4  bg-center bg-contain bg-no-repeat" style="background-image: url('<?php echo get_stylesheet_directory_uri(); ?>/images/clouds.webp')">
 				<div class="text-white text-lg font-bold leading-tight text-left lg:text-center leading-[20px] tracking-[-0.8px]">Честный абонемент экскурсий для класса</div>
-				<div class="text-xs font-semibold tracking-tight pt-[40px] pl-[16px] hidden lg:block">4 экскурсии в пакете<br>+ 1 экскурсия в подарок!</div>
-				<div class="text-xs font-semibold tracking-tight pt-[55px] pl-[66px] hidden lg:block">Бесплатная фотосессия <br>для класса </div>
+				<div class="text-xs font-semibold tracking-tight pt-[38px] pl-[16px] hidden lg:block">4 экскурсии в пакете<br>+ 1 экскурсия в подарок!</div>
+				<div class="text-xs font-semibold tracking-tight pt-[51px] pl-[66px] hidden lg:block">Бесплатная фотосессия <br>для класса </div>
 
 				<div class="flex items-center justify-start lg:justify-center pt-[18px] lg:pt-[36px]">
 					<a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
@@ -166,7 +166,7 @@ get_header();
 
 			<section class="product-cards">
 				<h2 class="mt-0 mb-[18px]">Выберите экскурсию</h2>
-				<div class="flex w-full justify-between items-end mb-4">
+				<div class="flex w-full justify-between items-center mb-4">
 					<div class="flex flex-col gap-2">
 						<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -176,34 +176,71 @@ get_header();
 							<span>Фильтр</span>
 						</div>
 					</div>
-					<div class="flex items-center gap-3">
+					<form class="flex items-center gap-3" id="sort_form">
 						<div class="hidden lg:block">Сортировать по:</div>
-						<div class="hidden items-center gap-1 lg:flex">
-							<span>Цене</span>
-							<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-								<rect x="2" y="7.6001" width="3" height="1.4" fill="#999999"/>
-								<rect x="2" y="4.7998" width="6" height="1.4" fill="#999999"/>
-								<rect x="2" y="2" width="8" height="1.4" fill="#999999"/>
-							</svg>
+
+						<div class="relative inline-block text-left">
+							<button type="button" class="dropdown-button items-center gap-1 flex" aria-expanded="true" aria-haspopup="true" data-close-on-click="true">
+								<span class="dropdown-text hidden lg:block">Цене</span>
+								<span class="dropdown-text block lg:hidden">По популярности</span>
+								<svg class="hidden lg:block mt-[3px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+									<rect x="2" y="7.6001" width="3" height="1.4" fill="#999999"/>
+									<rect x="2" y="4.7998" width="6" height="1.4" fill="#999999"/>
+									<rect x="2" y="2" width="8" height="1.4" fill="#999999"/>
+								</svg>
+								<svg class="lg:hidden mt-[3px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+									<g clip-path="url(#clip0_189_22709)">
+										<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									</g>
+									<defs>
+										<clipPath id="clip0_189_22709">
+											<rect width="12" height="12" fill="white" transform="translate(12) rotate(90)"/>
+										</clipPath>
+									</defs>
+								</svg>
+							</button>
+							<div class="dropdown-menu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden">
+								<div class="py-1">
+									<div class="flex flex-col p-5 gap-4">
+										<label class="item flex gap-2 items-center lg:hidden">
+											<input type="radio" name="grade" value="pops" class="scale-150 change_text">
+											<span>По популярности</span>
+										</label>
+
+										<label class="flex gap-2 items-center lg:hidden">
+											<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
+											<span>По возрастанию цены</span>
+										</label>
+
+										<label class="flex gap-2 items-center lg:hidden">
+											<input type="radio" name="grade" value="chip" class="scale-150 change_text">
+											<span>По убыванию цены</span>
+										</label>
+
+										<label class="hidden gap-2 items-center lg:flex">
+											<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
+											<span>Возрастанию цены</span>
+										</label>
+
+										<label class="hidden gap-2 items-center lg:flex">
+											<input type="radio" name="grade" value="chip" class="scale-150 change_text">
+											<span>Убыванию цены</span>
+										</label>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="flex items-center gap-2">
-							<span class="text-[#FF7643]">По популярности</span>
-							<svg class="lg:hidden" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-								<g clip-path="url(#clip0_189_22709)">
-									<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</g>
-								<defs>
-									<clipPath id="clip0_189_22709">
-										<rect width="12" height="12" fill="white" transform="translate(12) rotate(90)"/>
-									</clipPath>
-								</defs>
-							</svg>
+						<div class="hidden items-center gap-2 lg:flex">
+							<label class="item flex gap-2 items-center cursor-pointer">
+								<input type="radio" name="grade" value="pops" class="hidden peer">
+								<span class=" peer-checked:text-[#FF7643]">По популярности</span>
+							</label>
 						</div>
-					</div>
+					</form>
 				</div>
 				<div class="flex flex-col" >
 
-					<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1"  id="posts-container">
+					<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1 content__tours"  id="posts-container">
 						<?php
 						if ($current_term && isset($current_term->term_id)) {
 							$category_id = $current_term->term_id;
@@ -251,8 +288,8 @@ get_header();
 							<h2>Популярные вопросы</h2>
 							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-								<details class="details w-full border border-[#e8e8e8] rounded-3xl relative block mb-4" name="faq">
-									<summary class="details__title py-4 ps-4 pe-10 text-[#393488] font-bold cursor-pointer list-none"><?php echo get_the_title(); ?></summary>
+								<details class="details w-full border border-[#e8e8e8] rounded-[30px] relative block mb-4" name="faq">
+									<summary class="details__title py-6 ps-6 pe-10 text-[#393488] font-bold cursor-pointer list-none"><?php echo get_the_title(); ?></summary>
 									<div class="details__content px-4 pb-4 text-[#393488]">
 										<?php the_content(); ?>
 									</div>
@@ -299,15 +336,15 @@ get_header();
 												<div class="six-lines"><?php the_content(); ?></div>
 											</div>
 											<div class="text-[12px] text-[#abb7b9] font-semibold">
-												<?php if($fieldsRev['date']) :?>
+												<?php if(isset($fieldsRev['date'])) :?>
 													<?php echo strtr($fieldsRev['date'], $sub);?>
 												<?php endif;?>
 
-												<?php if($fieldsRev['date'] && $fieldsRev['excursion']) :?>
+												<?php if(isset($fieldsRev['date']) && isset($fieldsRev['excursion'])) :?>
 													,
 												<?php endif; ?>
 
-												<?php if( $fieldsRev['excursion']) :?>
+												<?php if( isset($fieldsRev['excursion'])) :?>
 													<?php echo $fieldsRev['excursion'];?>
 												<?php endif; ?>
 											</div>
@@ -319,7 +356,7 @@ get_header();
 							</div>
 
 							<div class="flex mt-6 mb-[64px] items-center justify-center">
-								<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Все отзывы</a>
+								<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все отзывы</a>
 							</div>
 						</div>
 					</div>

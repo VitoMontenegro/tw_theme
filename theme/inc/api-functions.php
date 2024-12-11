@@ -134,11 +134,12 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 	ob_start();
 	// Формируем ответ
 	if ($query->have_posts()) {
+		$count = 0;
 		while ($query->have_posts()) {
 			$query->the_post();
 			$fields = get_fields();
 			?>
-			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl">
+			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl"  data-cost="<?php echo get_cost($fields)['cost_sale'] ?? get_cost($fields)['cost']; ?>"  data-popular="<?php echo ++$count;?>">
 				<div  class="relative mb-3">
 					<a href="<?php echo get_permalink() ?>">
 						<img class="rounded-2xl w-full h-[160px] sm:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
@@ -201,7 +202,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 			<?php
 		}
 	} else {
-		echo '<p>Нет записей для выбранных фильтров.</p>';
+		echo '<p class="absolute bold text-lg">Нет записей для выбранных фильтров.</p>';
 	}
 	echo ob_get_clean();
 
@@ -404,11 +405,12 @@ function load_more_excursions(WP_REST_Request $request) {
 	ob_start();
 	// Формируем ответ
 	if ($query->have_posts()) {
+		$count = 0;
 		while ($query->have_posts()) {
 			$query->the_post();
 			$fields = get_fields();
 			?>
-			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl">
+			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl"  data-cost="<?php echo get_cost($fields)['cost_sale'] ?? get_cost($fields)['cost']; ?>"  data-popular="<?php echo ++$count;?>">
 				<div  class="relative mb-3">
 					<a href="<?php echo get_permalink() ?>">
 						<img class="rounded-2xl w-full h-[160px] sm:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
@@ -476,7 +478,7 @@ function load_more_excursions(WP_REST_Request $request) {
 			echo '</div>';
 		}
 	} else {
-		echo '<p>Нет записей для выбранных фильтров.</p>';
+		echo '<p class="absolute bold text-lg">Нет записей для выбранных фильтров.</p>';
 	}
 	echo ob_get_clean();
 

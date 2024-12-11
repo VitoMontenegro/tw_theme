@@ -79,6 +79,71 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
+	// Функция для открытия/закрытия dropdown
+	const dropdownButtons = document.querySelectorAll('.dropdown-button');
+	const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+	if (dropdownButtons.length && dropdownMenus.length) {
+		dropdownButtons.forEach((button, index) => {
+			button.addEventListener('click', function () {
+				const menu = dropdownMenus[index];
+				const isExpanded = menu.classList.contains('hidden');
+				const closeOnClick = button.getAttribute('data-close-on-click') === 'true';
+
+				// Закрываем все меню, если они открыты
+				dropdownMenus.forEach((otherMenu, otherIndex) => {
+					if (otherIndex !== index) {
+						otherMenu.classList.add('hidden');
+						dropdownButtons[otherIndex].setAttribute('aria-expanded', 'false');
+					}
+				});
+
+				// Переключаем текущее меню
+				if (isExpanded) {
+					menu.classList.remove('hidden');
+					button.setAttribute('aria-expanded', 'true');
+				} else {
+					menu.classList.add('hidden');
+					button.setAttribute('aria-expanded', 'false');
+				}
+
+				// Закрытие меню при клике на элемент внутри (если установлено)
+				if (closeOnClick) {
+					const menuItems = menu.querySelectorAll('.item');
+					menuItems.forEach(item => {
+						item.addEventListener('click', function () {
+							menu.classList.add('hidden');
+							button.setAttribute('aria-expanded', 'false');
+						});
+					});
+				}
+			});
+		});
+
+		// Функция для обновления текста кнопки фильтра
+		function updateDropdownText(radio) {
+			const dropdownText = radio.closest('.relative').querySelector('.dropdown-text');
+			const span = radio.nextElementSibling; // Получаем <span> рядом с input
+			if (dropdownText && span) {
+				dropdownText.textContent = span.textContent; // Обновляем текст кнопки
+			}
+		}
+
+		// Обработчик кликов по элементам с классом .change_text
+		const changeTextElements = document.querySelectorAll('.change_text');
+		changeTextElements.forEach(item => {
+			item.addEventListener('click', function() {
+				updateDropdownText(item); // Обновляем текст на кнопке при клике на элемент
+			});
+		});
+
+		// Закрытие меню при клике вне его
+		window.addEventListener('click', function (event) {
+			if (!event.target.closest('.relative')) {
+				dropdownMenus.forEach(menu => menu.classList.add('hidden'));
+				dropdownButtons.forEach(button => button.setAttribute('aria-expanded', 'false'));
+			}
+		});
+	}
 
 	//filter excursion
 	const categoryIdElem = document.getElementById('category_id');
@@ -103,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		function loadPosts(page) {
 			// Собираем массив значений выбранных чекбоксов
 			const getCheckedValues = (name) => {
-				return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(input => input.value);
+				return Array.from(document.querySelectorAll(`#filter-form input[name="${name}"]:checked`)).map(input => input.value);
 			};
 			const duration = getCheckedValues('duration');
 			const price = getCheckedValues('price');
@@ -130,10 +195,60 @@ document.addEventListener('DOMContentLoaded', function() {
 					document.getElementById('posts-container').innerHTML = html;
 					adjustCardLayout();
 					adjustWishBtn();
+					sortExcursion();
 				})
 				.catch(error => console.error('Error loading posts:', error));
 		}
 	}
+
+	function sortExcursion() {
+		//sort excursion
+		const sortForm = document.getElementById('sort_form');
+		if (!sortForm) return;  // Если контейнера нет, выходим
+
+		sortForm.addEventListener('change', function() {
+			const getCheckedValues = (name) => {
+				const checkedRadio = document.querySelector(`input[name="${name}"]:checked`);
+				return checkedRadio ? checkedRadio.value : '';  // Возвращаем строку или пустую строку
+			};
+			const contentTours = document.querySelector('.content__tours'); // блок с карточками туров
+			const cards = document.querySelectorAll('.card'); // карточки туров
+			const sorts = getCheckedValues('grade' ?? '');
+
+			cards.forEach(card => card.style.display = 'block'); // Показываем все карточки
+
+			cards.forEach(card => {
+				if(sorts) {
+					const cardsSort = Array.from(contentTours.getElementsByClassName('card'));
+					cardsSort.sort((a, b) => {
+						const costA = parseInt(a.getAttribute('data-cost'), 10);
+						const costB = parseInt(b.getAttribute('data-cost'), 10);
+						const costC = parseInt(a.getAttribute('data-popular'), 10);
+						const costD = parseInt(b.getAttribute('data-popular'), 10);
+
+
+						if (sorts === 'expensive') {
+							return costA - costB; // От меньшего к большему
+						} else if(sorts === 'chip') {
+							return costB - costA; // От большего к меньшему
+						} else {
+							return costC - costD; // От большего к меньшему
+						}
+					});
+
+					// Очистка контента перед добавлением отсортированных элементов
+					contentTours.innerHTML = '';
+
+					// Добавление отсортированных карточек обратно в контейнер
+					cardsSort.forEach(card => contentTours.appendChild(card));
+				}
+
+			});
+		});
+
+
+	}
+	sortExcursion();
 
 	function adjustWishBtn() {
 		const devContainer = document.getElementById('posts-container');
@@ -192,11 +307,10 @@ document.addEventListener('DOMContentLoaded', function() {
 				button.classList.add('active');
 			}
 
-			console.log('productId', currentProducts);
 
 			// Сохраняем обновленные куки
 			setCookie('product', JSON.stringify(currentProducts), 7);
-			updateProductCount('product', '#product-count span');
+			updateProductCount('product', '#product-count span', '#product-count div');
 		}
 	}
 	adjustWishBtn();
@@ -214,7 +328,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// Функция для обновления количества продуктов, используя куку
-	function updateProductCount(cookieName, elementSelector) {
+	function updateProductCount(cookieName, elementSelector, elementDiv) {
 		// Получаем значение куки по имени
 		let productCookie = getCookie(cookieName);
 
@@ -224,7 +338,13 @@ document.addEventListener('DOMContentLoaded', function() {
 				let productArray = JSON.parse(productCookie); // Парсим строку как JSON
 				if (Array.isArray(productArray)) {
 					// Обновляем текст в указанном элементе
+
 					document.querySelector(elementSelector).textContent = productArray.length;
+					if(productArray.length<1) {
+						document.querySelector(elementDiv).style.visibility = "hidden";
+					} else {
+						document.querySelector(elementDiv).style.visibility = "visible";
+					}
 				}
 			} catch (e) {
 				console.error("Ошибка при парсинге куки '" + cookieName + "':", e);
@@ -236,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// Пример вызова функции для обновления счетчика продуктов
-	updateProductCount('product', '#product-count span');
+	updateProductCount('product', '#product-count span', '#product-count div');
 
 	// Функция установки куки
 	function setCookie(name, value, days) {
@@ -445,17 +565,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 						adjustCardLayout();
 						adjustWishBtn();
+						sortExcursion();
 					})
 					.catch(error => console.error('Error loading posts:', error));
 			}
 		});
 	}
 
-
 	// Swiper
 	const swiperTour = document.querySelectorAll('.swiper_tour');
 	const swiperRev = document.querySelectorAll('.swiper_reviews');
-	if(swiperTour) {
+
+	if(swiperTour.length) {
 		const swiper = new Swiper(".mySwiper", {
 			spaceBetween: 8,
 			direction: "horizontal", // Вертикальное направление для превью
@@ -481,6 +602,11 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 		const swiperSlides = document.querySelectorAll('.mySwiper2 .swiper-slide img');
+
+		if(swiperSlides) {
+
+		}
+
 
 		// Элементы попапа
 		const popup = document.getElementById('popup');

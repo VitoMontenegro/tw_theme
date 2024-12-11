@@ -554,6 +554,24 @@ function is_current_category($term_id) {
 	}
 	return false;
 }
+function is_active_category($category) {
+	// Проверка, если это страница записи
+	if (is_singular() && has_term($category['slug'], 'excursion_category')) {
+		return true;
+	}
+
+	// Проверка, если это страница категории
+	if (is_tax('excursion_category')) {
+		// Если это подкатегория, проверяем родительскую категорию
+		$term = get_queried_object();
+		if ($term->parent == $category['id']) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 
 function my_custom_template($id, $part) {
 	set_query_var('custom_id', $id);
@@ -566,5 +584,20 @@ function getYoutubeEmbedUrl($url) {
 	return (isset($matches[1])) ? $matches[1] : false;
 }
 
+function get_cost($fields) {
+
+	$cost = null;
+	$cost_sale = null;
+
+	if (isset($fields['price']) && $fields['price']) {
+		$cost = $fields['price'];
+	}
+
+	if (isset($fields['discount_price']) && $fields['discount_price']) {
+		$cost_sale = $fields['discount_price'];
+	}
+
+	return ['cost' =>$cost, 'cost_sale'=>$cost_sale];
+}
 
 

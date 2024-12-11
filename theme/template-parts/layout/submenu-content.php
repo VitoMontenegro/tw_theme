@@ -11,17 +11,17 @@
 
 
 <!-- Подменю -->
-<section class="bg-[#DED7FC] p-[11px]">
+<section class="bg-[#DED7FC]">
 	<div class="container mx-auto">
 		<div class="flex justify-between items-center">
 			<?php $categories = get_nested_categories('excursion_category'); ?>
 			<?php if (!empty($categories)) : ?>
 				<ul class="flex items-center gap-4 hidden md:flex tracking-[.2px]">
 					<?php foreach ($categories as $category) : ?>
-						<li class="group relative">
-							<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-semibold items-center sm:items-start lg:items-center flex items-center gap-1 max-w-none sm:max-v-[165px] lg:max-w-none">
+						<li class="group relative py-[20px]<?php echo is_active_category($category) ? ' active' : ''; ?>">
+							<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-semibold items-center sm:items-start lg:items-center flex items-center gap-1 max-w-none sm:max-v-[165px] lg:max-w-none group-[.active]:text-[#3A21AA] ">
 								<?php echo esc_html($category['name'])?>
-								<svg class="mt-0 sm:mt-1 lg:mt-0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+								<svg  class="mt-0 sm:mt-1 lg:mt-0 group-[.active]:text-red-600" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 									<g clip-path="url(#clip0_135_6833)">
 										<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 									</g>
@@ -32,10 +32,10 @@
 									</defs>
 								</svg>
 							</a>
-							<ul class="submenu absolute bg-white w-full px-4 py-4 z-10  flex-col gap-2 border hidden group-hover:flex rounded-md">
+							<ul class="submenu absolute top-[60px] bg-[#E9E4FF] w-full px-4 py-4 z-10  flex-col gap-3 border hidden group-hover:flex rounded-md">
 								<?php foreach ($category["children"] as $child) : ?>
 									<li>
-										<a href="<?php echo esc_url($child['link']) ?>" class="text-sm px-1">
+										<a href="<?php echo esc_url($child['link']) ?>" class="font-semibold p-1.5 rounded-md<?php echo is_current_category($child["id"]) ? ' bg-[#C2B6FF] text-[#393488]' : ''; ?>">
 											<?php echo esc_html($child['name'])?>
 										</a>
 									</li>
