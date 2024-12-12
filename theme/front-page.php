@@ -288,7 +288,7 @@ get_header();
 							<h2>Популярные вопросы</h2>
 							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
-								<details class="details w-full border border-[#e8e8e8] rounded-[30px] relative block mb-4" name="faq">
+								<details class="details w-full border border-[#e8e8e8] rounded-[30px] relative block mb-4" name="faq" open>
 									<summary class="details__title py-6 ps-6 pe-10 text-[#393488] font-bold cursor-pointer list-none"><?php echo get_the_title(); ?></summary>
 									<div class="details__content px-4 pb-4 text-[#393488]">
 										<?php the_content(); ?>

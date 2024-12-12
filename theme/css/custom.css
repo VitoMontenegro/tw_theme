@@ -22,7 +22,7 @@
 	-webkit-line-clamp: 6;
 }
 
-.details {
+.details, .program {
 	transition: 0.3s;
 	overflow: hidden;
 }
