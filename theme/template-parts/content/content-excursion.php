@@ -113,27 +113,48 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 
 			</div>
 			<div class="lg:col-span-5 col-span-12">
-				<div class="flex items-center justify-between w-full">
-					<div class="flex items-center gap-1">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<path d="M12 3C7.02823 3 3 7.02823 3 12C3 16.9718 7.02823 21 12 21C16.9718 21 21 16.9718 21 12C21 7.02823 16.9718 3 12 3ZM12 19.2581C7.98992 19.2581 4.74194 16.0101 4.74194 12C4.74194 7.98992 7.98992 4.74194 12 4.74194C16.0101 4.74194 19.2581 7.98992 19.2581 12C19.2581 16.0101 16.0101 19.2581 12 19.2581ZM14.2427 15.4694L11.1617 13.2302C11.0492 13.1468 10.9839 13.0161 10.9839 12.8782V6.91935C10.9839 6.67984 11.1798 6.48387 11.4194 6.48387H12.5806C12.8202 6.48387 13.0161 6.67984 13.0161 6.91935V12.0617L15.4403 13.8254C15.6363 13.9669 15.6762 14.2391 15.5347 14.4351L14.8524 15.375C14.7109 15.5673 14.4387 15.6109 14.2427 15.4694Z" fill="#373F41"/>
-						</svg>
-						<div class="font-bold">Продолжительность: <?php echo $fields['duration']['label']; ?></div>
-					</div>
-						<button class="wish-btn flex items-center gap-1 group" data-wp-id="<?php echo get_the_ID(); ?>" aria-label="Добавить в избранное">
-							<span class="icon">
-								<span class="icon h-6 w-6 flex items-center justify-center bg-white rounded-full">
-									 <svg class="w-4 h-4 fill-transparent stroke-current text-[#000] group-[.active]:text-red-600 group-[.active]:fill-red-600 stroke-1" viewBox="0 0 24 24">
-										  <path class="icon-path" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
-									 </svg>
-								</span>
-							</span>
-							<span class="bold">Добавить в избранное</span>
+				<div class="flex justify-end">
+					<button class="wish-btn flex items-center gap-1 group" data-wp-id="<?php echo get_the_ID(); ?>" aria-label="Добавить в избранное">
+							<svg class="block group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M15.449 4C13.9552 4 12.5214 4.69543 11.5856 5.79438C10.6497 4.69543 9.21594 4 7.72205 4C5.0777 4 3 6.0777 3 8.72205C3 11.9674 5.91909 14.6117 10.3406 18.6298L11.5856 19.7545L12.8305 18.6212C17.252 14.6117 20.1711 11.9674 20.1711 8.72205C20.1711 6.0777 18.0934 4 15.449 4ZM11.6714 17.3505L11.5856 17.4364L11.4997 17.3505C7.41297 13.6502 4.71711 11.2033 4.71711 8.72205C4.71711 7.00494 6.00494 5.71711 7.72205 5.71711C9.04423 5.71711 10.3321 6.56708 10.7871 7.7433H12.3926C12.839 6.56708 14.1269 5.71711 15.449 5.71711C17.1662 5.71711 18.454 7.00494 18.454 8.72205C18.454 11.2033 15.7581 13.6502 11.6714 17.3505Z" fill="#373F41"/>
+							</svg>
+							<svg class="hidden group-[.active]:block " xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M15.449 4C13.9552 4 12.5214 4.69543 11.5856 5.79438C10.6497 4.69543 9.21594 4 7.72205 4C5.0777 4 3 6.0777 3 8.72205C3 11.9674 5.91909 14.6117 10.3406 18.6298L11.5856 19.7545L12.8305 18.6212C17.252 14.6117 20.1711 11.9674 20.1711 8.72205C20.1711 6.0777 18.0934 4 15.449 4ZM11.6714 17.3505L11.5856 17.4364L11.4997 17.3505C7.41297 13.6502 4.71711 11.2033 4.71711 8.72205C4.71711 7.00494 6.00494 5.71711 7.72205 5.71711C9.04423 5.71711 10.3321 6.56708 10.7871 7.7433H12.3926C12.839 6.56708 14.1269 5.71711 15.449 5.71711C17.1662 5.71711 18.454 7.00494 18.454 8.72205C18.454 11.2033 15.7581 13.6502 11.6714 17.3505Z" fill="#FF7643"/>
+							</svg>
+						<span class="bold block group-[.active]:hidden">Добавить в избранное</span>
+						<span class="bold hidden group-[.active]:block text-[#FF7643]">Удалить из избранного</span>
 						</button>
 				</div>
-				<header class="entry-header mb-2 sm:mb-6">
-					<?php the_title( '<h1 class="mt-4 mb-2 sm:mt-6 sm:mb-6 text-[15px] sm:text-[30px] font-bold sm:leading-9">', '</h1>' ); ?>
+				<header class="entry-header">
+					<?php the_title( '<h1 class="mt-2 mb-2 sm:mb-6 text-[15px] sm:text-[30px] font-bold sm:leading-9">', '</h1>' ); ?>
 				</header>
+
+				<div class="flex flex-col sm:flex-row items-center justify-between mb-3 sm:mb-5">
+					<?php if($fields['duration_main']):?>
+						<div class="flex items-center gap-1">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M12 3C7.02823 3 3 7.02823 3 12C3 16.9718 7.02823 21 12 21C16.9718 21 21 16.9718 21 12C21 7.02823 16.9718 3 12 3ZM12 19.2581C7.98992 19.2581 4.74194 16.0101 4.74194 12C4.74194 7.98992 7.98992 4.74194 12 4.74194C16.0101 4.74194 19.2581 7.98992 19.2581 12C19.2581 16.0101 16.0101 19.2581 12 19.2581ZM14.2427 15.4694L11.1617 13.2302C11.0492 13.1468 10.9839 13.0161 10.9839 12.8782V6.91935C10.9839 6.67984 11.1798 6.48387 11.4194 6.48387H12.5806C12.8202 6.48387 13.0161 6.67984 13.0161 6.91935V12.0617L15.4403 13.8254C15.6363 13.9669 15.6762 14.2391 15.5347 14.4351L14.8524 15.375C14.7109 15.5673 14.4387 15.6109 14.2427 15.4694Z" fill="#373F41"/>
+							</svg>
+							<div class="font-bold"><?php echo $fields['duration_main']; ?></div>
+						</div>
+					<?php else: ?>
+						<div class="flex items-center gap-1">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M12 3C7.02823 3 3 7.02823 3 12C3 16.9718 7.02823 21 12 21C16.9718 21 21 16.9718 21 12C21 7.02823 16.9718 3 12 3ZM12 19.2581C7.98992 19.2581 4.74194 16.0101 4.74194 12C4.74194 7.98992 7.98992 4.74194 12 4.74194C16.0101 4.74194 19.2581 7.98992 19.2581 12C19.2581 16.0101 16.0101 19.2581 12 19.2581ZM14.2427 15.4694L11.1617 13.2302C11.0492 13.1468 10.9839 13.0161 10.9839 12.8782V6.91935C10.9839 6.67984 11.1798 6.48387 11.4194 6.48387H12.5806C12.8202 6.48387 13.0161 6.67984 13.0161 6.91935V12.0617L15.4403 13.8254C15.6363 13.9669 15.6762 14.2391 15.5347 14.4351L14.8524 15.375C14.7109 15.5673 14.4387 15.6109 14.2427 15.4694Z" fill="#373F41"/>
+							</svg>
+							<div class="font-bold">Продолжительность: <?php echo $fields['duration']['label']; ?></div>
+						</div>
+					<?php endif; ?>
+					<?php if($fields['duration_second']):?>
+						<div class="flex items-center gap-1">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+								<path d="M12 3C7.02823 3 3 7.02823 3 12C3 16.9718 7.02823 21 12 21C16.9718 21 21 16.9718 21 12C21 7.02823 16.9718 3 12 3ZM12 19.2581C7.98992 19.2581 4.74194 16.0101 4.74194 12C4.74194 7.98992 7.98992 4.74194 12 4.74194C16.0101 4.74194 19.2581 7.98992 19.2581 12C19.2581 16.0101 16.0101 19.2581 12 19.2581ZM14.2427 15.4694L11.1617 13.2302C11.0492 13.1468 10.9839 13.0161 10.9839 12.8782V6.91935C10.9839 6.67984 11.1798 6.48387 11.4194 6.48387H12.5806C12.8202 6.48387 13.0161 6.67984 13.0161 6.91935V12.0617L15.4403 13.8254C15.6363 13.9669 15.6762 14.2391 15.5347 14.4351L14.8524 15.375C14.7109 15.5673 14.4387 15.6109 14.2427 15.4694Z" fill="#373F41"/>
+							</svg>
+							<div class="font-bold"><?php echo $fields['duration_second']; ?></div>
+						</div>
+					<?php endif; ?>
+				</div>
+
 				<div class="mb-2">Стоимость за человека:</div>
 				<div class="flex flex-wrap items-center gap-4 mb-4">
 					<div class="bg-[#ffe7db] text-[#ff7642] text-[22px] rounded-lg px-2 pt-0.5 pb-1 font-bold">
@@ -144,7 +165,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 					</div>
 				</div>
 				<div class=" mb-5 sm:mb-10">
-					<a href="#prices" class="text-[#999999] underline decoration-dotted">Подробные цены</a>
+					<a href="#sectionCost" class="text-[#999999] underline decoration-dotted">Подробные цены</a>
 				</div>
 				<div class="block sm:flex gap-3">
 					<a target="_blank" href="https://api.whatsapp.com/send?phone=<?php echo preg_replace('/[^0-9]/', '', $options['watsapp']);  ?>&text=Здравствуйте.+Я+обращаюсь+с+сайта+flagmanspb.ru" class="inline-flex text-white px-8 py-2.5 bg-[#30d26e] rounded-full justify-center items-center gap-2 mb-3 hover:bg-[#1ABF59]">
@@ -153,9 +174,9 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 						</svg>
 						<span>Спросить в WhatsApp</span>
 					</a>
-					<button class="flex text-white px-8 py-2.5 bg-[#ff7642] rounded-full justify-center items-center gap-2 mb-3 hover:bg-[#ff6931]">
+					<a href="#sendMe" class="flex text-white px-8 py-2.5 bg-[#ff7642] rounded-full justify-center items-center gap-2 mb-3 hover:bg-[#ff6931]">
 						<span class="text-center text-white text-sm font-bold  leading-tight">Записаться</span>
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -198,13 +219,32 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 				</div>
 					<div class="p-4 flex flex-col gap-4">
 						<div class="text-sm font-bold">Работаем официально по лицензии №</div>
-						<div class="image_block">
-							<img src="" alt="">
-							<img src="" alt="">
+						<div class="image_block relative">
+							<?php if(!empty($options['sert'])): ?>
+								<?php foreach($options['sert'] as $key => $item): ?>
+									<?php if($key === 0) :?>
+										<img src="<?php echo $item['sizes']['medium']?>" alt="<?php echo $item['name']?>" class="h-[158px] w-[105px] object-contain">
+									<?php else: ?>
+										<img src="<?php echo $item['sizes']['medium']?>" alt="<?php echo $item['name']?>" class="h-[158px] w-[105px] absolute left-[80px] top-4  object-contain">
+									<?php endif; ?>
+								<?php endforeach; ?>
+							<?php endif; ?>
 						</div>
-						<div class="text-[#878787] tracking-tight">
-							Страхование пассажиров
-							Лого страховой компании, краткий текст про обязательное страхование и № страховки
+
+						<div class="tracking-tight flex flex-col gap-2 mt-3">
+							<div class="ext-sm font-bold">Страхование пассажиров</div>
+							<?php if(!empty($options['logo_sigur'])): ?>
+								<div class="flex h-8">
+									<img src="<?php echo $options['logo_sigur']?>" alt="logo" class="object-contain">
+								</div>
+							<?php endif; ?>
+							<?php if(!empty($options['about_sig'])): ?>
+								<div class="text-[#878787]"><?php echo $options['about_sig']?></div>
+							<?php endif; ?>
+							<?php if(!empty($options['strahovki'])): ?>
+								<div class="text-[#878787]">№ страховки <span class="text-[#000]"><?php echo $options['strahovki']?></span> </div>
+							<?php endif; ?>
+
 						</div>
 					</div>
 			</div>
@@ -382,7 +422,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 					</div>
 
 
-					<div class="bg-white pt-1 px-8 pb-5 sm:pb-8 rounded-3xl mt-5 sm:mt-6l flex-col sm:flex-row">
+					<div class="bg-white pt-1 px-8 pb-5 sm:pb-8 rounded-3xl mt-5 sm:mt-6l flex flex-col sm:flex-row" id="sendMe">
 						<div class="w-wull sm:w-5/12 bg-white rounded-2xl py-6 sm:py-8 px-6">
 							<div class="title text-lg font-bold mb-5 sm:mb-6">Оставьте заявку</div>
 							<input class="bg-[#F2F1FA] rounded-3xl w-full h-10 px-4 focus:outline-none mb-3" type="text" placeholder="Имя">
@@ -456,7 +496,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							</div>
 						</div>
 						<div class="flex mt-6 items-center justify-center">
-							<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все автобусы</a>
+							<a href="<?php echo esc_url(get_permalink(83)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все автобусы</a>
 						</div>
 					</div>
 
@@ -589,7 +629,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 										<?php endif ?>
 									</div>
 									<div class="relative mb-4">
-										<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Подробнее</a>
+										<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Подробнее</a>
 									</div>
 								</div>
 							</div>
