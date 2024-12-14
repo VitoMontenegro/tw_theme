@@ -166,7 +166,7 @@ get_header();
 
 			<section class="product-cards">
 				<h2 class="mt-0 mb-[18px]">Выберите экскурсию</h2>
-				<div class="flex w-full justify-between items-center mb-4">
+				<div class="flex w-full justify-between items-center mb-1">
 					<div class="flex flex-col gap-2">
 						<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

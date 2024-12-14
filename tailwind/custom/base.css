@@ -14,22 +14,13 @@
 body {
 	@apply bg-background text-foreground font-['Mulish'] text-[#373f41] bg-[#F2F1FA] text-sm;
 }
-#primary-menu {
-	@apply flex gap-[1px] items-center
+h1, h2, h3, h4, h5, h6 {
+	@apply font-bold tracking-tight
 }
-#primary-menu li a {
-	@apply  px-4 py-2 tracking-[.25px]
-}
-#primary-menu li.current_page_item  a {
-	@apply  text-[#ff7642]
+h2 {
+	@apply text-[#373f41] text-[24px] sm:text-3xl tracking-tight mt-10 mb-6
 }
 .container {
 	@apply !max-w-[1172px] px-[18px];
-}
-#colophon li {
-	@apply my-1
-}
-#colophon li a {
-	@apply  py-1.5 block
 }
 

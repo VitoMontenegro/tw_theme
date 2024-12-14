@@ -35,4 +35,4 @@
  * by plugins, then adds custom utility classes.
  */
 @import "tailwindcss/utilities";
-@import "./custom/utilities.css";
+/*@import "./custom/utilities.css";*/
