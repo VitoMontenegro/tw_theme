@@ -54,12 +54,12 @@ $options = get_fields( 'option');
 					<div class="col-span-7 md:col-span-4 lg:col-span-4 order-2 sm:order-3">
 						<div class="font-bold mb-5 text-sm sm:text-lg">Как с нами связаться</div>
 						<ul class="">
-							<li class="menu-item flex gap-1 items-center">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+							<li class="menu-item flex gap-1 items-start">
+								<svg class="mt-1 min-w-[16px]" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
 									<path d="M10.9285 10.0711C10.4377 10.5619 9.40476 11.5948 8.70636 12.2932C8.31584 12.6837 7.683 12.6834 7.29248 12.2929C6.60619 11.6066 5.59383 10.5943 5.07063 10.0711C3.45302 8.45346 3.45302 5.83081 5.07063 4.2132C6.68823 2.5956 9.31089 2.5956 10.9285 4.2132C12.5461 5.83081 12.5461 8.45346 10.9285 10.0711Z" stroke="white" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
 									<path d="M9.55286 7.14214C9.55286 8 8.85742 8.69544 7.99956 8.69544C7.14169 8.69544 6.44626 8 6.44626 7.14214C6.44626 6.28427 7.14169 5.58884 7.99956 5.58884C8.85742 5.58884 9.55286 6.28427 9.55286 7.14214Z" stroke="white" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
 								</svg>
-								<span>Адрес офиса</span>
+								<span><?php echo $options['address'];?></span>
 							</li>
 							<li class="menu-item flex gap-1 items-center">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

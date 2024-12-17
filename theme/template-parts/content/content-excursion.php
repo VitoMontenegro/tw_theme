@@ -320,12 +320,13 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 					<div id="sectionProgram">
 						<?php if(!empty($fields['programm'])): ?>
 
-							<?php foreach($fields['programm'] as $program) : ?>
+							<?php foreach($fields['programm'] as $program) :?>
 								<details class="program bg-white pt-4 pb-4 lg:pt-8 pb-8 px-5 sm:px-8 relative rounded-3xl mt-5 sm:mt-6" name="excursion" open>
 									<summary class="details__title text-[#393488] font-bold cursor-pointer list-none">
 										<?php if(!empty($program["name"])): ?>
 											<h2 class="big-title"><?php echo $program['name'];?></h2>
 										<?php endif; ?>
+										<?php if(count($fields['programm']) > 1): ?>
 										<!-- Стрелка для закрытого состояния (по умолчанию) -->
 										<svg class="arrow-icon closed-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 											<path d="M3 7.5L12 16.5L21 7.5" stroke="#CFC5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -335,6 +336,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 										<svg class="arrow-icon open-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 											<path d="M21 16.5L12 7.5L3 16.5" stroke="#3A21AA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 										</svg>
+										<?php endif; ?>
 									</summary>
 									<div class="details__content pt-2 lg:pt-0 pb-4">
 										<?php if(!empty($program["items"])): ?>
@@ -363,6 +365,8 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 						<?php endif; ?>
 					</div>
 
+
+					<?php if(!empty($fields['not_includes']) ||!empty($fields['table_price']) || !empty($fields['includes']) ): ?>
 					<div class="bg-white pt-6 sm:pt-4 lg:pt-7 sm:pb-5 sm:pb-8 px-5 sm:px-8 pb-[220px] rounded-3xl mt-5 sm:mt-6l bg-end bg-no-repeat" id="sectionCost">
 						<?php if(!empty($fields['table_price'])): ?>
 							<h2 class="big-title">Стоимость экскурсии</h2>
@@ -476,19 +480,20 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							</div>
 						<?php endif; ?>
 					</div>
+					<?php endif; ?>
 
 					<div class="bg-white pt-6 sm:pt-4 lg:pt-7 px-5 sm:px-8 pb-5 sm:pb-5 rounded-3xl mt-5 sm:mt-6l" id="sectionNeed">
 						<h2 class="big-title">Что понадобится для оформления поездки?</h2>
 						<div class="mt-6 sm:mt-0">Оставить заявку на сайте или связаться с нами по телефону.</div>
 						<div class="grid grid-cols-1 sm:grid-cols-15 mt-3 sm:mt-4" id="need_bg">
-							<div class="col-span-8 flex flex-col gap-4">
+							<div class="col-span-8 flex flex-col gap-4 lg:min-w-[420px]">
 								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl h-[106px] lg:h-[82px] col-span-6 md:col-span-4">
 									<div class="text-[22px] font-bold mb-2">01</div>
 									<div class="text_link_underline">Сообщить нам количество школьников и взрослых</div>
 								</div>
 								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl h-[106px] lg:h-[82px] col-span-6 md:col-span-4">
 									<div class="text-[22px] font-bold mb-2">02</div>
-									<div class="text_link_underline">Заполнить план рассадки <a href="<?php echo $fields['file']; ?>" download="filename.webp">скачать файл</a></div>
+									<div class="text_link_underline">Заполнить план рассадки <a href="<?php echo (isset($fields['file']) && !empty($fields['file']) ) ? $fields['file'] : '/wp-content/uploads/2024/12/plan-rassadki-dlya-ekskursii.docx'; ?>" download>скачать файл</a></div>
 								</div>
 								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl h-[106px] lg:h-[82px] col-span-6 md:col-span-4">
 									<div class="text-[22px] font-bold mb-2">03</div>

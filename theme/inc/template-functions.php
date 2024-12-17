@@ -223,7 +223,7 @@ function register_custom_post_type() {
 			'public' => true,
 			'hierarchical' => false, // Для поддержки иерархии
 			'rewrite' => ['slug' => 'excursion', 'with_front' => false], // Пустой slug
-			'supports' => ['title'],
+			'supports' => ['title', "editor", 'excerpt'],
 			'menu_icon' => 'dashicons-admin-site-alt',
 			'taxonomies' => ['excursion_category'], // Подключаем таксономию
 	]);
@@ -632,3 +632,55 @@ function get_cost($fields) {
 }
 
 
+
+
+add_shortcode( 'min_price', 'min_price' );
+function min_price($atts) {
+	ob_start();
+
+	$atts = shortcode_atts(array(
+			'min' => '',
+	), $atts);
+
+	if (is_front_page()) {
+		$terms_items = 'ekskursii-peterburg';
+	} else {
+		$terms_items = get_queried_object()->slug;
+	}
+	$items = get_posts( array(
+			'numberposts' => -1,
+			'post_type' => 'excursion'
+	) );
+
+	wp_reset_postdata(); // сброс
+
+
+	$items_prices = [];
+	foreach ($items as $item) {
+		$fields = get_fields($item->ID);
+
+		if (isset($fields['price']) && $fields['price']) {
+			$cost = $fields['price'];
+		}
+
+		if (isset($fields['discount_price']) && $fields['discount_price']) {
+			$m=(int)$fields['discount_price'];
+		} else {
+			$m=(int)$fields['price'];
+		}
+
+		if ($m<1) continue;
+		$items_prices[] = $m;
+	}
+
+	if (count($items_prices)>1)
+		$min_price = min($items_prices);
+	else
+		$min_price = 850;
+
+	$min_price = $atts['min'] ? $atts['min'] : $min_price;
+
+	echo $min_price;
+	$result = ob_get_clean();
+	return $result;
+}

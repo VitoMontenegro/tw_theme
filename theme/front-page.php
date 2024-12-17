@@ -29,7 +29,7 @@ get_header();
                             для школьников<br>
                             в Санкт-петербурге
                         </h1>
-                        <a href="#" class="px-8 py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex">
+                        <a href="#card_link" class="px-8 py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex">
                             <span class="text-center text-white text-sm font-bold  leading-tight">Выбрать экскурсию</span>
                         </a>
 					</div>
@@ -135,7 +135,7 @@ get_header();
 			</div>
             <div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] lg:h-[323px] bg-[#ff7642] rounded-2xl py-6 px-4 relative">
                 <div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-8 lg:transform">
-                    <a href="#card_link" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
+                    <a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
                         Подробнее
                     </a>
                 </div>

@@ -19,12 +19,12 @@
 				<ul class="flex items-center gap-6 sm:gap-4 lg:gap-4 hidden md:flex tracking-[.2px]">
 					<?php foreach ($categories as $category) : ?>
 						<li class="group relative py-[14px] lg:py-[20px] md:items-start lg:items-center flex items-center lg:gap-2<?php echo is_active_category($category) ? ' active' : ''; ?>">
-							<a href="<?php echo esc_url($category['link']) ?>" class="text-[13px] lg:text-sm font-semibold items-center max-w-none sm:max-v-[165px] lg:max-w-none group-[.active]:text-[#3A21AA] leading-[16px] sm:max-w-[145px] lg:max-w-none">
+							<a href="<?php echo esc_url($category['link']) ?>" class="text-[13px] lg:text-sm font-bold items-center max-w-none sm:max-v-[165px] lg:max-w-none group-[.active]:text-[#3A21AA] leading-[16px] sm:max-w-[145px] lg:max-w-none">
 								<?php echo esc_html($category['name'])?>
 							</a>
-							<svg  class="mt-0 sm:mt-1 group-[.active]:text-red-600 min-w-[12px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+							<svg  class="mt-0 sm:mt-[2px] min-w-[12px] group-[.active]:text-[#3A21AA]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
 								<g clip-path="url(#clip0_135_6833)">
-									<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 								</g>
 								<defs>
 									<clipPath>
