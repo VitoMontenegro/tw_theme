@@ -3,13 +3,13 @@
 <?php if(!$fields && is_admin()) : ?>
 	<div class="grid grid-cols-1 md:grid-cols-12 gap-4 mt-10">
 		<!-- Левый блок -->
-		<div class="md:col-span-7 order-1">
-			<h2 class="!mt-0">Какие достопримечательности посетят школьники на наших экскурсиях?</h2>
+		<div class="sm:col-span-7 lg:col-span-8 order-1 h-full">
+			<h2 class="!mt-0 !mb-0">Какие достопримечательности посетят школьники на наших экскурсиях?</h2>
 		</div>
 
 		<!-- Правый блок (картинка) -->
-		<div class="md:col-span-5 order-2  md:row-span-2">
-			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/help_choose.webp" class="w-full h-full object-cover" loading="lazy" alt="hero">
+		<div class="sm:col-span-5 lg:col-span-4 order-2 md:row-span-2 rounded-xl overflow-hidden">
+			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/help_choose.webp" class="object-cover sm:w-auto" loading="lazy" alt="hero">
 		</div>
 
 		<!-- Контент -->
@@ -21,16 +21,16 @@
 <?php else: ?>
 	<div class="grid grid-cols-1 md:grid-cols-12 gap-4 mt-10">
 		<!-- Левый блок -->
-		<div class="md:col-span-8 order-1 h-full">
+		<div class="sm:col-span-7 lg:col-span-8 order-1 h-full">
 			<h2 class="!mt-0 !mb-0"><?php echo $fields['title']; ?></h2>
 		</div>
 
 		<!-- Правый блок (картинка) -->
-		<div class="md:col-span-4 order-2 md:row-span-2 rounded-xl overflow-hidden">
+		<div class="sm:col-span-5 lg:col-span-4 order-2 md:row-span-2 rounded-xl overflow-hidden">
 			<img src="<?php echo $fields['img']; ?>" class="object-cover sm:w-auto" loading="lazy" alt="hero">
 		</div>
 
 		<!-- Контент -->
-		<div class="md:col-span-8 order-3"><?php echo $fields['text']; ?></div>
+		<div class="md:col-span-7 order-3"><?php echo $fields['text']; ?></div>
 	</div>
 <?php endif; ?>

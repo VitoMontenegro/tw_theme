@@ -34,7 +34,7 @@ $options = get_fields( 'option');
 					</div>
 					<ul class="submenu mt-3 w-full px-4 z-10  flex-col gap-2  hidden group-hover:flex rounded-md">
 						<?php foreach ($category["children"] as $child) : ?>
-							<li class=" my-2">
+							<li class="my-2">
 								<a href="<?php echo esc_url($child['link']) ?>" class="text-sm px-1 font-semibold py-2">
 									<?php echo esc_html($child['name'])?>
 								</a>
@@ -59,12 +59,12 @@ $options = get_fields( 'option');
 	</div>
 	<span class="relative left-[-16px]">
 		<svg xmlns="http://www.w3.org/2000/svg" width="219" height="103" viewBox="0 0 219 103" fill="none">
-		<path d="M144 42.3742C124.016 49.6204 101.693 50.6358 81.0987 45.2337C72.2965 42.9266 63.4692 39.2386 57.6401 32.4229C51.8109 25.6073 49.8568 15.0549 55.118 7.81681C61.2311 -0.59915 75.1442 -1.04594 83.3201 5.50161C91.4959 12.0492 94.1683 23.5521 92.0889 33.6496C90.001 43.7471 83.8713 52.6261 76.9314 60.4084C57.2058 82.5206 29.4965 97.3542 0 103" stroke="#393488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
-		<path d="M217.997 10.9977L158.417 26.1597L156.824 26.5568L156.681 26.3322L150.07 34.9215L151.78 17.0009L144.16 6.21191L217.997 10.9977Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-		<path d="M217.996 10.9976L170.613 49.0855L159.929 31.6351L156.823 26.5567L158.416 26.1596L217.996 10.9976Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-		<path d="M217.995 10.9976L158.415 26.1596L156.678 26.332L217.995 10.9976Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-		<path d="M151.782 17.0007L218 10.9976L156.689 26.332L150.073 34.9214L151.782 17.0007Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-		<path d="M150.073 34.9212L160.48 32.5283" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-	</svg>
+            <path d="M144 42.3742C124.016 49.6204 101.693 50.6358 81.0987 45.2337C72.2965 42.9266 63.4692 39.2386 57.6401 32.4229C51.8109 25.6073 49.8568 15.0549 55.118 7.81681C61.2311 -0.59915 75.1442 -1.04594 83.3201 5.50161C91.4959 12.0492 94.1683 23.5521 92.0889 33.6496C90.001 43.7471 83.8713 52.6261 76.9314 60.4084C57.2058 82.5206 29.4965 97.3542 0 103" stroke="#393488" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 6"/>
+            <path d="M217.997 10.9977L158.417 26.1597L156.824 26.5568L156.681 26.3322L150.07 34.9215L151.78 17.0009L144.16 6.21191L217.997 10.9977Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M217.996 10.9976L170.613 49.0855L159.929 31.6351L156.823 26.5567L158.416 26.1596L217.996 10.9976Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M217.995 10.9976L158.415 26.1596L156.678 26.332L217.995 10.9976Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M151.782 17.0007L218 10.9976L156.689 26.332L150.073 34.9214L151.782 17.0007Z" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M150.073 34.9212L160.48 32.5283" stroke="#393488" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
 	</span>
 </div>

@@ -37,9 +37,9 @@ if (isset($category_id)) {
 			$fields = get_fields();
 			?>
 			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl"  data-cost="<?php echo get_cost($fields)['cost_sale'] ?? get_cost($fields)['cost']; ?>"  data-popular="<?php echo ++$count;?>">
-				<div  class="relative mb-3">
+				<div class="relative mb-2 lg:mb-3">
 					<a href="<?php echo get_permalink() ?>">
-						<img class="rounded-2xl w-full h-[160px] sm:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
+						<img class="rounded-2xl w-full h-[163px] lg:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
 						<?php if (isset($fields['video_after_gates']) && !empty($fields['video_after_gates'])): ?>
 							<span class="has_video absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" data-ll-status="observed">
 								<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none">
@@ -86,8 +86,8 @@ if (isset($category_id)) {
 					</button>
 				</div>
 				<div class="px-4">
-					<a href="<?php echo get_permalink() ?>" class="card-title text-sm sm:text-[21px] font-bold mb-4"><?php echo get_the_title(); ?></a>
-					<div class="card-description leading-[17px] mb-5"><?php echo get_the_excerpt(); ?></div>
+					<a href="<?php echo get_permalink() ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title(); ?></a>
+					<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5"><?php echo get_the_excerpt(); ?></div>
 					<div class="flex flex-wrap items-center gap-2 mb-5">
 						<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
 							от <?php echo $fields['price'];?> ₽
@@ -99,7 +99,7 @@ if (isset($category_id)) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Подробнее</a>
 					</div>
 				</div>
 			</div>

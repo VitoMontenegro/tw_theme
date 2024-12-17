@@ -223,7 +223,7 @@ function register_custom_post_type() {
 			'public' => true,
 			'hierarchical' => false, // Для поддержки иерархии
 			'rewrite' => ['slug' => 'excursion', 'with_front' => false], // Пустой slug
-			'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
+			'supports' => ['title'],
 			'menu_icon' => 'dashicons-admin-site-alt',
 			'taxonomies' => ['excursion_category'], // Подключаем таксономию
 	]);
@@ -555,15 +555,28 @@ function is_current_category($term_id) {
 	return false;
 }
 function is_active_category($category) {
+	// Если это главная страница и категория с ID 16
+	if (is_home() || is_front_page()) {
+		if ($category['id'] == 16) {
+			return true;
+		}
+	}
+
 	// Проверка, если это страница записи
 	if (is_singular() && has_term($category['slug'], 'excursion_category')) {
 		return true;
 	}
 
-	// Проверка, если это страница категории
+	// Проверка, если это страница категории или подкатегории
 	if (is_tax('excursion_category')) {
-		// Если это подкатегория, проверяем родительскую категорию
 		$term = get_queried_object();
+
+		// Если находимся на странице самой категории (родительская категория для текущего термина)
+		if ($term->term_id == $category['id']) {
+			return true;
+		}
+
+		// Если это подкатегория, проверяем родительскую категорию
 		if ($term->parent == $category['id']) {
 			return true;
 		}
@@ -571,6 +584,8 @@ function is_active_category($category) {
 
 	return false;
 }
+
+
 
 
 function my_custom_template($id, $part) {
@@ -583,6 +598,22 @@ function getYoutubeEmbedUrl($url) {
 	preg_match($pattern, $url, $matches);
 	return (isset($matches[1])) ? $matches[1] : false;
 }
+function getDzenEmbedUrl($url) {
+	if(!$url) return false;
+
+	$pattern = '/(https.*)(")/U';
+	preg_match($pattern, $url, $matches);
+
+	return (isset($matches[1])) ? $matches[1] : false;
+}
+function getRuTubeEmbedUrl($url) {
+	// Регулярное выражение для извлечения идентификатора видео
+	if (preg_match('/\/video\/([a-f0-9]{32})/', $url, $matches)) {
+		return $matches[1]; // Возвращаем найденный идентификатор
+	}
+	return null; // Если идентификатор не найден, возвращаем null
+}
+
 
 function get_cost($fields) {
 

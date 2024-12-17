@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (menuToggle && mobileMenu ) {
 		menuToggle.addEventListener('click', (event) => {
 			event.stopPropagation(); // предотвращаем всплытие события, чтобы не закрывать меню сразу после его открытия
-
 			// Переключаем меню
 			if (menuToggle.classList.contains('is-active')) {
 				mobileMenu.classList.remove('-translate-x-full');
@@ -516,7 +515,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					title.classList.add('three-lines', 'mb-3');
 					description.classList.add('two-lines');
 				} else {
-					title.classList.add('two-lines', 'mb-4');
+					title.classList.add('two-lines', 'mb-2', 'lg:mb-4');
 					description.classList.add('three-lines');
 				}
 			});
@@ -619,13 +618,23 @@ document.addEventListener('DOMContentLoaded', function() {
 				const mediaSrc = slide.getAttribute('src');
 				const mediaAlt = slide.getAttribute('alt');
 				const videoId = slide.getAttribute('data-video-id'); // Получаем ID видео, если это превью
-
+				const videoType = slide.getAttribute('data-video-type'); // Получаем ID видео, если это превью
 				popupContainer.innerHTML = ''; // Очищаем контейнер попапа
 
 				if (videoId) {
 					// Если это превью видео, создаем iframe для воспроизведения
+
 					const iframeElement = document.createElement('iframe');
-					iframeElement.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+
+					if (videoType === 'dzen') {
+						iframeElement.src = videoId;
+					}
+					else if (videoType === 'rutube') {
+						iframeElement.src = "https://rutube.ru/play/embed/" + videoId + "?autoplay=1";
+					}  else if(videoType === 'youtube') {
+						iframeElement.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+					}
+
 					iframeElement.allow = "autoplay; fullscreen; accelerometer; gyroscope; encrypted-media; picture-in-picture";
 					iframeElement.frameBorder = '0';
 					iframeElement.allowFullscreen = true;
@@ -670,10 +679,38 @@ document.addEventListener('DOMContentLoaded', function() {
 			},
 			breakpoints: {
 				640: {
+					slidesPerView: 2.5,
+					spaceBetween: 12,
+				},
+				960: {
+					slidesPerView: 3,
+					spaceBetween: 18,
+				}
+			},
+		});
+
+	}
+
+	const swiperExc = document.querySelectorAll('.swiper_excursion');
+	if(swiperExc) {
+		const swiper4 = new Swiper(".mySwiper4", {
+			slidesPerView: 1.2,
+			spaceBetween: 18,
+			loop: true,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			breakpoints: {
+				490: {
 					slidesPerView: 2,
 					spaceBetween: 12,
 				},
-				760: {
+				640: {
+					slidesPerView: 2.5,
+					spaceBetween: 12,
+				},
+				960: {
 					slidesPerView: 3,
 					spaceBetween: 18,
 				}

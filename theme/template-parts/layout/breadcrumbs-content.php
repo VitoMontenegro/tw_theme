@@ -5,18 +5,18 @@ var_dump(is_tax()); //категория экскурсии*/
 $fields = get_fields();
 $i=0
 ?>
-<section class="breadcrumbs my-8">
-	<div class="container mx-auto">
-		<ol itemscope itemtype="http://schema.org/BreadcrumbList" class="flex gap-1 text-[#999]">
+<section class="breadcrumbs mt-1.5 mb-3 lg:mt-6 lg:mb-6">
+	<div class="container">
+		<ol itemscope itemtype="http://schema.org/BreadcrumbList" class="inline text-[#999] text-[12px] lg:text-[14px]">
 			<?php if(is_category()): ?>
 				<li itemprop="itemListElement" itemscope
-					itemtype="http://schema.org/ListItem">
+					itemtype="http://schema.org/ListItem" class="inline">
 					<a itemprop="item"  href="<?php echo get_site_url();?>">
 						<span itemprop="name">Блог</span>
 					</a>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
 				</li>
-				<li>-</li>
+				<li class="inline">-</li>
 				<?php
 					$category = get_queried_object();
 					$ancestors = get_ancestors($category->term_id, 'category');
@@ -25,15 +25,15 @@ $i=0
 					<?php foreach(array_reverse($ancestors) as $ancestor_id) : ?>
 						<?php $ancestor = get_term($ancestor_id, 'category'); ?>
 						<li itemprop="itemListElement" itemscope
-							itemtype="https://schema.org/ListItem">
+							itemtype="https://schema.org/ListItem" class="inline">
 							<a itemprop="item" href="<?php echo get_term_link($ancestor)?>">
 								<span itemprop="name"><?php echo $ancestor->name; ?></span></a>
 							<meta itemprop="position" content="<?php echo ++$i; ?>" />
 						</li>
-						<li>-</li>
+						<li class="inline">-</li>
 					<?php endforeach; ?>
 				<?php endif; ?>
-				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
 					<span itemprop="name"><?php echo $category->name; ?></span>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
 				</li>
@@ -52,21 +52,21 @@ $i=0
 							<?php  foreach (array_reverse($ancestors) as $ancestor_id) : ?>
 								<?php $ancestor = get_term($ancestor_id, 'excursion_category'); ?>
 								<li itemprop="itemListElement" itemscope
-									itemtype="https://schema.org/ListItem">
+									itemtype="https://schema.org/ListItem" class="inline">
 									<a itemprop="item" href="<?php echo get_term_link($ancestor); ?>">
 										<span itemprop="name"><?php echo $ancestor->name; ?></span></a>
 									<meta itemprop="position" content="<?php echo ++$i; ?>" />
 								</li>
-								<li>-</li>
+								<li class="inline">-</li>
 							<?php endforeach; ?>
 						<?php endif; ?>
 						<li itemprop="itemListElement" itemscope
-							itemtype="https://schema.org/ListItem">
+							itemtype="https://schema.org/ListItem" class="inline">
 							<a itemprop="item" href="<?php echo get_term_link($term); ?>">
 								<span itemprop="name"><?php echo $term->name; ?></span></a>
 							<meta itemprop="position" content="<?php echo ++$i; ?>" />
 						</li>
-						<li>-</li>
+						<li class="inline">-</li>
 					<?php endif; ?>
 				<?php else: ?>
 					<?php $categories = get_the_category(); ?>
@@ -79,24 +79,24 @@ $i=0
 							<?php foreach(array_reverse($ancestors) as $ancestor_id) : ?>
 								<?php $ancestor = get_term($ancestor_id, 'category'); ?>
 								<li itemprop="itemListElement" itemscope
-									itemtype="https://schema.org/ListItem">
+									itemtype="https://schema.org/ListItem" class="inline">
 									<a itemprop="item" href="<?php echo get_term_link($ancestor)?>">
 										<span itemprop="name"><?php echo $ancestor->name; ?></span></a>
 									<meta itemprop="position" content="<?php echo ++$i; ?>" />
 								</li>
-								<li>-</li>
+								<li class="inline">-</li>
 							<?php endforeach; ?>
 						<?php endif; ?>
 						<li itemprop="itemListElement" itemscope
-							itemtype="https://schema.org/ListItem">
+							itemtype="https://schema.org/ListItem" class="inline">
 							<a itemprop="item" href="<?php echo get_term_link($category); ?>">
 								<span itemprop="name"><?php echo $category->name; ?></span></a>
 							<meta itemprop="position" content="<?php echo ++$i; ?>" />
 						</li>
-						<li>-</li>
+						<li class="inline">-</li>
 					<?php endif; ?>
 				<?php endif; ?>
-				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
 					<span itemprop="name" class="text-[#393488]"><?php echo get_the_title(); ?></span>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
 				</li>
@@ -111,29 +111,29 @@ $i=0
 						<?php $ancestor = get_term($ancestor_id, 'excursion_category'); ?>
 
 						<li itemprop="itemListElement" itemscope
-							itemtype="https://schema.org/ListItem">
+							itemtype="https://schema.org/ListItem" class="inline">
 							<a itemprop="item" href="<?php echo get_term_link($ancestor); ?>">
 								<span itemprop="name"><?php echo $ancestor->name; ?></span></a>
 							<meta itemprop="position" content="<?php echo ++$i; ?>" />
 						</li>
-						<li>-</li>
+						<li class="inline">-</li>
 					<?php endforeach; ?>
 				<?php endif; ?>
 
-				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
 					<span itemprop="name" class="text-[#393488]"><?php echo $term->name; ?></span>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
 				</li>
 
 			<?php elseif (is_home() || is_front_page()) : ?>
-				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
 					<span itemprop="name" class="text-[#393488]">Блог</span>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
 				</li>
 
 					// Для остальных случаев (например, страниц)
 			<?php else : ?>
-				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
 					<span itemprop="name" class="text-[#393488]"><?php echo get_the_title(); ?></span>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
 				</li>

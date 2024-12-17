@@ -12,15 +12,30 @@
  * editor.
 */
 body {
-	@apply bg-background text-foreground font-['Mulish'] text-[#373f41] bg-[#F2F1FA] text-sm;
+	@apply text-foreground font-['Mulish'] text-[#373f41] bg-[#F2F1FA] text-sm;
 }
 h1, h2, h3, h4, h5, h6 {
 	@apply font-bold tracking-tight
 }
 h2 {
-	@apply text-[#373f41] text-[24px] sm:text-3xl tracking-tight mt-10 mb-6
+	@apply text-[#373f41] text-[24px] leading-[1.2] lg:text-3xl tracking-tight mt-10 mb-6
+}
+h2.big-title {
+	@apply text-[23px] mt-0 tracking-[0.7px] mb-[14px] leading-[1.2];
+}
+.big-title  h2{
+	@apply text-[23px] mt-0 tracking-[0.7px] mb-[14px] leading-[1.2];
 }
 .container {
-	@apply !max-w-[1172px] px-[18px];
+	@apply !max-w-[1172px] px-5 sm:px-[38px] lg:px-[18px] mx-auto;
+}
+table th, table td {
+	@apply py-2 border-2 border-white
+}
+table th {
+	@apply px-[14px]
+}
+table td {
+	@apply px-[14px] text-center
 }
 
