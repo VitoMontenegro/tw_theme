@@ -132,6 +132,18 @@ $i=0
 				</li>
 
 					// Для остальных случаев (например, страниц)
+			<?php elseif(is_page()) : ?>
+				<li itemprop="itemListElement" itemscope
+					itemtype="https://schema.org/ListItem" class="inline">
+					<a itemprop="item" href="/">
+						<span itemprop="name">Главная</a>
+					<meta itemprop="position" content="<?php echo ++$i; ?>" />
+				</li>
+				<li class="inline">-</li>
+				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
+					<span itemprop="name" class="text-[#393488]"><?php echo get_the_title(); ?></span>
+					<meta itemprop="position" content="<?php echo ++$i; ?>" />
+				</li>
 			<?php else : ?>
 				<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="inline">
 					<span itemprop="name" class="text-[#393488]"><?php echo get_the_title(); ?></span>

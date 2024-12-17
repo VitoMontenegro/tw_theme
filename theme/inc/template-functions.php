@@ -263,6 +263,42 @@ function register_custom_post_type() {
 	]);
 
 	/**
+	 * Post Type: Автобусы.
+	 */
+	register_post_type('cars', [
+			'labels' => [
+					'name' => 'Автобусы',
+					'menu_name' => 'Автобусы',
+					"all_items" => "Все автобусы",
+					"add_new" => "Добавить автобус",
+					"add_new_item" => "Добавить новый автобус",
+					"edit_item" => "Редактировать автобус",
+					"new_item" => "Новый автобус",
+					"view_item" => "Смотреть автобус",
+					"view_items" => "Смотреть автобусы",
+			],
+			"description" => "",
+			"public" => true,
+			"publicly_queryable" => false,
+			"show_ui" => true,
+			"delete_with_user" => false,
+			"show_in_rest" => true,
+			"rest_base" => "",
+			"rest_controller_class" => "WP_REST_Posts_Controller",
+			"has_archive" => false,
+			"show_in_menu" => true,
+			"show_in_nav_menus" => true,
+			"exclude_from_search" => false,
+			"capability_type" => "post",
+			"map_meta_cap" => true,
+			"hierarchical" => false,
+			'menu_icon' => 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJub25lIj4KICA8ZyBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgIDxyZWN0IHg9IjIiIHk9IjUiIHdpZHRoPSIyMCIgaGVpZ2h0PSIxNCIgcng9IjIiIHJ5PSIyIiBmaWxsPSIjRkZENzAwIiAvPgogICAgPHJlY3QgeD0iNCIgeT0iNyIgd2lkdGg9IjMiIGhlaWdodD0iNiIgcng9IjEiIGZpbGw9IiNGRkZGRkYiIC8+CiAgICA8cmVjdCB4PSI4IiB5PSI3IiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIgLz4KICAgIDxyZWN0IHg9IjEyIiB5PSI3IiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIgLz4KICAgIDxyZWN0IHg9IjE2IiB5PSI3IiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIgLz4KICAgIDxjaXJjbGUgY3g9IjYiIGN5PSIxOSIgcj0iMiIgZmlsbD0iIzMzMyIgLz4KICAgIDxjaXJjbGUgY3g9IjE4IiBjeT0iMTkiIHI9IjIiIGZpbGw9IiMzMzMiIC8+CiAgICA8Y2lyY2xlIGN4PSI1IiBjeT0iNSIgcj0iMC41IiBmaWxsPSIjRkZENzAwIiAvPgogICAgPGNpcmNsZSBjeD0iMTkiIGN5PSI1IiByPSIwLjUiIGZpbGw9IiNGRkQ3MDAiIC8+CiAgPC9nPgo8L3N2Zz4K',
+			"rewrite" => array( "slug" => "reviews", "with_front" => true ),
+			"query_var" => true,
+			"supports" => array( "title", "editor"),
+	]);
+
+	/**
 	 * Post Type: Популярные вопросы.
 	 */
 	register_post_type('faqs', [

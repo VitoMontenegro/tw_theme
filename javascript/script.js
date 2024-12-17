@@ -494,6 +494,8 @@ document.addEventListener('DOMContentLoaded', function() {
 				const title = card.querySelector('.card-title');
 				const description = card.querySelector('.card-description');
 
+				if (!title || !description) return;
+
 				// Получаем line-height, если он задан, или используем размер шрифта как запасной вариант
 				const computedStyle = window.getComputedStyle(title);
 				let lineHeight = parseInt(computedStyle.lineHeight, 10);
