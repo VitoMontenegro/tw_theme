@@ -18,7 +18,7 @@ $options = get_fields( 'option');
 					</svg>
 					<span>Написать в WhatsApp</span>
 				</a>
-				<button class="flex text-white px-8 py-2.5 bg-[#ff7642] rounded-full justify-center items-center gap-2 mb-3 hover:bg-[#ff6931]">
+				<button class="flex text-white px-8 py-2.5 bg-[#FF7A45] rounded-full justify-center items-center gap-2 mb-3 hover:bg-[#ff6931]">
 					<span class="text-center text-white text-sm font-bold  leading-tight">Оставить заявку</span>
 				</button>
 			</div>

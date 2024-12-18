@@ -155,7 +155,9 @@ module.exports = {
 					},
 				},
 			}),
-
+			screens: {
+				'xs': '490px',
+			},
 			backgroundSize: {
 				'auto': 'auto',
 				'cover': 'cover',

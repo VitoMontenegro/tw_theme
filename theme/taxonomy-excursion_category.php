@@ -39,7 +39,7 @@ get_header();
 							</div>
 						</div>
 					</div>
-					<div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] sm:h-[182px] lg:h-[323px] bg-[#FF7643] rounded-2xl py-6 px-4 relative">
+					<div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] sm:h-[182px] lg:h-[323px] bg-[#FF7A45] rounded-2xl py-6 px-4 relative">
 						<div class="text-white text-[18px] lg:text-[17px] max-w-[295px] lg:max-w-[205px] lg:text-center absolute top-6 lg:top-[25px] left-8 lg:left-[18px] leading-[1.1] lg:leading-[20px] tracking-[0.4px] font-bold">Честный абонемент экскурсий для класса</div>
 						<div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-8 lg:transform">
 							<a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
@@ -126,7 +126,7 @@ get_header();
 									<div class="hidden items-center gap-2 lg:flex">
 										<label class="item flex gap-2 items-center cursor-pointer">
 											<input type="radio" name="grade" value="pops" class="hidden peer">
-											<span class=" peer-checked:text-[#FF7643]">По популярности</span>
+											<span class=" peer-checked:text-[#FF7A45]">По популярности</span>
 										</label>
 									</div>
 								</form>
@@ -134,7 +134,7 @@ get_header();
 						</div>
 						<div class="flex flex-col" >
 
-							<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
+							<div class="grid grid-col-12 xs:grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
 								<?php
 								if ($current_term && isset($current_term->term_id)) {
 									$category_id = $current_term->term_id;
@@ -167,7 +167,7 @@ get_header();
 
 									<?php if(isset($fields["g_desc"]) && $fields["g_desc"]): ?>
 										<div class="text-[14px] p-3 bg-[#FFE2D7] rounded-xl">
-											<span class="text-[#FF7643] font-bold"><?php echo $fields["g_title"]; ?></span> <?php echo $fields["g_desc"]; ?>
+											<span class="text-[#FF7A45] font-bold"><?php echo $fields["g_title"]; ?></span> <?php echo $fields["g_desc"]; ?>
 										</div>
 									<?php endif; ?>
 
@@ -207,7 +207,7 @@ get_header();
 									<div class="title text-lg font-bold mb-4 sm:mb-6">Оставьте заявку</div>
 									<input class="bg-[#F2F1FA] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none mb-3" type="text" placeholder="Имя">
 									<input class="bg-[#F2F1FA] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none mb-5" type="tel" placeholder="Номер телефона">
-									<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex mb-4 lg:mb-3">
+									<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#FF7A45] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex mb-4 lg:mb-3">
 										<span class="text-center text-white text-[12px] lg:text-sm font-bold leading-tight">Оставить заявку</span>
 									</button>
 									<label for="agree" class="flex gap-2 items-center cursor-pointer">

@@ -263,7 +263,7 @@ if ($current_category && isset($current_category->term_id)) : ?>
 			</div>
 		</div>
 		<div class="block lg:hidden mt-4">
-			<button type="button" class="close-filter-btn flex text-white px-8 py-3 bg-[#ff7642] rounded-full justify-center items-center gap-2 mb-3 w-full min-w-[280px]">
+			<button type="button" class="close-filter-btn flex text-white px-8 py-3 bg-[#FF7A45] rounded-full justify-center items-center gap-2 mb-3 w-full min-w-[280px]">
 				<span class="text-center text-white text-sm font-bold  leading-tight  close-filter-btn">Показать</span>
 			</button>
 			<button type="button"  id="clearForm" class="flex px-8 py-3 bg-[#F2F1FA] rounded-full justify-center items-center gap-2 mb-3 w-full min-w-[280px]">

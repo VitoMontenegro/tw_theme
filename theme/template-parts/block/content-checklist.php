@@ -25,7 +25,7 @@ if ($fields) {
 		</span>
 		</li>
 		<li class="w-wull sm:w-7/12 flex gap-4 items-center">
-		<span class="bg-[#FF7643] rounded-full flex items-center justify-center">
+		<span class="bg-[#FF7A45] rounded-full flex items-center justify-center">
 			<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
 				<g clip-path="url(#clip0_135_6057)">
 					<path d="M7.11719 13.8406L10.479 17.2024L18.8835 8.79785" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

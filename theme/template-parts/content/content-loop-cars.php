@@ -17,7 +17,7 @@
 			?>
 			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl"  data-cost="<?php echo $fields['cost']; ?>"  data-popular="<?php echo $fields['duration']; ?>">
 				<div class="relative mb-2 lg:mb-3">
-					<img class="rounded-2xl w-full h-[163px] lg:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
+					<img class="rounded-2xl w-full h-[250px] xs:h-[163px] lg:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
 				</div>
 				<div class="px-4">
 					<span class="text-[18px] lg:text-[21px] font-bold"><?php echo get_the_title(); ?></span>
@@ -31,7 +31,7 @@
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<button class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Забронировать</button>
+						<button class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Забронировать</button>
 					</div>
 				</div>
 			</div>

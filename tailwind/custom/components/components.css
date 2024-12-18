@@ -15,7 +15,7 @@
 	@apply  px-4 py-2 tracking-[.25px]
 }
 #primary-menu li.current_page_item  a {
-	@apply  text-[#ff7642]
+	@apply  text-[#FF7A45]
 }
 #colophon li {
 	@apply my-1
@@ -199,7 +199,7 @@ ul.vertical-dash>li:after  {
 	top: 10px;
 	width: 14px;
 	height: 14px;
-	background-color: #FF7643; /* Цвет маркера */
+	background-color: #FF7A45; /* Цвет маркера */
 	border-radius: 50%; /* Округлый маркер */
 	border: 4px solid #fff;
 	transform: translateY(-50%); /* Центрируем маркер по вертикали */
@@ -243,7 +243,7 @@ ul.vertical-dash>li:not(:last-child)::before {
 		background-image: url(images/banner2.webp);
 		background-position: 100% 100%;
 		background-repeat: no-repeat;
-		background-size: 96%;
+		background-size: contain;
 	}
 }
 @media (max-width: 650px) {

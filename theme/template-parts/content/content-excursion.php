@@ -163,10 +163,10 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							<path d="M15.449 4C13.9552 4 12.5214 4.69543 11.5856 5.79438C10.6497 4.69543 9.21594 4 7.72205 4C5.0777 4 3 6.0777 3 8.72205C3 11.9674 5.91909 14.6117 10.3406 18.6298L11.5856 19.7545L12.8305 18.6212C17.252 14.6117 20.1711 11.9674 20.1711 8.72205C20.1711 6.0777 18.0934 4 15.449 4ZM11.6714 17.3505L11.5856 17.4364L11.4997 17.3505C7.41297 13.6502 4.71711 11.2033 4.71711 8.72205C4.71711 7.00494 6.00494 5.71711 7.72205 5.71711C9.04423 5.71711 10.3321 6.56708 10.7871 7.7433H12.3926C12.839 6.56708 14.1269 5.71711 15.449 5.71711C17.1662 5.71711 18.454 7.00494 18.454 8.72205C18.454 11.2033 15.7581 13.6502 11.6714 17.3505Z" fill="#373F41"/>
 						</svg>
 						<svg class="hidden group-[.active]:block " xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<path d="M15.449 4C13.9552 4 12.5214 4.69543 11.5856 5.79438C10.6497 4.69543 9.21594 4 7.72205 4C5.0777 4 3 6.0777 3 8.72205C3 11.9674 5.91909 14.6117 10.3406 18.6298L11.5856 19.7545L12.8305 18.6212C17.252 14.6117 20.1711 11.9674 20.1711 8.72205C20.1711 6.0777 18.0934 4 15.449 4ZM11.6714 17.3505L11.5856 17.4364L11.4997 17.3505C7.41297 13.6502 4.71711 11.2033 4.71711 8.72205C4.71711 7.00494 6.00494 5.71711 7.72205 5.71711C9.04423 5.71711 10.3321 6.56708 10.7871 7.7433H12.3926C12.839 6.56708 14.1269 5.71711 15.449 5.71711C17.1662 5.71711 18.454 7.00494 18.454 8.72205C18.454 11.2033 15.7581 13.6502 11.6714 17.3505Z" fill="#FF7643"/>
+							<path d="M15.449 4C13.9552 4 12.5214 4.69543 11.5856 5.79438C10.6497 4.69543 9.21594 4 7.72205 4C5.0777 4 3 6.0777 3 8.72205C3 11.9674 5.91909 14.6117 10.3406 18.6298L11.5856 19.7545L12.8305 18.6212C17.252 14.6117 20.1711 11.9674 20.1711 8.72205C20.1711 6.0777 18.0934 4 15.449 4ZM11.6714 17.3505L11.5856 17.4364L11.4997 17.3505C7.41297 13.6502 4.71711 11.2033 4.71711 8.72205C4.71711 7.00494 6.00494 5.71711 7.72205 5.71711C9.04423 5.71711 10.3321 6.56708 10.7871 7.7433H12.3926C12.839 6.56708 14.1269 5.71711 15.449 5.71711C17.1662 5.71711 18.454 7.00494 18.454 8.72205C18.454 11.2033 15.7581 13.6502 11.6714 17.3505Z" fill="#FF7A45"/>
 						</svg>
 						<span class="bold block group-[.active]:hidden">Добавить в избранное</span>
-						<span class="bold hidden group-[.active]:block text-[#FF7643]">Удалить из избранного</span>
+						<span class="bold hidden group-[.active]:block text-[#FF7A45]">Удалить из избранного</span>
 						</button>
 				</div>
 				<header class="entry-header">
@@ -201,7 +201,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 
 				<div class="mb-1">Стоимость за человека:</div>
 				<div class="flex flex-wrap items-center gap-6 mb-3">
-					<div class="bg-[#ffe7db] text-[#ff7642] text-[22px] rounded-lg px-2 py-2 font-bold">
+					<div class="bg-[#ffe7db] text-[#FF7A45] text-[22px] rounded-lg px-2 py-2 font-bold">
 						от <?php echo $fields['discount_price'];?> ₽
 					</div>
 					<div class="text-center text-[#999999] text-[18px] font-medium leading-tight line-through font-medium ">
@@ -218,7 +218,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 						</svg>
 						<span class="text-sm sm:text-[12px] lg:text-sm">Спросить в WhatsApp</span>
 					</a>
-					<a href="#sendMe" class="inline-flex text-white px-8 lg:px-9 py-2.5 sm:py-2 lg:py-2.5] rounded-full justify-center items-center gap-2 mb-3 bg-[#ff7642] hover:bg-[#ff6931]">
+					<a href="#sendMe" class="inline-flex text-white px-8 lg:px-9 py-2.5 sm:py-2 lg:py-2.5] rounded-full justify-center items-center gap-2 mb-3 bg-[#FF7A45] hover:bg-[#ff6931]">
 						<span class="text-sm sm:text-[12px] lg:text-sm">Записаться</span>
 					</a>
 				</div>
@@ -271,7 +271,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 												<?php foreach($program["items"] as $item) : ?>
 													<li class="pb-2 lg:pb-6">
 														<div class="flex flex-col lg:flex-row gap-1 lg:gap-3 lg:items-start">
-															<div class="time text-[#ff7642] font-bold leading-[18px] mt-0.5"><?php echo $item['time'];?></div>
+															<div class="time text-[#FF7A45] font-bold leading-[18px] mt-0.5"><?php echo $item['time'];?></div>
 															<div class="item_title"><?php echo $item['title'];?></div>
 														</div>
 														<?php if(!empty($item["content"])): ?>
@@ -369,7 +369,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							<ul class="grid grid-cols-1 sm:grid-cols-2 mt-3 gap-y-[16px] gap-x-12">
 								<?php foreach($fields['includes'] as $item) : ?>
 									<li class="flex gap-4 items-center">
-										<span class="rounded-full flex items-center justify-center bg-[#ff7642]">
+										<span class="rounded-full flex items-center justify-center bg-[#FF7A45]">
 											<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
 												<g clip-path="url(#clip0_135_6057)">
 													<path d="M7.11719 13.8406L10.479 17.2024L18.8835 8.79785" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -437,7 +437,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							<div class="title text-lg font-bold mb-4 sm:mb-6">Оставьте заявку</div>
 							<input class="bg-[#F2F1FA] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none mb-3" type="text" placeholder="Имя">
 							<input class="bg-[#F2F1FA] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none mb-5" type="tel" placeholder="Номер телефона">
-							<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex mb-4 lg:mb-3">
+							<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#FF7A45] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex mb-4 lg:mb-3">
 								<span class="text-center text-white text-[12px] lg:text-sm font-bold leading-tight">Оставить заявку</span>
 							</button>
 							<label for="agree" class="flex gap-2 items-center cursor-pointer">
@@ -505,7 +505,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							</div>
 						</div>
 						<div class="flex mt-6 items-center justify-center">
-							<a href="<?php echo esc_url(get_permalink(83)); ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Все автобусы</a>
+							<a href="<?php echo esc_url(get_permalink(83)); ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2.5 px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Все автобусы</a>
 						</div>
 					</div>
 
@@ -554,7 +554,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 									</div>
 
 									<div class="flex mt-6 mb-8 lg:mb-1 items-center justify-center">
-										<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 text-[14px] sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все отзывы</a>
+										<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#FF7A45] py-2 sm:py-2.5 px-4 text-[14px] sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Все отзывы</a>
 									</div>
 								</div>
 							</div>
@@ -603,7 +603,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 													<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fielsdEx['duration']['label'];?></div>
 												</div>
 												<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
-													<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
+													<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7A45] rounded-3xl">
 														<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
 													</div>
 												<?php endif ?>
@@ -614,19 +614,19 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 													</svg>
 													<svg class="hidden group-[:hover]:block group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 														<rect width="24" height="24" rx="12" fill="white"/>
-														<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7643"/>
+														<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7A45"/>
 													</svg>
 													<svg class="hidden group-[.active]:block"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-														<rect width="24" height="24" rx="12" fill="#FF7643"/>
+														<rect width="24" height="24" rx="12" fill="#FF7A45"/>
 														<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="white"/>
 													</svg>
 												</button>
 											</div>
 											<div class="px-4">
 												<a href="<?php echo get_permalink($item->ID) ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title($item->ID); ?></a>
-												<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-sm"><?php echo get_the_excerpt($item->ID); ?></div>
+												<div class="card-description leading-[1.3] xs:leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-[17px] xs:text-sm"><?php echo get_the_excerpt($item->ID); ?></div>
 												<div class="flex flex-wrap items-center gap-2 mb-5">
-													<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
+													<div class="bg-[#ffe7db] text-[#FF7A45] rounded-lg px-2">
 														от <?php echo $fields['price'];?> ₽
 													</div>
 													<?php if(isset($fields['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
@@ -636,7 +636,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 													<?php endif ?>
 												</div>
 												<div class="relative mb-4">
-													<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Подробнее</a>
+													<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
 												</div>
 											</div>
 										</div>
@@ -700,7 +700,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 															<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fields['duration']['label'];?></div>
 														</div>
 														<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
-															<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
+															<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7A45] rounded-3xl">
 																<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
 															</div>
 														<?php endif ?>
@@ -711,19 +711,19 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 															</svg>
 															<svg class="hidden group-[:hover]:block group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 																<rect width="24" height="24" rx="12" fill="white"/>
-																<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7643"/>
+																<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7A45"/>
 															</svg>
 															<svg class="hidden group-[.active]:block"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																<rect width="24" height="24" rx="12" fill="#FF7643"/>
+																<rect width="24" height="24" rx="12" fill="#FF7A45"/>
 																<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="white"/>
 															</svg>
 														</button>
 													</div>
 													<div class="px-4">
 														<a href="<?php echo get_permalink($item->ID) ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title($item->ID); ?></a>
-														<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-sm"><?php echo get_the_excerpt($item->ID); ?></div>
+														<div class="card-description leading-[1.3] xs:leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-[17px] xs:text-sm"><?php echo get_the_excerpt($item->ID); ?></div>
 														<div class="flex flex-wrap items-center gap-2 mb-5">
-															<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
+															<div class="bg-[#ffe7db] text-[#FF7A45] rounded-lg px-2">
 																от <?php echo $fielsdEx['price'];?> ₽
 															</div>
 															<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
@@ -733,7 +733,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 															<?php endif ?>
 														</div>
 														<div class="relative mb-4">
-															<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Подробнее</a>
+															<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
 														</div>
 													</div>
 												</div>

@@ -142,7 +142,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl"  data-cost="<?php echo get_cost($fields)['cost_sale'] ?? get_cost($fields)['cost']; ?>"  data-popular="<?php echo ++$count;?>">
 				<div class="relative mb-2 lg:mb-3">
 					<a href="<?php echo get_permalink() ?>">
-						<img class="rounded-2xl w-full h-[163px] lg:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
+						<img class="rounded-2xl w-full h-[250px] xs:h-[163px] lg:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
 						<?php if (isset($fields['video_after_gates']) && !empty($fields['video_after_gates'])): ?>
 							<span class="has_video absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" data-ll-status="observed">
 								<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none">
@@ -169,7 +169,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 						<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fields['duration']['label'];?></div>
 					</div>
 					<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
-						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
+						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7A45] rounded-3xl">
 							<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
 						</div>
 					<?php endif ?>
@@ -180,19 +180,19 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 						</svg>
 						<svg class="hidden group-[:hover]:block group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
 							<rect width="24" height="24" rx="12" fill="white"/>
-							<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7643"/>
+							<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7A45"/>
 						</svg>
 						<svg class="hidden group-[.active]:block"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-							<rect width="24" height="24" rx="12" fill="#FF7643"/>
+							<rect width="24" height="24" rx="12" fill="#FF7A45"/>
 							<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="white"/>
 						</svg>
 					</button>
 				</div>
 				<div class="px-4">
 					<a href="<?php echo get_permalink() ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title(); ?></a>
-					<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-sm"><?php echo get_the_excerpt(); ?></div>
+					<div class="card-description leading-[1.3] xs:leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-[17px] xs:text-sm"><?php echo get_the_excerpt(); ?></div>
 					<div class="flex flex-wrap items-center gap-2 mb-5">
-						<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
+						<div class="bg-[#ffe7db] text-[#FF7A45] rounded-lg px-2">
 							от <?php echo $fields['price'];?> ₽
 						</div>
 						<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
@@ -202,7 +202,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
 					</div>
 				</div>
 			</div>
@@ -447,7 +447,7 @@ function load_more_excursions(WP_REST_Request $request) {
 						<div class="text-white text-[11px] px-3 pt-1 pb-[5px] leading-none"><?php echo $fields['duration']['label'];?></div>
 					</div>
 					<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
-						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
+						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7A45] rounded-3xl">
 							<div class="text-white text-[11px] px-3 pt-1 pb-[5px] leading-none">скидка %</div>
 						</div>
 					<?php endif ?>
@@ -463,7 +463,7 @@ function load_more_excursions(WP_REST_Request $request) {
 					<a href="<?php echo get_permalink() ?>" class="card-title text-sm sm:text-[21px] font-bold mb-4"><?php echo get_the_title(); ?></a>
 					<div class="card-description leading-[17px] mb-4"><?php echo get_the_excerpt(); ?></div>
 					<div class="flex flex-wrap items-center gap-2 mb-4">
-						<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
+						<div class="bg-[#ffe7db] text-[#FF7A45] rounded-lg px-2">
 							от <?php echo $fields['price'];?> ₽
 						</div>
 						<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
@@ -473,7 +473,7 @@ function load_more_excursions(WP_REST_Request $request) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#FF7A45] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl">Подробнее</a>
 					</div>
 				</div>
 			</div>
@@ -481,7 +481,7 @@ function load_more_excursions(WP_REST_Request $request) {
 		}
 		if ($query->found_posts > ($page*9 + $query->current_post + 1)) {
 			echo '<div class="col-span-12 mt-6 mb-11 flex justify-center items-center">';
-			echo '<button class="load-more inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl" data-page="'. $page+1 .'>Загрузить ещё</button>';
+			echo '<button class="load-more inline-block font-bold text-[#FF7A45] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl" data-page="'. $page+1 .'>Загрузить ещё</button>';
 			echo '</div>';
 		}
 	} else {

@@ -7,7 +7,7 @@ $options = get_fields( 'option');
 		<div class="title text-lg font-bold mb-4 sm:mb-6">Оставьте заявку</div>
 		<input class="bg-[#F2F1FA] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none mb-3" type="text" placeholder="Имя">
 		<input class="bg-[#F2F1FA] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none mb-5" type="tel" placeholder="Номер телефона">
-		<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex mb-4 lg:mb-3">
+		<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#FF7A45] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex mb-4 lg:mb-3">
 			<span class="text-center text-white text-[12px] lg:text-sm font-bold leading-tight">Оставить заявку</span>
 		</button>
 		<label for="agree" class="flex gap-2 items-center cursor-pointer">

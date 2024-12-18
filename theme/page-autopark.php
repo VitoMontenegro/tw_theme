@@ -61,7 +61,7 @@ get_header();
 										</div>
 									</div>
 								</div>
-								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7643] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7A45] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
 									<div class="flex gap-2 items-center justify-start w-full">
 										<svg class="min-w-[35px] lg:min-w-[50px]" xmlns="http://www.w3.org/2000/svg" width="50" height="55" viewBox="0 0 50 55" fill="none">
 											<g clip-path="url(#clip0_283_5317)">
@@ -195,14 +195,14 @@ get_header();
 											<div class="hidden items-center gap-2 lg:flex">
 												<label class="item flex gap-2 items-center cursor-pointer">
 													<input type="radio" name="grade" value="pops" class="hidden peer">
-													<span class=" peer-checked:text-[#FF7643]">По вместимости</span>
+													<span class=" peer-checked:text-[#FF7A45]">По вместимости</span>
 												</label>
 											</div>
 										</form>
 								</div>
 								<div class="flex flex-col" >
 
-									<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
+									<div class="grid grid-col-12 xs:grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
 										<?php
 										get_template_part( 'template-parts/content/content', 'loop-cars' );
 										?>
