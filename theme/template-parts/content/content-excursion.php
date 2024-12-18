@@ -27,98 +27,61 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 				<div class="swiper_tour flex flex-col sm:flex-row gap-2">
 					<div class="swiper mySwiper2 w-full sm:h-[448px] lg:max-w-[460px] h-[200px] mx-auto">
 						<div class="swiper-wrapper">
-							<?php if ($video_dzen && !empty($video_dzen) && !empty($fields["izobrazhenie_dlya_prevyu_video"])): ?>
+							<?php if($video_dzen || $video_rutube || $video_after_gates): ?>
 								<div class="cursor-pointer swiper-slide text-center flex justify-center items-center bg-cover rounded-md overflow-hidden relative">
-									<!-- Превью изображения для видео -->
+								<?php if ($video_dzen && !empty($video_dzen) && !empty($fields["izobrazhenie_dlya_prevyu_video"])): ?>
 									<?php $imagePrev = $fields["izobrazhenie_dlya_prevyu_video"];?>
 									<img src="<?php echo $imagePrev; ?>"
 										 class="block w-full h-full object-cover image-slide video-preview"
 										 data-video-id="<?php echo getDzenEmbedUrl($video_dzen) ?>"
 										 data-video-type="dzen"
-										 alt="Video Preview" />
-
-									<!-- Значок play, который будет по центру -->
-									<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none"  class="pointer-events-none absolute inset-0 m-auto">
-										<g filter="url(#filter0_d_135_6229)">
-											<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"></path>
-										</g>
-										<defs>
-											<filter id="filter0_d_135_6229" x="0.5" y="0.346191" width="77.5" height="83.3076" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-												<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
-												<feOffset dy="4"></feOffset>
-												<feGaussianBlur stdDeviation="9"></feGaussianBlur>
-												<feComposite in2="hardAlpha" operator="out"></feComposite>
-												<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
-												<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_135_6229"></feBlend>
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_6229" result="shape"></feBlend>
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							<?php elseif ($video_rutube && !empty($video_rutube) && !empty($fields["izobrazhenie_dlya_prevyu_video"])): ?>
-								<div class="cursor-pointer swiper-slide text-center flex justify-center items-center bg-cover rounded-md overflow-hidden relative">
-									<!-- Превью изображения для видео -->
+										 data-fancybox="gallery"
+										 alt="Video Preview"
+									/>
+								<?php elseif ($video_rutube && !empty($video_rutube) && !empty($fields["izobrazhenie_dlya_prevyu_video"])): ?>
 									<?php $imagePrev = $fields["izobrazhenie_dlya_prevyu_video"];?>
 									<img src="<?php echo $imagePrev; ?>"
 										 class="block w-full h-full object-cover image-slide video-preview"
 										 data-video-id="<?php echo getRuTubeEmbedUrl($video_rutube) ?>"
 										 data-video-type="rutube"
-										 alt="Video Preview" />
+										 data-fancybox="gallery"
+										 alt="Video Preview"
+									/>
 
-									<!-- Значок play, который будет по центру -->
-									<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none"  class="pointer-events-none absolute inset-0 m-auto">
-										<g filter="url(#filter0_d_135_6229)">
-											<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"></path>
-										</g>
-										<defs>
-											<filter id="filter0_d_135_6229" x="0.5" y="0.346191" width="77.5" height="83.3076" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-												<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
-												<feOffset dy="4"></feOffset>
-												<feGaussianBlur stdDeviation="9"></feGaussianBlur>
-												<feComposite in2="hardAlpha" operator="out"></feComposite>
-												<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
-												<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_135_6229"></feBlend>
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_6229" result="shape"></feBlend>
-											</filter>
-										</defs>
-									</svg>
-								</div>
-							<?php elseif ($video_after_gates && !empty($video_after_gates)): ?>
-								<div class="cursor-pointer swiper-slide text-center flex justify-center items-center bg-cover rounded-md overflow-hidden relative">
-									<!-- Превью изображения для видео -->
-									<?php $imagePrev = !empty($fields["izobrazhenie_dlya_prevyu_video"]) ? $fields["izobrazhenie_dlya_prevyu_video"] : getYoutubeEmbedUrl($video_after_gates);?>
+								<?php elseif ($video_after_gates && !empty($video_after_gates)): ?>
+									<?php $imagePrev = !empty($fields["izobrazhenie_dlya_prevyu_video"]) ? $fields["izobrazhenie_dlya_prevyu_video"] : "https://img.youtube.com/vi/" .getYoutubeEmbedUrl($video_after_gates). "/0.jpg" ;?>
 									<img src="<?php echo $imagePrev; ?>"
 										 class="block w-full h-full object-cover image-slide video-preview"
 										 data-video-id="<?php echo getYoutubeEmbedUrl($video_after_gates) ?>"
 										 data-video-type="youtube"
-										 alt="Video Preview" />
+										 data-fancybox="gallery"
+										 alt="Video Preview"
+									/>
+								<?php endif; ?>
 
-									<!-- Значок play, который будет по центру -->
-									<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none"  class="pointer-events-none absolute inset-0 m-auto">
-										<g filter="url(#filter0_d_135_6229)">
-											<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"></path>
-										</g>
-										<defs>
-											<filter id="filter0_d_135_6229" x="0.5" y="0.346191" width="77.5" height="83.3076" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-												<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-												<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
-												<feOffset dy="4"></feOffset>
-												<feGaussianBlur stdDeviation="9"></feGaussianBlur>
-												<feComposite in2="hardAlpha" operator="out"></feComposite>
-												<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
-												<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_135_6229"></feBlend>
-												<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_6229" result="shape"></feBlend>
-											</filter>
-										</defs>
-									</svg>
-								</div>
+								<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none"  class="pointer-events-none absolute inset-0 m-auto">
+									<g filter="url(#filter0_d_135_6229)">
+										<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"></path>
+									</g>
+									<defs>
+										<filter id="filter0_d_135_6229" x="0.5" y="0.346191" width="77.5" height="83.3076" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+											<feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+											<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix>
+											<feOffset dy="4"></feOffset>
+											<feGaussianBlur stdDeviation="9"></feGaussianBlur>
+											<feComposite in2="hardAlpha" operator="out"></feComposite>
+											<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"></feColorMatrix>
+											<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_135_6229"></feBlend>
+											<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_6229" result="shape"></feBlend>
+										</filter>
+									</defs>
+								</svg>
+							</div>
 							<?php endif; ?>
 
 							<?php foreach ($fields["gallery"] as $image) : ?>
 								<div class="swiper-slide text-center flex justify-center items-center bg-cover rounded-md overflow-hidden">
-									<img src="<?php echo $image["sizes"]["medium_large"] ?>" class="block w-full h-full object-cover" alt="<?php echo $image["title"] ?>" />
+									<img data-fancybox="gallery" src="<?php echo $image["sizes"]["medium_large"] ?>" class="block w-full h-full object-cover" alt="<?php echo $image["title"] ?>" />
 								</div>
 							<?php endforeach; ?>
 						</div>
@@ -127,15 +90,34 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 					</div>
 					<div class="swiper mySwiper w-full h-[54px] sm:h-[448px] sm:w-[104px] sm:min-w-[104px] mx-auto">
 						<div class="swiper-wrapper w-full">
-							<?php if ($video_after_gates && !empty($video_after_gates)): ?>
+							<?php if($video_dzen || $video_rutube || $video_after_gates): ?>
 								<div class="swiper-slide text-center flex justify-center items-center cursor-pointer bg-cover rounded-md overflow-hidden">
-									<!-- Превью изображения для видео -->
-									<?php $imagePrev = !empty($fields["izobrazhenie_dlya_prevyu_video"]) ? $fields["izobrazhenie_dlya_prevyu_video"] : getYoutubeEmbedUrl($video_after_gates);?>
-									<img src="<?php echo $imagePrev ?>"
-										 class="block w-full h-full object-cover image-slide video-preview"
-										 data-video-id="<?php echo getYoutubeEmbedUrl($video_after_gates) ?>"
-										 alt="Video Preview" />
-									<!-- Значок play, который будет по центру -->
+									<?php if ($video_dzen && !empty($video_dzen) && !empty($fields["izobrazhenie_dlya_prevyu_video"])): ?>
+										<?php $imagePrev = $fields["izobrazhenie_dlya_prevyu_video"];?>
+										<img src="<?php echo $imagePrev; ?>"
+											 class="block w-full h-full object-cover image-slide video-preview"
+											 data-video-id="<?php echo getDzenEmbedUrl($video_dzen) ?>"
+											 data-video-type="dzen"
+											 alt="Video Preview"
+										/>
+									<?php elseif ($video_rutube && !empty($video_rutube) && !empty($fields["izobrazhenie_dlya_prevyu_video"])): ?>
+										<?php $imagePrev = $fields["izobrazhenie_dlya_prevyu_video"];?>
+										<img src="<?php echo $imagePrev; ?>"
+											 class="block w-full h-full object-cover image-slide video-preview"
+											 data-video-id="<?php echo getRuTubeEmbedUrl($video_rutube) ?>"
+											 data-video-type="rutube"
+											 alt="Video Preview"
+										/>
+
+									<?php elseif ($video_after_gates && !empty($video_after_gates)): ?>
+										<?php $imagePrev = !empty($fields["izobrazhenie_dlya_prevyu_video"]) ? $fields["izobrazhenie_dlya_prevyu_video"] : "https://img.youtube.com/vi/" .getYoutubeEmbedUrl($video_after_gates). "/0.jpg" ;?>
+										<img src="<?php echo $imagePrev; ?>"
+											 class="block w-full h-full object-cover image-slide video-preview"
+											 data-video-id="<?php echo getYoutubeEmbedUrl($video_after_gates) ?>"
+											 data-video-type="youtube"
+											 alt="Video Preview"
+										/>
+									<?php endif; ?>
 									<svg style="width: 40%; max-width: 40px" xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none" class="pointer-events-none absolute inset-0 m-auto">
 										<g filter="url(#filter0_d_135_6229)">
 											<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"></path>
@@ -164,13 +146,14 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 						</div>
 					</div>
 				</div>
-
+				<?php /*
 				<div id="popup" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-50 flex items-center justify-center">
 					<div id="popup-media-container" class="relative max-w-full max-h-full p-4 bg-white">
 						<iframe width="480" height="270" src="https://dzen.ru/embed/vFKr5O4Wy6zE?from_block=partner&from=zen&mute=0&autoplay=0&tv=0" allow="autoplay; fullscreen; accelerometer; gyroscope; picture-in-picture; encrypted-media" data-eziCtI0UN="embed-iframe" frameborder="0" scrolling="no" allowfullscreen></iframe>
 					</div>
 					<button id="popup-close" class="absolute top-4 right-4 text-white text-2xl">X</button>
 				</div>
+ 				*/ ?>
 
 			</div>
 			<div class="lg:col-span-7 col-span-12 lg:ps-10 mt-1 sm:mt-4 lg:mt-0">
@@ -265,7 +248,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 						<?php if(!empty($fields['programm'])): ?>
 
 							<?php foreach($fields['programm'] as $program) :?>
-								<details class="program bg-white pt-4 pb-4 lg:pt-8 pb-8 px-5 sm:px-8 relative rounded-3xl mt-5 sm:mt-6" name="excursion" open>
+								<details class="program bg-white pt-4 pb-4 lg:pt-8 pb-8 px-5 sm:px-8 relative rounded-3xl mt-5 sm:mt-6 text-[14px]" name="excursion" open>
 									<summary class="details__title text-[#393488] font-bold cursor-pointer list-none">
 										<?php if(!empty($program["name"])): ?>
 											<h2 class="big-title"><?php echo $program['name'];?></h2>
@@ -287,8 +270,8 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 											<ul class="ps-0 lg:ps-5 vertical-dash">
 												<?php foreach($program["items"] as $item) : ?>
 													<li class="pb-2 lg:pb-6">
-														<div class="flex flex-col lg:flex-row gap-1 lg:gap-3 lg:items-center">
-															<div class="time text-[#ff7642] font-bold leading-[18px]"><?php echo $item['time'];?></div>
+														<div class="flex flex-col lg:flex-row gap-1 lg:gap-3 lg:items-start">
+															<div class="time text-[#ff7642] font-bold leading-[18px] mt-0.5"><?php echo $item['time'];?></div>
 															<div class="item_title"><?php echo $item['title'];?></div>
 														</div>
 														<?php if(!empty($item["content"])): ?>
@@ -383,7 +366,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 
 						<?php if(!empty($fields['includes'])): ?>
 							<h3 class="font-bold text-lg">В стоимость включено</h3>
-							<ul class="grid grid-cols-1 sm:grid-cols-2 mt-3 gap-[16px]">
+							<ul class="grid grid-cols-1 sm:grid-cols-2 mt-3 gap-y-[16px] gap-x-12">
 								<?php foreach($fields['includes'] as $item) : ?>
 									<li class="flex gap-4 items-center">
 										<span class="rounded-full flex items-center justify-center bg-[#ff7642]">
@@ -431,15 +414,15 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 						<div class="mt-6 sm:mt-0">Оставить заявку на сайте или связаться с нами по телефону.</div>
 						<div class="grid grid-cols-1 sm:grid-cols-15 mt-3 sm:mt-4" id="need_bg">
 							<div class="col-span-8 flex flex-col gap-4 lg:min-w-[420px]">
-								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl h-[106px] lg:h-[82px] col-span-6 md:col-span-4">
+								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl min-h-[106px] lg:min-h-[82px] col-span-6 md:col-span-4">
 									<div class="text-[22px] font-bold mb-2">01</div>
 									<div class="text_link_underline">Сообщить нам количество школьников и взрослых</div>
 								</div>
-								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl h-[106px] lg:h-[82px] col-span-6 md:col-span-4">
+								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl min-h-[106px] lg:min-h-[82px] col-span-6 md:col-span-4">
 									<div class="text-[22px] font-bold mb-2">02</div>
 									<div class="text_link_underline">Заполнить план рассадки <a href="<?php echo (isset($fields['file']) && !empty($fields['file']) ) ? $fields['file'] : '/wp-content/uploads/2024/12/plan-rassadki-dlya-ekskursii.docx'; ?>" download>скачать файл</a></div>
 								</div>
-								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl h-[106px] lg:h-[82px] col-span-6 md:col-span-4">
+								<div class="bg-[#CFC5FF] px-6 py-5 rounded-2xl min-h-[106px] lg:min-h-[82px] col-span-6 md:col-span-4">
 									<div class="text-[22px] font-bold mb-2">03</div>
 									<div class="text_link_underline">Ознакомиться с договором и внести предоплату 30%.</div>
 								</div>
@@ -541,7 +524,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 								<div class="entry-content col-span-12">
 									<h2 class="big-title">Отзывы</h2>
 									<div class="swiper mySwiper3">
-										<div class="swiper-wrapper">
+										<div class="swiper-wrapper text-[14px]">
 											<?php while ( $query->have_posts() ) : $query->the_post(); $fieldsRev = get_fields();?>
 												<div class="swiper-slide h-[235px] bg-white flex flex-col gap-2 py-8 px-4 rounded-xl">
 													<div class="text-[#393488] lines min-h-[18px]">
@@ -571,7 +554,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 									</div>
 
 									<div class="flex mt-6 mb-8 lg:mb-1 items-center justify-center">
-										<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все отзывы</a>
+										<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 text-[14px] sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все отзывы</a>
 									</div>
 								</div>
 							</div>
@@ -590,73 +573,73 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 								<div class="swiper-wrapper h-auto content__tours" id="posts-container">
 									<?php foreach($fields['recommended'] as $item) : ?>
 										<?php $fielsdEx = get_fields($item->ID); ?>
-										<div class="swiper-slide card flex flex-col bg-white rounded-2xl">
-												<div  class="relative mb-3">
-													<a href="<?php echo get_permalink($item->ID) ?>">
-														<img class="rounded-2xl w-full h-[160px] sm:h-[193px] object-cover" src="<?php echo $fielsdEx['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fielsdEx['gallery'][0]['name']; ?>" loading="lazy">
-														<?php if (isset($fielsdEx['video_after_gates']) && !empty($fielsdEx['video_after_gates'])): ?>
-															<span class="has_video absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" data-ll-status="observed">
-																<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none">
-																	<g filter="url(#filter0_d_135_6229)">
-																		<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"/>
-																	</g>
-																	<defs>
-																		<filter id="filter0_d_135_6229" x="0.5" y="0.346191" width="77.5" height="83.3076" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-																		<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-																		<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-																		<feOffset dy="4"/>
-																		<feGaussianBlur stdDeviation="9"/>
-																		<feComposite in2="hardAlpha" operator="out"/>
-																		<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-																		<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_135_6229"/>
-																		<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_6229" result="shape"/>
-																		</filter>
-																	</defs>
-																</svg>
-															</span>
-														<?php endif ?>
-													</a>
-													<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
-														<div class="text-white px-3 pt-[5px] pb-[6px] leading-none"><?php echo $fields['duration']['label'];?></div>
+										<div class="swiper-slide card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl">
+											<div class="relative mb-2 lg:mb-3">
+												<a href="<?php echo get_permalink($item->ID) ?>">
+													<img class="rounded-2xl w-full h-[163px] lg:h-[193px] object-cover" src="<?php echo $fielsdEx['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fielsdEx['gallery'][0]['name']; ?>" loading="lazy">
+													<?php if (isset($fielsdEx['video_after_gates']) && !empty($fielsdEx['video_after_gates'])): ?>
+														<span class="has_video absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" data-ll-status="observed">
+															<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none">
+																<g filter="url(#filter0_d_135_6229)">
+																	<path d="M59 36.268C60.3333 37.0378 60.3333 38.9622 59 39.7321L21.5 61.3827C20.1667 62.1525 18.5 61.1902 18.5 59.6506L18.5 16.3494C18.5 14.8098 20.1667 13.8475 21.5 14.6173L59 36.268Z" fill="white" fill-opacity="0.75" shape-rendering="crispEdges"/>
+																</g>
+																<defs>
+																	<filter id="filter0_d_135_6229" x="0.5" y="0.346191" width="77.5" height="83.3076" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+																	<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+																	<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+																	<feOffset dy="4"/>
+																	<feGaussianBlur stdDeviation="9"/>
+																	<feComposite in2="hardAlpha" operator="out"/>
+																	<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
+																	<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_135_6229"/>
+																	<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_135_6229" result="shape"/>
+																	</filter>
+																</defs>
+															</svg>
+														</span>
+													<?php endif ?>
+												</a>
+												<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
+													<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fielsdEx['duration']['label'];?></div>
+												</div>
+												<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
+													<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
+														<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
 													</div>
-													<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
-														<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
-															<div class="text-white px-3 pt-[5px] pb-[6px] leading-none">скидка %</div>
+												<?php endif ?>
+												<button class="absolute right-0 top-1 wish-btn w-12 h-12 flex items-center justify-center group" data-wp-id="<?php echo $item->ID; ?>" aria-label="Добавить в избранное">
+													<svg class="block group-[:hover]:hidden group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect width="24" height="24" rx="12" fill="white"/>
+														<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#373F41"/>
+													</svg>
+													<svg class="hidden group-[:hover]:block group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect width="24" height="24" rx="12" fill="white"/>
+														<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7643"/>
+													</svg>
+													<svg class="hidden group-[.active]:block"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect width="24" height="24" rx="12" fill="#FF7643"/>
+														<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="white"/>
+													</svg>
+												</button>
+											</div>
+											<div class="px-4">
+												<a href="<?php echo get_permalink($item->ID) ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title($item->ID); ?></a>
+												<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-sm"><?php echo get_the_excerpt($item->ID); ?></div>
+												<div class="flex flex-wrap items-center gap-2 mb-5">
+													<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
+														от <?php echo $fields['price'];?> ₽
+													</div>
+													<?php if(isset($fields['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
+														<div class="text-center text-[#999999] text-sm font-medium leading-tight line-through">
+															от <?php echo $fielsdEx['discount_price'];?> ₽
 														</div>
 													<?php endif ?>
-													<button class="absolute right-0 top-1 wish-btn w-12 h-12 flex items-center justify-center group" data-wp-id="<?php echo $item->ID; ?>" aria-label="Добавить в избранное">
-														<svg class="block group-[:hover]:hidden group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-															<rect width="24" height="24" rx="12" fill="white"/>
-															<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#373F41"/>
-														</svg>
-														<svg class="hidden group-[:hover]:block group-[.active]:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-															<rect width="24" height="24" rx="12" fill="white"/>
-															<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="#FF7643"/>
-														</svg>
-														<svg class="hidden group-[.active]:block"  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-															<rect width="24" height="24" rx="12" fill="#FF7643"/>
-															<path d="M15.0785 6C13.8691 6 12.7083 6.563 11.9507 7.45269C11.193 6.563 10.0323 6 8.82287 6C6.68206 6 5 7.68206 5 9.82287C5 12.4502 7.36323 14.591 10.9428 17.8439L11.9507 18.7545L12.9585 17.837C16.5381 14.591 18.9013 12.4502 18.9013 9.82287C18.9013 7.68206 17.2193 6 15.0785 6ZM12.0202 16.8083L11.9507 16.8778L11.8812 16.8083C8.57265 13.8126 6.39013 11.8316 6.39013 9.82287C6.39013 8.43274 7.43274 7.39013 8.82287 7.39013C9.89327 7.39013 10.9359 8.07825 11.3043 9.03049H12.604C12.9655 8.07825 14.0081 7.39013 15.0785 7.39013C16.4686 7.39013 17.5112 8.43274 17.5112 9.82287C17.5112 11.8316 15.3287 13.8126 12.0202 16.8083Z" fill="white"/>
-														</svg>
-													</button>
 												</div>
-												<div class="px-4">
-													<a href="<?php echo get_permalink($item->ID) ?>" class="card-title text-sm sm:text-[21px] font-bold mb-4"><?php echo get_the_title($item->ID); ?></a>
-													<div class="card-description leading-[17px] mb-5"><?php echo get_the_excerpt($item->ID); ?></div>
-													<div class="flex flex-wrap items-center gap-2 mb-5">
-														<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
-															от <?php echo $fielsdEx['price'];?> ₽
-														</div>
-														<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
-															<div class="text-center text-[#999999] text-sm font-medium leading-tight line-through">
-																от <?php echo $fielsdEx['discount_price'];?> ₽
-															</div>
-														<?php endif ?>
-													</div>
-													<div class="relative mb-4">
-														<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Подробнее</a>
-													</div>
+												<div class="relative mb-4">
+													<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Подробнее</a>
 												</div>
 											</div>
+										</div>
 									<?php endforeach; ?>
 								</div>
 							</div>
@@ -687,10 +670,10 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 										<div class="swiper-wrapper h-auto content__tours" id="posts-container">
 											<?php foreach($posts as $item) : ?>
 												<?php $fielsdEx = get_fields($item->ID); ?>
-												<div class="swiper-slide card flex flex-col bg-white rounded-2xl">
-													<div  class="relative mb-3">
+												<div class="swiper-slide card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl">
+													<div class="relative mb-2 lg:mb-3">
 														<a href="<?php echo get_permalink($item->ID) ?>">
-															<img class="rounded-2xl w-full h-[160px] sm:h-[193px] object-cover" src="<?php echo $fielsdEx['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fielsdEx['gallery'][0]['name']; ?>" loading="lazy">
+															<img class="rounded-2xl w-full h-[163px] lg:h-[193px] object-cover" src="<?php echo $fielsdEx['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fielsdEx['gallery'][0]['name']; ?>" loading="lazy">
 															<?php if (isset($fielsdEx['video_after_gates']) && !empty($fielsdEx['video_after_gates'])): ?>
 																<span class="has_video absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" data-ll-status="observed">
 																<svg xmlns="http://www.w3.org/2000/svg" width="78" height="84" viewBox="0 0 78 84" fill="none">
@@ -714,11 +697,11 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 															<?php endif ?>
 														</a>
 														<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
-															<div class="text-white px-3 pt-[5px] pb-[6px] leading-none"><?php echo $fields['duration']['label'];?></div>
+															<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fields['duration']['label'];?></div>
 														</div>
 														<?php if(isset($fielsdEx['discount_price']) && $fielsdEx['price'] > $fielsdEx['discount_price']): ?>
 															<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
-																<div class="text-white px-3 pt-[5px] pb-[6px] leading-none">скидка %</div>
+																<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
 															</div>
 														<?php endif ?>
 														<button class="absolute right-0 top-1 wish-btn w-12 h-12 flex items-center justify-center group" data-wp-id="<?php echo $item->ID; ?>" aria-label="Добавить в избранное">
@@ -737,8 +720,8 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 														</button>
 													</div>
 													<div class="px-4">
-														<a href="<?php echo get_permalink($item->ID) ?>" class="card-title text-sm sm:text-[21px] font-bold mb-4"><?php echo get_the_title($item->ID); ?></a>
-														<div class="card-description leading-[17px] mb-5"><?php echo get_the_excerpt($item->ID); ?></div>
+														<a href="<?php echo get_permalink($item->ID) ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title($item->ID); ?></a>
+														<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-sm"><?php echo get_the_excerpt($item->ID); ?></div>
 														<div class="flex flex-wrap items-center gap-2 mb-5">
 															<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
 																от <?php echo $fielsdEx['price'];?> ₽
@@ -750,7 +733,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 															<?php endif ?>
 														</div>
 														<div class="relative mb-4">
-															<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Подробнее</a>
+															<a href="<?php echo get_permalink($item->ID) ?>" class="inline-block font-bold text-[#ff7642] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643] text-[12px] lg:text-sm">Подробнее</a>
 														</div>
 													</div>
 												</div>

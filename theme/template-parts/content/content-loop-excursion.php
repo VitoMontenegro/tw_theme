@@ -63,11 +63,11 @@ if (isset($category_id)) {
 						<?php endif ?>
 					</a>
 					<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
-						<div class="text-white px-3 pt-[5px] pb-[6px] leading-none"><?php echo $fields['duration']['label'];?></div>
+						<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fields['duration']['label'];?></div>
 					</div>
 					<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
 						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7643] rounded-3xl">
-							<div class="text-white px-3 pt-[5px] pb-[6px] leading-none">скидка %</div>
+							<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
 						</div>
 					<?php endif ?>
 					<button class="absolute right-0 top-1 wish-btn w-12 h-12 flex items-center justify-center group" data-wp-id="<?php echo get_the_ID(); ?>" aria-label="Добавить в избранное">
@@ -86,14 +86,14 @@ if (isset($category_id)) {
 					</button>
 				</div>
 				<div class="px-4">
-					<a href="<?php echo get_permalink() ?>" class="card-title text-[18px] lg:text-[21px] font-bold mb-2 lg:mb-4"><?php echo get_the_title(); ?></a>
-					<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5"><?php echo get_the_excerpt(); ?></div>
+					<a href="<?php echo get_permalink() ?>" class="card-title text-[14px] lg:text-[14px] font-bold mb-2 lg:mb-4"><?php echo get_the_title(); ?></a>
+					<div class="card-description leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-sm"><?php echo custom_excerpt_without_title(); ?></div>
 					<div class="flex flex-wrap items-center gap-2 mb-5">
-						<div class="bg-[#ffe7db] text-[#ff7642] rounded-lg px-2">
+						<div class="text-[16px] bg-[#ffe7db] text-[#ff7642] rounded-lg px-2.5 py-1">
 							от <?php echo $fields['price'];?> ₽
 						</div>
 						<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
-							<div class="text-center text-[#999999] text-sm font-medium leading-tight line-through">
+							<div class="text-center text-[#999999] text-[16px] font-medium leading-tight line-through">
 								от <?php echo $fields['discount_price'];?> ₽
 							</div>
 						<?php endif ?>

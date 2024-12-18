@@ -513,9 +513,15 @@ document.addEventListener('DOMContentLoaded', function() {
 				const titleLines = Math.floor(titleHeight / lineHeight);
 
 				// Применяем стили в зависимости от числа строк в заголовке
-				if (titleLines >= 3) {
+				if (titleLines >= 4) {
+					title.classList.add('four-lines', 'mb-3');
+					description.classList.add('one-lines');
+				} else if (titleLines >= 3) {
 					title.classList.add('three-lines', 'mb-3');
 					description.classList.add('two-lines');
+				} else if(titleLines === 1) {
+					title.classList.add('one-lines', 'mb-2', 'lg:mb-4');
+					description.classList.add('four-lines');
 				} else {
 					title.classList.add('two-lines', 'mb-2', 'lg:mb-4');
 					description.classList.add('three-lines');
@@ -574,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// Swiper
-	const swiperTour = document.querySelectorAll('.swiper_tour');
+/*	const swiperTour = document.querySelectorAll('.swiper_tour');
 	const swiperRev = document.querySelectorAll('.swiper_reviews');
 
 	if(swiperTour.length) {
@@ -670,7 +676,80 @@ document.addEventListener('DOMContentLoaded', function() {
 				popupContainer.innerHTML = ''; // очищаем контейнер
 			}
 		});
+	}*/
+
+	const swiperTour = document.querySelectorAll('.swiper_tour');
+	const swiperRev = document.querySelectorAll('.swiper_reviews');
+
+	if (swiperTour.length) {
+		const swiper = new Swiper(".mySwiper", {
+			spaceBetween: 8,
+			direction: "horizontal", // Вертикальное направление для превью
+			slidesPerView: 5,
+			freeMode: true,
+			watchSlidesProgress: true,
+			breakpoints: {
+				640: {
+					direction: "vertical", // Горизонтальная ориентация на мобильных устройствах
+					slidesPerView: 4,
+				},
+			},
+		});
+
+		const swiper2 = new Swiper(".mySwiper2", {
+			spaceBetween: 8,
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+			thumbs: {
+				swiper: swiper,
+			},
+		});
+
+		const swiperSlides = document.querySelectorAll('.mySwiper2 .swiper-slide img');
+
+		// Для всех слайдов в Swiper добавляем ссылку с атрибутами для Fancybox
+		swiperSlides.forEach(slide => {
+			const mediaSrc = slide.getAttribute('src');
+			const mediaAlt = slide.getAttribute('alt');
+			const videoId = slide.getAttribute('data-video-id');
+			const videoType = slide.getAttribute('data-video-type');
+
+			// Если это изображение
+			if (!videoId) {
+				slide.setAttribute('data-fancybox', 'gallery');  // Группа галереи
+				slide.setAttribute('data-src', mediaSrc);  // Ссылка на изображение
+				slide.setAttribute('data-caption', mediaAlt);  // Подпись изображения
+			} else {
+				// Если это видео, создаем ссылку на видео
+				let videoUrl = '';
+				if (videoType === 'youtube') {
+					videoUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+				} else if (videoType === 'rutube') {
+					videoUrl = `https://rutube.ru/play/embed/${videoId}?autoplay=1`;
+				} else if (videoType === 'dzen') {
+					videoUrl = videoId;
+				}
+
+				slide.setAttribute('data-fancybox', 'gallery');  // Группа галереи
+				slide.setAttribute('data-src', videoUrl);  // Ссылка на видео
+				slide.setAttribute('data-caption', mediaAlt);  // Подпись видео
+			}
+		});
+
+		Fancybox.bind('[data-fancybox="gallery"]', {
+			infinite: true,
+			groupAll: true,
+			caption: function (fancybox, carousel, slide) {
+				return slide.alt;
+			},
+			// Можно добавить другие опции Fancybox
+		});
 	}
+
+
+
 	if(swiperRev) {
 		const swiper3 = new Swiper(".mySwiper3", {
 			slidesPerView: 1.3,

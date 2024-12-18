@@ -17,25 +17,18 @@ $options = get_fields( 'option');
 		<ul class="flex flex-col gap-6 mt-6">
 			<?php foreach ($categories as $category) : ?>
 				<li class="group relative">
-					<div class="flex items-center">
-						<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-bold me-8">
+					<div class="flex items-start">
+						<a href="<?php echo esc_url($category['link']) ?>" class="text-[18px] font-bold me-8 max-w-[200px]">
 							<?php echo esc_html($category['name'])?>
 						</a>
-						<svg class="mt-0 sm:mt-1 lg:mt-0" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-							<g clip-path="url(#clip0_135_6833)">
-								<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-							</g>
-							<defs>
-								<clipPath>
-									<rect width="12" height="12" fill="white" transform="translate(12) rotate(90)"/>
-								</clipPath>
-							</defs>
+						<svg class="mt-1.5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+							<path d="M2.5 6.25L10 13.75L17.5 6.25" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 						</svg>
 					</div>
 					<ul class="submenu mt-3 w-full px-4 z-10  flex-col gap-2  hidden group-hover:flex rounded-md">
 						<?php foreach ($category["children"] as $child) : ?>
 							<li class="my-2">
-								<a href="<?php echo esc_url($child['link']) ?>" class="text-sm px-1 font-semibold py-2">
+								<a href="<?php echo esc_url($child['link']) ?>" class="text-[16px] px-1 font-semibold py-2">
 									<?php echo esc_html($child['name'])?>
 								</a>
 							</li>

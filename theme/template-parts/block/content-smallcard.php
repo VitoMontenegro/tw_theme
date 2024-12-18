@@ -73,7 +73,7 @@ $list =[];
 <?php else: ?>
 	<div class="flex flex-col sm:flex-row gap-4 mt-6 overflow-x-auto">
 	<?php foreach ($list as $item) : ?>
-		<div class="rounded-2xl h-[108px] sm:max-w-[380px] flex justify-center items-center px-4" style="background: <?php echo $item['color']; ?>">
+		<div class="rounded-2xl min-h-[108px] sm:max-w-[380px] flex justify-center items-center px-4 py-4 text-[14px]" style="background: <?php echo $item['color']; ?>">
 			<div class="flex gap-4 items-center justify-start w-full">
 				<div class="w-[60px] min-w-[60px]">
 					<?php if($item['svg']) : ?>

@@ -9,7 +9,7 @@
 
 		<!-- Правый блок (картинка) -->
 		<div class="sm:col-span-5 lg:col-span-4 order-2 md:row-span-2 rounded-xl overflow-hidden">
-			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/help_choose.webp" class="object-cover sm:w-auto" loading="lazy" alt="hero">
+			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/help_choose.webp" class="object-cover sm:w-auto h-full" loading="lazy" alt="hero">
 		</div>
 
 		<!-- Контент -->
@@ -27,10 +27,10 @@
 
 		<!-- Правый блок (картинка) -->
 		<div class="sm:col-span-5 lg:col-span-4 order-2 md:row-span-2 rounded-xl overflow-hidden">
-			<img src="<?php echo $fields['img']; ?>" class="object-cover sm:w-auto" loading="lazy" alt="hero">
+			<img src="<?php echo $fields['img']; ?>" class="aspect-video object-cover w-full h-full" loading="lazy" alt="hero">
 		</div>
 
 		<!-- Контент -->
-		<div class="md:col-span-7 order-3"><?php echo $fields['text']; ?></div>
+		<div class="sm:col-span-7 order-3"><?php echo $fields['text']; ?></div>
 	</div>
 <?php endif; ?>
