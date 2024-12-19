@@ -157,8 +157,8 @@ get_header();
 									<?php if(isset($fields["galereya_1"]) && count($fields["galereya_1"])): ?>
 										<div class="flex gap-[10px] w-full">
 											<?php foreach($fields["galereya_1"] as $image): ?>
-													<a data-fancybox="gallery<?php echo get_the_ID(); ?>" href="<?php echo $image['url']; ?>">
-														<img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" class="aspect-square rounded-xl">
+													<a data-fancybox="gallery<?php echo get_the_ID(); ?>"  class="w-full" href="<?php echo $image['url']; ?>">
+														<img src="<?php echo $image['sizes']['medium_large']; ?>" alt="<?php echo $image['alt']; ?>" class="aspect-square object-cover rounded-xl">
 													</a>
 											<?php endforeach; ?>
 										</div>
@@ -174,8 +174,8 @@ get_header();
 									<?php if(isset($fields["galereya_2"]) && count($fields["galereya_2"])): ?>
 										<div class="flex gap-[10px] w-full">
 											<?php foreach($fields["galereya_2"] as $image): ?>
-													<a data-fancybox="gallery<?php echo get_the_ID(); ?>" href="<?php echo $image['url']; ?>">
-														<img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" class="aspect-square rounded-xl">
+													<a data-fancybox="gallery<?php echo get_the_ID(); ?>" class="w-full h-full" href="<?php echo $image['url']; ?>">
+														<img src="<?php echo $image['sizes']['medium_large']; ?>" alt="<?php echo $image['alt']; ?>" class="aspect-square object-cover rounded-xl">
 													</a>
 											<?php endforeach; ?>
 										</div>
