@@ -3,7 +3,7 @@ $options = get_fields( 'option');
 ?>
 
 <div class="w-[265px] min-w-[265px] hidden lg:block mb-[64px]">
-	<div class="bg-white px-4 py-6 rounded-lg mb-4">
+	<div class="bg-white text-[14px] px-4 py-6 rounded-lg mb-4">
 		<?php $categories = get_nested_categories_by_parent(0,'excursion_category'); ?>
 		<?php if (!empty($categories)) : ?>
 			<ul class="flex flex-col gap-4">

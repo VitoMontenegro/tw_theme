@@ -81,7 +81,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 
 							<?php foreach ($fields["gallery"] as $image) : ?>
 								<div class="swiper-slide text-center flex justify-center items-center bg-cover rounded-md overflow-hidden">
-									<img data-fancybox="gallery" src="<?php echo $image["sizes"]["medium_large"] ?>" class="block w-full h-full object-cover" alt="<?php echo $image["title"] ?>" />
+									<img data-fancybox="gallery" src="<?php echo $image["url"] ?>" class="block w-full h-full object-cover" alt="<?php echo $image["title"] ?>" />
 								</div>
 							<?php endforeach; ?>
 						</div>
@@ -204,9 +204,12 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 					<div class="bg-[#ffe7db] text-[#FF7A45] text-[22px] rounded-lg px-2 py-2 font-bold">
 						от <?php echo $fields['discount_price'];?> ₽
 					</div>
-					<div class="text-center text-[#999999] text-[18px] font-medium leading-tight line-through font-medium ">
-						от <?php echo $fields['price'];?> ₽
-					</div>
+					<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
+						<div class="text-center text-[#999999] text-[18px] font-medium leading-tight line-through font-medium ">
+							от <?php echo $fields['price'];?> ₽
+						</div>
+					<?php endif ?>
+
 				</div>
 				<div class=" mb-5 lg:mb-8">
 					<a href="#sectionCost" class="text-[#999999] custom-underline">Подробные цены</a>

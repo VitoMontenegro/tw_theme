@@ -8,7 +8,7 @@ if ($sidebar_term) {
 }
 
 if ($current_category && isset($current_category->term_id)) : ?>
-<div class="bg-white ps-4 pe-2 py-4 rounded-lg h-screen lg:h-full">
+<div class="bg-white text-[14px] ps-4 pe-2 py-4 rounded-lg h-screen lg:h-full">
 	<form id="filter-form" class="mb-5 excursions-container" data-category-id="<?php echo $current_category->term_id; ?>">
 		<div class="flex justify-between items-center">
 			<div class="text-lg font-bold mb-2">Фильтр</div>
