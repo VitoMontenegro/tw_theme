@@ -6,20 +6,48 @@ $options = get_fields( 'option');
 	<div class="bg-white text-[14px] px-4 py-6 rounded-lg mb-4">
 		<?php $categories = get_nested_categories_by_parent(0,'excursion_category'); ?>
 		<?php if (!empty($categories)) : ?>
-			<ul class="flex flex-col gap-4">
+			<ul class="flex flex-col gap-5">
 				<?php foreach ($categories as $category) : ?>
-					<li class="flex flex-col gap-2">
+					<li class="flex flex-col gap-3">
 						<a href="<?php echo esc_url($category['link']) ?>" class="text-sm font-bold hover:text-[#927CF5]">
-							<?php $fieldsCat = get_fields('excursion_category_' . $category['id']); ?>
-							<?php echo esc_html($fieldsCat['title_double'])?>
+							<?php $fields = get_fields('excursion_category_' . $category['id']); ?>
+							<?php echo esc_html($fields['title_double'])?>
 						</a>
-						<ul class="flex flex-col gap-1">
+						<ul class="flex flex-col gap-1.5">
 							<?php foreach ($category["children"] as $child) : ?>
 								<li class="group<?php echo is_current_category($child["id"]) ? ' active' : ''; ?>">
 									<?php $link = $child["single_post_slug"] ?? $child['link']; ?>
-									<a href="<?php echo $link; ?>" class="group-[.active]:text-[#927CF5] group-[:hover]:text-[#927CF5]">
-										<?php echo esc_html($child['name'])?>
-									</a>
+
+									<?php if (isset($child["children"]) && is_array($child["children"]) && count($child["children"]) > 0) : ?>
+										<details class="sidebar_link">
+											<summary class="flex items-center justify-between cursor-pointer group-[open]:text-[#927CF5] groups mb-1.5 pe-1">
+												<a href="<?php echo $link; ?>" class="inline-block group-[.active]:text-[#927CF5] hover:text-[#927CF5]">
+													<?php echo esc_html($child['name']); ?>
+												</a>
+												<span class="ml-2">
+													<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" class="arrow">
+														<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+													</svg>
+												</span>
+											</summary>
+											<ul class="flex flex-col gap-1.5 pl-4">
+												<?php foreach ($child["children"] as $subchild) : ?>
+													<li class="group<?php echo is_current_category($subchild["id"]) ? ' active' : ''; ?>">
+														<?php $sublink = $subchild["single_post_slug"] ?? $subchild['link']; ?>
+														<a href="<?php echo $sublink; ?>" class="group-[.active]:text-[#927CF5] hover:text-[#927CF5]">
+															<?php $catFields = get_fields(get_term_by('id', $subchild["id"],'excursion_category')); ?>
+															<?php echo (isset($catFields['title_double']) && !empty($catFields['title_double']) ) ? $catFields['title_double'] : esc_html($subchild['name']); ?>
+														</a>
+													</li>
+												<?php endforeach; ?>
+											</ul>
+										</details>
+									<?php else : ?>
+										<a href="<?php echo $link; ?>" class="group-[.active]:text-[#927CF5] hover:text-[#927CF5]">
+											<?php echo esc_html($child['name']); ?>
+										</a>
+
+									<?php endif; ?>
 								</li>
 							<?php endforeach; ?>
 						</ul>

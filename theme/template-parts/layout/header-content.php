@@ -10,7 +10,7 @@
 $options = get_fields( 'option');
 ?>
 
-<header id="masthead" class="bg-white text-[14px]">
+<header id="masthead" class="bg-white text-[14px] sticky sm:relative top-0 z-10">
 	<div class="container">
 		<div class="flex justify-between py-[17px] sm:py-[12px] lg:py-4 items-center">
 			<div class="flex gap-[12px] items-center">

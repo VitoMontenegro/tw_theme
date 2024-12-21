@@ -3,9 +3,9 @@ $color = '#08A500';
 $cols = 1;
 $list = [];
 if ($fields) {
-	$color = $fields['color'];
-	$cols = $fields['count_colls'];
-	$list = $fields['list'];
+	$color = $fields['color'] ?? '#08A500';
+	$cols = $fields['count_colls'] ?? 1;
+	$list = $fields['list'] ??  [];
 }
 ?>
 

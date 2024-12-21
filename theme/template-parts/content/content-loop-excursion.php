@@ -62,9 +62,11 @@ if (isset($category_id)) {
 							</span>
 						<?php endif ?>
 					</a>
-					<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
-						<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fields['duration']['label'];?></div>
-					</div>
+					<?php if(isset($fields['duration_main']) && !empty($fields['duration_main'])): ?>
+						<div class="absolute left-[17px] bottom-[13px] flex gap-1 items-center bg-[#3a21aa] rounded-3xl">
+							<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]"><?php echo $fields['duration_main'];?></div>
+						</div>
+					<?php endif ?>
 					<?php if(isset($fields['discount_price']) && $fields['price'] > $fields['discount_price']): ?>
 						<div class="absolute left-3 top-4 flex gap-1 items-center bg-[#FF7A45] rounded-3xl">
 							<div class="text-white px-3 pt-[5px] pb-[6px] leading-none text-[14px]">скидка %</div>
@@ -86,8 +88,8 @@ if (isset($category_id)) {
 					</button>
 				</div>
 				<div class="px-4">
-					<a href="<?php echo get_permalink() ?>" class="card-title text-[18px] xs:text-[14px] lg:text-[14px] font-bold mb-2 lg:mb-4"><?php echo get_the_title(); ?></a>
-					<div class="card-description leading-[1.3] xs:leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-[17px] xs:text-sm"><?php echo custom_excerpt_without_title(); ?></div>
+					<a href="<?php echo get_permalink() ?>" class="card-title text-[16px] xs:text-[14px] lg:text-[16px] font-bold mb-2 lg:mb-4 leading-[1.2] leading-[1.2]"><?php echo get_the_title(); ?></a>
+					<div class="card-description leading-[1.3] xs:leading-[1] lg:leading-[17px] mb-3 lg:mb-5 text-[14px] xs:text-sm"><?php echo custom_excerpt_without_title(); ?></div>
 					<div class="flex flex-wrap items-center gap-2 mb-5">
 						<div class="text-[16px] bg-[#ffe7db] text-[#FF7A45] rounded-lg px-2.5 py-1">
 							от <?php echo $fields['price'];?> ₽

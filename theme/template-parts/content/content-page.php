@@ -15,10 +15,8 @@
 			<?php get_sidebar('simple'); ?>
 			<div class="overflow-x-hidden">
 				<div class="entry-content">
-					<div class="px-5 sm:px-8 md:pb-5 sm:pb-8 rounded-3xl big-title" id="sectionDesc">
-						<h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-[22px] sm:mb-6"><?php the_title() ; ?></h1>
+						<h1 class="mt-0 text-2xl sm:text-3xl font-bold tracking-tight mb-[22px] sm:mb-6"><?php the_title() ; ?></h1>
 						<?php the_content(); ?>
-					</div>
 				</div>
 			</div>
 

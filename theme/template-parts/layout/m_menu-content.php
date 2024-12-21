@@ -11,7 +11,7 @@ $options = get_fields( 'option');
 ?>
 
 
-<div id="mobile-menu" class="px-4 z-10 fixed top:105px sm:top-[125px] left-0 w-full max-w-[455px] h-full bg-white transform -translate-x-full transition-transform duration-300 ease-in-out font-bold">
+<div id="mobile-menu" class="px-4 z-10 fixed top:105px sm:top-[125px] left-0 w-full max-w-[455px]  bg-white transform -translate-x-full transition-transform duration-300 ease-in-out font-bold h-screen overflow-auto">
 	<?php $categories = get_nested_categories('excursion_category'); ?>
 	<?php if (!empty($categories)) : ?>
 		<ul class="flex flex-col gap-6 mt-6">

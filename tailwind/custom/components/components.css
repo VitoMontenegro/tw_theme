@@ -29,12 +29,6 @@
 	background-repeat: no-repeat;
 	background-size: 94%;
 }*/
-#need_bg {
-	background-image: url(images/toneed.svg);
-	background-position: 97% 100%;
-	background-repeat: no-repeat;
-	background-size: 43%;
-}
 
 .page-title,
 .entry-title {
@@ -170,7 +164,7 @@ details .big-title {
 	width: 100%;
 	height: 2px;
 	background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="124" height="2" viewBox="0 0 124 2" fill="none"%3E%3Cpath d="M1 1L123 1.00001" stroke="%23999999" stroke-linecap="round" stroke-dasharray="3%203"/%3E%3C/svg%3E');
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 .dash-list ul {
@@ -221,9 +215,20 @@ ul.vertical-dash>li:not(:last-child)::before {
 	background-size: contain;
 }
 
-
-
 @media (min-width: 640px) {
+
+	.bg-phone {
+		background-image: url(images/phone_mail.webp);
+		background-position: 93% 78%;
+		background-repeat: no-repeat;
+		background-size: 40%;
+	}
+	#need_bg {
+		background-image: url(images/toneed.svg);
+		background-position: 97% 100%;
+		background-repeat: no-repeat;
+		background-size: 43%;
+	}
 
 	/*#sectionCost {
 		background-position: 91% 90%;
@@ -247,6 +252,10 @@ ul.vertical-dash>li:not(:last-child)::before {
 	}
 }
 @media (max-width: 650px) {
+	.details::after {
+		top: 50%;
+		transform: translate(50%, -50%);
+	}
 	.clouds {
 		background-image: url(images/banner_sm.webp);
 	}
@@ -266,4 +275,32 @@ ul.vertical-dash>li:not(:last-child)::before {
 	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIHRyYW5zZm9ybT0icm90YXRlKDE4MCAxNiAxNikiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMC4xMjUgNy43NUwxMS44NzUgMTZMMjAuMTI1IDI0LjI1IiBzdHJva2U9IiMzNzNGNDEiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==');
 	background-repeat: no-repeat;
 	background-size: contain;
+}
+
+.sidebar_link summary {
+	list-style: none; /* Убирает стандартный треугольник */
+}
+
+.sidebar_link[open] .arrow {
+	transform: rotate(180deg); /* Поворачиваем стрелку */
+	color:#927CF5;
+}
+
+.sidebar_link .arrow {
+	transition: transform 0.3s ease; /* Плавный поворот */
+}
+
+.checkbox-box svg {
+	display: none;
+}
+
+.checkbox-input:checked + .checkbox-box svg {
+	display: block;
+}
+
+.scroll-left {
+	max-width: calc(100vw - 5rem);
+}
+.details__content p {
+	margin-bottom: 0;
 }

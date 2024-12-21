@@ -7,7 +7,7 @@ $i=0
 ?>
 <section class="breadcrumbs mt-1.5 mb-3 lg:mt-6 lg:mb-6">
 	<div class="container">
-		<ol itemscope itemtype="http://schema.org/BreadcrumbList" class="inline text-[#999] text-[12px] lg:text-[14px]">
+		<ol itemscope itemtype="http://schema.org/BreadcrumbList" class="flex flex-wrap gap-x-1 text-[#999] text-[12px] lg:text-[14px]">
 			<?php if(is_category()): ?>
 				<li itemprop="itemListElement" itemscope
 					itemtype="http://schema.org/ListItem" class="inline">

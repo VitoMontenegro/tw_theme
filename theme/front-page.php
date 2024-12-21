@@ -6,6 +6,8 @@
  *
  * @package _tw
  */
+$options = get_fields( 'option');
+
 $current_term = get_term_by('slug', 'ekskursii-peterburg','excursion_category');
 set_query_var('sidebar_term', $current_term);
 $sidebar_term = get_query_var('sidebar_term');
@@ -13,7 +15,7 @@ $sidebar_term = get_query_var('sidebar_term');
 $sub = array(".01." => " января ", ".02." => " февраля ",
 		".03." => " марта ", ".04." => " апреля ", ".05." => " мая ", ".06." => " июня ",
 		".07." => " июля ", ".08." => " августа ", ".09." => " сентября ",
-		".10." => " октября ", ".11." => " ноября ", ".12." => " декабря ", "2022" => '', '2023' => '', '2024'=>'', '2025'=>'','2026'=>'','00:00'=>'');
+		".10." => " октября ", ".11." => " ноября ", ".12." => " декабря ", "2022" => '2022', '2023' => '2023', '2024'=>'2024', '2025'=>'2025','2026'=>'2026','00:00'=>'');
 get_header();
 ?>
 
@@ -22,9 +24,9 @@ get_header();
     <section class="hero container mt-[13px]">
 		<div class="flex gap-3 flex-col lg:flex-row">
 			<div class="main_slide">
-				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-2xl pt-12 pb-14 lg:pb-8 lg:ps-8 lg:pe-6 lg:ps-[55px] lg:pe-3 lg:pt-[65px] lg:pb-[42px] ">
+				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-2xl pt-12 pb-14 lg:pb-8 lg:ps-8 lg:pe-6 lg:ps-[55px] lg:pe-1 lg:pt-[65px] lg:pb-[42px] ">
 					<div class="title_block w-full md:w-[48%]">
-                        <h1 class="text-white text-[21px] lg:text-[28px] font-normal font-['Kaph'] mb-5 sm:mb-7 lg:mb-6 leading-[38px] lg:leading-[38px]">
+                        <h1 class="text-white text-[21px] lg:text-[28px] font-normal font-['Kaph'] mb-5 sm:mb-7 lg:mb-6 leading-[38px] lg:leading-[38px] mt-0">
                             Экскурсии <br>
                             для школьников<br>
                             в Санкт-петербурге
@@ -134,8 +136,8 @@ get_header();
                 </div>
 			</div>
             <div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] lg:h-[323px] bg-[#FF7A45] rounded-2xl py-6 px-4 relative">
-				<div class="text-white text-[18px] lg:text-[17px] max-w-[295px] lg:max-w-[205px] lg:text-center absolute top-6 lg:top-[25px] left-8 lg:left-[18px] leading-[1.1] lg:leading-[20px] tracking-[0.4px] font-bold">Честный абонемент экскурсий для класса</div>
-                <div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-8 lg:transform">
+				<div class="text-white text-[18px] lg:text-[17px] max-w-[295px] lg:max-w-[205px] lg:text-center lg:absolute top-6 lg:top-[25px] left-8 lg:left-[18px] leading-[1.1] lg:leading-[20px] tracking-[0.4px] font-bold">Честный абонемент экскурсий для класса</div>
+                <div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-4  lg:transform">
                     <a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
                         Подробнее
                     </a>
@@ -153,7 +155,7 @@ get_header();
 
             <section class="product-cards" id="card_link">
 				<div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-12 mb-4">
-					<h2 class="m-0 whitespace-nowrap">Выберите экскурсию</h2>
+					<h2 class="text-left m-0 whitespace-nowrap w-full sm:w-auto">Выберите экскурсию</h2>
 					<div class="flex w-full justify-between sm:justify-end items-center gap-8  text-[14px]">
 						<div class="flex flex-col gap-2">
 							<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
@@ -272,7 +274,7 @@ get_header();
 							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 								<details class="details w-full border border-[#e8e8e8] rounded-[30px] relative block mb-4" name="faq" open>
-									<summary class="details__title py-6 ps-6 lg:ps-8 pe-14 sm:pe-10 text-[#393488] font-bold cursor-pointer list-none">
+									<summary class="details__title py-6 ps-4 lg:ps-8 pe-[60px] xs:pe-14 sm:pe-10 text-[#393488] font-bold cursor-pointer list-none">
 										<?php echo get_the_title(); ?>
 									</summary>
 									<div class="details__content ps-4 pe-14 lg:ps-8 pb-6 lg:pb-7 text-[14px]">
@@ -313,34 +315,35 @@ get_header();
 							<div class="swiper mySwiper3">
 								<div class="swiper-wrapper text-[14px]">
 									<?php while ( $query->have_posts() ) : $query->the_post(); $fieldsRev = get_fields();?>
-										<div class="swiper-slide h-[235px] bg-white flex flex-col gap-2 py-8 px-4 rounded-xl">
+										<div class="swiper-slide h-[240px] bg-white flex flex-col gap-2 pt-7 pb-8 px-4 rounded-xl">
 											<div class="text-[#393488] lines min-h-[18px]">
 												<div class="lines one-lines font-semibold"><?php the_title() ?></div>
 											</div>
 											<div class="h-[106px]">
 												<div class="lines six-lines"><?php the_content(); ?></div>
 											</div>
-											<div class="text-[12px] text-[#abb7b9] font-semibold">
+											<div class="text-[14px] text-[#abb7b9] font-semibold lines two-lines">
 												<?php if(isset($fieldsRev['date'])) :?>
 													<?php echo strtr($fieldsRev['date'], $sub);?>
 												<?php endif;?>
 
-												<?php if(isset($fieldsRev['date']) && isset($fieldsRev['excursion'])) :?>
+												<?php if(isset($fieldsRev['date']) && isset($fieldsRev['excursion']) && $fieldsRev['excursion']) :?>
 													,
 												<?php endif; ?>
-
-												<?php if( isset($fieldsRev['excursion'])) :?>
+												<?php if( isset($fieldsRev['excursion']) && $fieldsRev['excursion']) :?>
 													<?php echo $fieldsRev['excursion'];?>
+												<?php elseif(isset($fieldsRev['excursion_obj']) && $fieldsRev['excursion_obj']): ?>
+													<?php echo get_the_title($fieldsRev['excursion_obj']) ;?>
 												<?php endif; ?>
 											</div>
 										</div>
 									<?php endwhile; ?>
 								</div>
 
-								<div class="swiper-pagination block sm:hidden"></div>
+								<div class="swiper-pagination block sm:hidden relative mt-6"></div>
 							</div>
 
-							<div class="flex mt-6 mb-8 lg:mb-[64px] items-center justify-center">
+							<div class="flex mt-3 mb-8 lg:mb-[64px] items-center justify-center">
 								<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#FF7A45] py-2 sm:py-2.5 px-4 text-[14px] sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Все отзывы</a>
 							</div>
 						</div>
@@ -354,6 +357,37 @@ get_header();
 		// Восстановление оригинального поста
 		wp_reset_postdata();
 	?>
+	<div class="container py-6 block sm:hidden">
+		<div class="flex flex-col gap-4">
+		<div class="font-bold">Работаем официально по лицензии №</div>
+		<div class="image_block relative flex justify-center">
+			<?php if(!empty($options['sert'])): ?>
+				<?php foreach($options['sert'] as $key => $item): ?>
+					<?php if($key === 0) :?>
+						<img src="<?php echo $item['sizes']['medium']?>" alt="<?php echo $item['name']?>" class="h-[158px] w-[105px] object-contain">
+					<?php else: ?>
+						<img src="<?php echo $item['sizes']['medium']?>" alt="<?php echo $item['name']?>" class="h-[158px] w-[105px] absolute left-[80px] top-4  object-contain">
+					<?php endif; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
 
+		<div class="tracking-tight flex flex-col gap-2 mt-3">
+			<div class="ext-sm font-bold">Страхование пассажиров</div>
+			<?php if(!empty($options['logo_sigur'])): ?>
+				<div class="flex h-8">
+					<img src="<?php echo $options['logo_sigur']?>" alt="logo" class="object-contain">
+				</div>
+			<?php endif; ?>
+			<?php if(!empty($options['about_sig'])): ?>
+				<div class="text-[#878787]"><?php echo $options['about_sig']?></div>
+			<?php endif; ?>
+			<?php if(!empty($options['strahovki'])): ?>
+				<div class="text-[#878787]">№ страховки <span class="text-[#000]"><?php echo $options['strahovki']?></span> </div>
+			<?php endif; ?>
+
+		</div>
+	</div>
+	</div>
 <?php
 get_footer();

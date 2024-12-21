@@ -13,6 +13,7 @@
 
 get_header();
 ?>
+<?php get_template_part( 'template-parts/layout/submenu', 'content' ); ?>
 
 	<section id="primary">
 		<main id="main">

@@ -732,4 +732,5 @@ function custom_excerpt_without_title() {
 	// Выводим результат (контент без заголовков <h2>)
 	echo $content_without_h2;
 }
+
 add_filter('term_description', 'do_shortcode');
