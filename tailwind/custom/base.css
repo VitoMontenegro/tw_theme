@@ -12,10 +12,13 @@
  * editor.
 */
 body {
-	@apply text-foreground font-['Mulish'] text-[#373f41] bg-[#F2F1FA] text-sm;
+	@apply text-foreground font-['Mulish'] text-[#373F41] bg-[#F2F1FA] text-[16px] leading-[1.2];
 }
 h1, h2, h3, h4, h5, h6 {
 	@apply font-bold tracking-tight
+}
+h1 {
+	@apply text-[#373f41] text-[24px] leading-[1.2] lg:text-3xl tracking-tight mt-10 mb-6
 }
 h2 {
 	@apply text-[#373f41] text-[24px] leading-[1.2] lg:text-3xl tracking-tight mt-10 mb-6

@@ -56,12 +56,12 @@ get_header();
 												</clipPath>
 											</defs>
 										</svg>
-										<div class="text-[11px] leading-[1.3] lg:text-sm font-bold">
+										<div class="text-[14px] leading-[1.3] lg:text-sm font-bold">
 											35 автобусов 2024 г.в. собственной транспортной компании «Ультра»
 										</div>
 									</div>
 								</div>
-								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7643] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7A45] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
 									<div class="flex gap-2 items-center justify-start w-full">
 										<svg class="min-w-[35px] lg:min-w-[50px]" xmlns="http://www.w3.org/2000/svg" width="50" height="55" viewBox="0 0 50 55" fill="none">
 											<g clip-path="url(#clip0_283_5317)">
@@ -74,7 +74,7 @@ get_header();
 												</clipPath>
 											</defs>
 										</svg>
-										<div class="text-[11px] leading-[1.3] lg:text-sm font-bold">
+										<div class="text-[14px] leading-[1.3] lg:text-sm font-bold">
 											Автобусы адаптированы для комфортной перевозки детей
 										</div>
 									</div>
@@ -99,7 +99,7 @@ get_header();
 											<path d="M49.011 48.4668H23.837C22.9702 48.4668 22.2695 47.7576 22.2695 46.882C22.2695 46.0072 22.9702 45.2972 23.837 45.2972H49.011C49.8762 45.2972 50.5784 46.0072 50.5784 46.882C50.5784 47.7576 49.8762 48.4668 49.011 48.4668Z" fill="#B0BBD0"/>
 											<path d="M41.1903 6.00038H41.1738V18.5098C41.1738 20.3529 42.6504 21.8481 44.4733 21.8481H56.8483V21.8315L41.1903 6.00038Z" fill="#CED6E6"/>
 										</svg>
-										<div class="text-[11px] leading-[1.3] lg:text-sm font-bold">
+										<div class="text-[14px] leading-[1.3] lg:text-sm font-bold">
 											В наличии лицензия на перевозку и полис страхования
 										</div>
 									</div>
@@ -123,7 +123,7 @@ get_header();
 												<path d="M38.5661 16.1553C38.5661 16.7915 38.0683 17.315 37.4539 17.315C36.8395 17.315 36.3418 16.7996 36.3418 16.1553C36.3418 15.511 36.8395 14.9956 37.4539 14.9956C38.0683 14.9956 38.5661 15.511 38.5661 16.1553Z" fill="#FFF2CF"/>
 											</g>
 										</svg>
-										<div class="text-[11px] leading-[1.3] lg:text-sm font-bold">
+										<div class="text-[14px] leading-[1.3] lg:text-sm font-bold">
 											Транспорт оснащен датчиками скорости и спутниковой системой навигации
 										</div>
 									</div>
@@ -139,7 +139,7 @@ get_header();
 								<div class="sm:flex items-end sm:mt-4 justify-between mb-4">
 									<h2 class="text-sm sm:text-xl md:text-2xl sm:w-1/2 mt-0 mb-0 sm:my-0">Вы можете заказать детский автобус
 										отдельно от экскурсии</h2>
-										<form class="flex items-center gap-3 justify-end" id="sort_form">
+										<form class="flex items-center gap-3 text-[14px] justify-end" id="sort_form">
 											<div class="hidden lg:block">Сортировать по:</div>
 											<div class="relative inline-block text-left">
 												<button type="button" class="dropdown-button items-center gap-1 flex" aria-expanded="true" aria-haspopup="true" data-close-on-click="true">
@@ -169,22 +169,22 @@ get_header();
 																<span>По вместимости</span>
 															</label>
 
-															<label class="flex gap-2 items-center lg:hidden">
+															<label class="item flex gap-2 items-center lg:hidden">
 																<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
 																<span>По возрастанию цены</span>
 															</label>
 
-															<label class="flex gap-2 items-center lg:hidden">
+															<label class="item flex gap-2 items-center lg:hidden">
 																<input type="radio" name="grade" value="chip" class="scale-150 change_text">
 																<span>По убыванию цены</span>
 															</label>
 
-															<label class="hidden gap-2 items-center lg:flex">
+															<label class="item hidden gap-2 items-center lg:flex">
 																<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
 																<span>Возрастанию цены</span>
 															</label>
 
-															<label class="hidden gap-2 items-center lg:flex">
+															<label class="item hidden gap-2 items-center lg:flex">
 																<input type="radio" name="grade" value="chip" class="scale-150 change_text">
 																<span>Убыванию цены</span>
 															</label>
@@ -195,14 +195,14 @@ get_header();
 											<div class="hidden items-center gap-2 lg:flex">
 												<label class="item flex gap-2 items-center cursor-pointer">
 													<input type="radio" name="grade" value="pops" class="hidden peer">
-													<span class=" peer-checked:text-[#FF7643]">По вместимости</span>
+													<span class=" peer-checked:text-[#FF7A45]">По вместимости</span>
 												</label>
 											</div>
 										</form>
 								</div>
 								<div class="flex flex-col" >
 
-									<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
+									<div class="grid grid-col-12 xs:grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
 										<?php
 										get_template_part( 'template-parts/content/content', 'loop-cars' );
 										?>

@@ -720,3 +720,17 @@ function min_price($atts) {
 	$result = ob_get_clean();
 	return $result;
 }
+
+
+function custom_excerpt_without_title() {
+	// Получаем контент поста
+	$content = get_the_content();
+
+	// Удаляем все теги <h2> и их содержимое
+	$content_without_h2 = preg_replace('/<h2.*?>.*?<\/h2>/is', '', $content);
+
+	// Выводим результат (контент без заголовков <h2>)
+	echo $content_without_h2;
+}
+
+add_filter('term_description', 'do_shortcode');

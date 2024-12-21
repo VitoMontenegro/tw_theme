@@ -6,6 +6,8 @@
  *
  * @package _tw
  */
+$options = get_fields( 'option');
+
 $current_term = get_term_by('slug', 'ekskursii-peterburg','excursion_category');
 set_query_var('sidebar_term', $current_term);
 $sidebar_term = get_query_var('sidebar_term');
@@ -13,7 +15,7 @@ $sidebar_term = get_query_var('sidebar_term');
 $sub = array(".01." => " января ", ".02." => " февраля ",
 		".03." => " марта ", ".04." => " апреля ", ".05." => " мая ", ".06." => " июня ",
 		".07." => " июля ", ".08." => " августа ", ".09." => " сентября ",
-		".10." => " октября ", ".11." => " ноября ", ".12." => " декабря ", "2022" => '', '2023' => '', '2024'=>'', '2025'=>'','2026'=>'','00:00'=>'');
+		".10." => " октября ", ".11." => " ноября ", ".12." => " декабря ", "2022" => '2022', '2023' => '2023', '2024'=>'2024', '2025'=>'2025','2026'=>'2026','00:00'=>'');
 get_header();
 ?>
 
@@ -22,24 +24,24 @@ get_header();
     <section class="hero container mt-[13px]">
 		<div class="flex gap-3 flex-col lg:flex-row">
 			<div class="main_slide">
-				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-2xl pt-12 pb-14 lg:pb-8 ps-8 pe-6 lg:ps-[55px] lg:pe-3 lg:pt-[65px] lg:pb-[42px] ">
+				<div class="flex flex-col sm:flex-row px-4 bg-[#A392EE] rounded-2xl pt-12 pb-14 lg:pb-8 lg:ps-8 lg:pe-6 lg:ps-[55px] lg:pe-1 lg:pt-[65px] lg:pb-[42px] ">
 					<div class="title_block w-full md:w-[48%]">
-                        <h1 class="text-white text-[24px] lg:text-[28px] font-normal font-['Kaph'] mb-5 sm:mb-7 lg:mb-6 leading-[38px] lg:leading-[38px]">
+                        <h1 class="text-white text-[21px] lg:text-[28px] font-normal font-['Kaph'] mb-5 sm:mb-7 lg:mb-6 leading-[38px] lg:leading-[38px] mt-0">
                             Экскурсии <br>
                             для школьников<br>
                             в Санкт-петербурге
                         </h1>
-                        <a href="#card_link" class="px-8 py-3 bg-[#ff7642] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex">
+                        <a href="#card_link" class="px-8 py-3 bg-[#FF7A45] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex">
                             <span class="text-center text-white text-sm font-bold  leading-tight">Выбрать экскурсию</span>
                         </a>
 					</div>
-                    <div class="image_block w-full md:w-[45%] lg:w-[51%] mt-8 lg:mt-0">
+                    <div class="image_block w-full md:w-[45%] lg:w-[51%] mt-[10px] lg:mt-0">
 						<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hero.webp" alt="hero">
 					</div>
 				</div>
                 <div class="sub_slide -mt-5 sm:-mt-1 lg:-mt-6 relative">
                     <div class="flex gap-3 px-[18px] overflow-x-auto">
-                        <div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#8fa9ff] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+                        <div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#8fa9ff] rounded-2xl min-h-[78px] lg:min-h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
                             <div class="flex gap-2 items-center justify-start w-full">
                                 <svg class="min-w-10 w-10 lg:min-w-14 lg:h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
                                     <g clip-path="url(#clip0_135_6807)">
@@ -70,13 +72,13 @@ get_header();
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                <div class="text-[11px] leading-[1.3] lg:text-sm font-bold">Собственный автопарк <br>
+                                <div class="text-[14px] leading-[1.3] lg:text-sm font-bold">Собственный автопарк <br>
                                     и новые автобусы <br>
                                     2024 г.
                                 </div>
                             </div>
                         </div>
-                        <div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7643] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+                        <div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7A45] rounded-2xl min-h-[78px] lg:min-h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
                             <div class="flex gap-2 items-center justify-start w-full">
                                 <svg class="min-w-10 w-10 lg:min-w-14 lg:h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
                                     <path d="M45.8484 47.7281C45.8484 49.5712 44.3696 51.0664 42.5466 51.0664H8.30026C6.47732 51.0664 5 49.5712 5 47.7281V4.33849C5 2.4954 6.47732 1.00016 8.30026 1.00016H30.174L31.7657 11.9002C33.5887 11.9002 35.0675 13.3955 35.0675 15.2386L45.8484 16.8313V47.7281Z" fill="#F0F5FA"/>
@@ -98,10 +100,10 @@ get_header();
                                         </g>
                                     </g>
                                 </svg>
-                                <div class="text-[11px] leading-[1.3] lg:text-sm font-bold">Бесплатное уведомление и согласование <br> поездки в ГИБДД</div>
+                                <div class="text-[14px] leading-[1.3] lg:text-sm font-bold">Бесплатное уведомление и согласование <br> поездки в ГИБДД</div>
                             </div>
                         </div>
-                        <div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FDC401] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+                        <div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FDC401] rounded-2xl min-h-[78px] lg:min-h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
                             <div class="flex gap-2 items-center justify-start w-full">
                                 <svg class="min-w-10 w-10 lg:min-w-14 lg:h-14" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
                                     <path d="M14.6704 11.6595C4.21262 18.7958 0.252476 36.4806 8.22512 46.4363C13.4078 52.9118 24.9341 57.3986 32.4479 55.5983C41.0796 53.5294 47.4725 45.9484 50.3548 37.3885C51.8483 32.9542 51.8945 27.8188 49.6927 23.6068C39.6076 4.32242 22.1411 6.55811 14.6704 11.6595Z" fill="#3B3D54"/>
@@ -117,7 +119,7 @@ get_header();
                                     <path d="M43.4659 38.0525C43.1949 38.7967 42.9362 39.5378 42.5821 40.248C41.9508 40.143 41.1378 38.7658 40.8945 38.2439C41.3349 37.9043 42.9608 37.7807 43.4659 38.0494" fill="#3B3D54"/>
                                     <path d="M11.3203 26.4539C11.5913 25.7097 11.85 24.9685 12.2041 24.2583C12.8354 24.3633 13.6484 25.7405 13.8916 26.2624C13.4513 26.6021 11.8253 26.7256 11.3203 26.4569" fill="#3B3D54"/>
                                 </svg>
-                                <div class="text-[11px] leading-[1.3] lg:text-sm font-bold">Более 50 увлекательных обучающих программ для детей</div>
+                                <div class="text-[14px] leading-[1.3] lg:text-sm font-bold">Более 50 увлекательных обучающих программ для детей</div>
                             </div>
                         </div>
                     </div>
@@ -133,8 +135,9 @@ get_header();
                     </div>
                 </div>
 			</div>
-            <div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] lg:h-[323px] bg-[#ff7642] rounded-2xl py-6 px-4 relative">
-                <div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-8 lg:transform">
+            <div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] lg:h-[323px] bg-[#FF7A45] rounded-2xl py-6 px-4 relative">
+				<div class="text-white text-[18px] lg:text-[17px] max-w-[295px] lg:max-w-[205px] lg:text-center lg:absolute top-6 lg:top-[25px] left-8 lg:left-[18px] leading-[1.1] lg:leading-[20px] tracking-[0.4px] font-bold">Честный абонемент экскурсий для класса</div>
+                <div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-4  lg:transform">
                     <a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
                         Подробнее
                     </a>
@@ -146,88 +149,88 @@ get_header();
 
     <div class="container mt-10 lg:mt-14">
 		<div class="flex gap-8">
-			<!--<aside class="hidden lg:block filter w-full lg:w-[256px] min-w-[256px]">-->
-
-            <aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px]">
+            <aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full text-[14px] transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px]">
 				<?php get_sidebar(); ?>
 			</aside>
 
             <section class="product-cards" id="card_link">
-				<h2 class="mt-0 mb-[18px]">Выберите экскурсию</h2>
-				<div class="flex w-full justify-between items-center mb-4 sm:mb-1">
-					<div class="flex flex-col gap-2">
-						<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5995 4.55965H8.87945V3.35965C8.87945 2.962 8.5571 2.63965 8.15945 2.63965C7.76181 2.63965 7.43945 2.962 7.43945 3.35965V7.19965C7.43945 7.59729 7.76181 7.91965 8.15945 7.91965C8.5571 7.91965 8.87945 7.59729 8.87945 7.19965V5.99965H21.5995C21.9971 5.99965 22.3195 5.67729 22.3195 5.27965C22.3195 4.882 21.9971 4.55965 21.5995 4.55965ZM21.6002 17.9996H13.6802V16.7996C13.6802 16.4019 13.3579 16.0796 12.9602 16.0796C12.5626 16.0796 12.2402 16.4019 12.2402 16.7996V20.6396C12.2402 21.0372 12.5626 21.3596 12.9602 21.3596C13.3579 21.3596 13.6802 21.0372 13.6802 20.6396V19.4396H21.6002C21.9979 19.4396 22.3202 19.1172 22.3202 18.7196C22.3202 18.3219 21.9979 17.9996 21.6002 17.9996ZM2.39969 5.99965C2.00204 5.99965 1.67969 5.6773 1.67969 5.27965C1.67969 4.88201 2.00204 4.55965 2.39969 4.55965H5.20621C5.60386 4.55965 5.92621 4.88201 5.92621 5.27965C5.92621 5.6773 5.60386 5.99965 5.20621 5.99965H2.39969ZM1.67969 18.7197C1.67969 19.1173 2.00204 19.4397 2.39969 19.4397H10.042C10.4397 19.4397 10.762 19.1173 10.762 18.7197C10.762 18.322 10.4397 17.9997 10.042 17.9997H2.39969C2.00204 17.9997 1.67969 18.322 1.67969 18.7197Z" fill="#2E2E2E"/>
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5991 11.2804H18.4791V10.0804C18.4791 9.68271 18.1567 9.36035 17.7591 9.36035C17.3614 9.36035 17.0391 9.68271 17.0391 10.0804V13.9204C17.0391 14.318 17.3614 14.6404 17.7591 14.6404C18.1567 14.6404 18.4791 14.318 18.4791 13.9204V12.7204H21.5991C21.9967 12.7204 22.3191 12.398 22.3191 12.0004C22.3191 11.6027 21.9967 11.2804 21.5991 11.2804ZM1.67969 12.0004C1.67969 12.398 2.00204 12.7204 2.39969 12.7204H14.7502C15.1478 12.7204 15.4702 12.398 15.4702 12.0004C15.4702 11.6027 15.1478 11.2804 14.7502 11.2804H2.39969C2.00204 11.2804 1.67969 11.6027 1.67969 12.0004Z" fill="#2E2E2E"/>
-							</svg>
-							<span>Фильтр</span>
+				<div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-12 mb-4">
+					<h2 class="text-left m-0 whitespace-nowrap w-full sm:w-auto">Выберите экскурсию</h2>
+					<div class="flex w-full justify-between sm:justify-end items-center gap-8  text-[14px]">
+						<div class="flex flex-col gap-2">
+							<div id="sidebar-toggle" class="flex items-center gap-1.5 lg:hidden is-active">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5995 4.55965H8.87945V3.35965C8.87945 2.962 8.5571 2.63965 8.15945 2.63965C7.76181 2.63965 7.43945 2.962 7.43945 3.35965V7.19965C7.43945 7.59729 7.76181 7.91965 8.15945 7.91965C8.5571 7.91965 8.87945 7.59729 8.87945 7.19965V5.99965H21.5995C21.9971 5.99965 22.3195 5.67729 22.3195 5.27965C22.3195 4.882 21.9971 4.55965 21.5995 4.55965ZM21.6002 17.9996H13.6802V16.7996C13.6802 16.4019 13.3579 16.0796 12.9602 16.0796C12.5626 16.0796 12.2402 16.4019 12.2402 16.7996V20.6396C12.2402 21.0372 12.5626 21.3596 12.9602 21.3596C13.3579 21.3596 13.6802 21.0372 13.6802 20.6396V19.4396H21.6002C21.9979 19.4396 22.3202 19.1172 22.3202 18.7196C22.3202 18.3219 21.9979 17.9996 21.6002 17.9996ZM2.39969 5.99965C2.00204 5.99965 1.67969 5.6773 1.67969 5.27965C1.67969 4.88201 2.00204 4.55965 2.39969 4.55965H5.20621C5.60386 4.55965 5.92621 4.88201 5.92621 5.27965C5.92621 5.6773 5.60386 5.99965 5.20621 5.99965H2.39969ZM1.67969 18.7197C1.67969 19.1173 2.00204 19.4397 2.39969 19.4397H10.042C10.4397 19.4397 10.762 19.1173 10.762 18.7197C10.762 18.322 10.4397 17.9997 10.042 17.9997H2.39969C2.00204 17.9997 1.67969 18.322 1.67969 18.7197Z" fill="#2E2E2E"/>
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M21.5991 11.2804H18.4791V10.0804C18.4791 9.68271 18.1567 9.36035 17.7591 9.36035C17.3614 9.36035 17.0391 9.68271 17.0391 10.0804V13.9204C17.0391 14.318 17.3614 14.6404 17.7591 14.6404C18.1567 14.6404 18.4791 14.318 18.4791 13.9204V12.7204H21.5991C21.9967 12.7204 22.3191 12.398 22.3191 12.0004C22.3191 11.6027 21.9967 11.2804 21.5991 11.2804ZM1.67969 12.0004C1.67969 12.398 2.00204 12.7204 2.39969 12.7204H14.7502C15.1478 12.7204 15.4702 12.398 15.4702 12.0004C15.4702 11.6027 15.1478 11.2804 14.7502 11.2804H2.39969C2.00204 11.2804 1.67969 11.6027 1.67969 12.0004Z" fill="#2E2E2E"/>
+								</svg>
+								<span>Фильтр</span>
+							</div>
 						</div>
-					</div>
-					<form class="flex items-center gap-3" id="sort_form">
-						<div class="hidden lg:block">Сортировать по:</div>
-						<div class="relative inline-block text-left">
-							<button type="button" class="dropdown-button items-center gap-1 flex" aria-expanded="true" aria-haspopup="true" data-close-on-click="true">
-								<span class="dropdown-text hidden lg:block text-[#999]">Цене</span>
-								<span class="dropdown-text block lg:hidden">По популярности</span>
-								<svg class="hidden lg:block mt-[3px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-									<rect x="2" y="7.6001" width="3" height="1.4" fill="#999999"/>
-									<rect x="2" y="4.7998" width="6" height="1.4" fill="#999999"/>
-									<rect x="2" y="2" width="8" height="1.4" fill="#999999"/>
-								</svg>
-								<svg class="lg:hidden mt-[3px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-									<g clip-path="url(#clip0_189_22709)">
-										<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-									</g>
-									<defs>
-										<clipPath id="clip0_189_22709">
-											<rect width="12" height="12" fill="white" transform="translate(12) rotate(90)"/>
-										</clipPath>
-									</defs>
-								</svg>
-							</button>
-							<div class="dropdown-menu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden">
-								<div class="py-1">
-									<div class="flex flex-col p-5 gap-4">
-										<label class="item flex gap-2 items-center lg:hidden">
-											<input type="radio" name="grade" value="pops" class="scale-150 change_text">
-											<span>По популярности</span>
-										</label>
+						<form class="flex items-start gap-3" id="sort_form">
+							<div class="hidden lg:block">Сортировать по:</div>
+							<div class="relative inline-block text-left">
+								<button type="button" class="dropdown-button items-center gap-1 flex" aria-expanded="true" aria-haspopup="true" data-close-on-click="true">
+									<span class="dropdown-text hidden lg:block text-[#999]">Цене</span>
+									<span class="dropdown-text block lg:hidden">По популярности</span>
+									<svg class="hidden lg:block mt-[3px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+										<rect x="2" y="7.6001" width="3" height="1.4" fill="#999999"/>
+										<rect x="2" y="4.7998" width="6" height="1.4" fill="#999999"/>
+										<rect x="2" y="2" width="8" height="1.4" fill="#999999"/>
+									</svg>
+									<svg class="lg:hidden mt-[3px]" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+										<g clip-path="url(#clip0_189_22709)">
+											<path d="M1.5 3.75L6 8.25L10.5 3.75" stroke="#373F41" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+										</g>
+										<defs>
+											<clipPath id="clip0_189_22709">
+												<rect width="12" height="12" fill="white" transform="translate(12) rotate(90)"/>
+											</clipPath>
+										</defs>
+									</svg>
+								</button>
+								<div class="dropdown-menu absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hidden">
+									<div class="py-1">
+										<div class="flex flex-col p-5 gap-4 text-[14px]">
+											<label class="item flex gap-2 items-center lg:hidden">
+												<input type="radio" name="grade" value="pops" class="scale-150 change_text">
+												<span>По популярности</span>
+											</label>
 
-										<label class="flex gap-2 items-center lg:hidden">
-											<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
-											<span>По возрастанию цены</span>
-										</label>
+											<label class="item flex gap-2 items-center lg:hidden">
+												<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
+												<span>По возрастанию цены</span>
+											</label>
 
-										<label class="flex gap-2 items-center lg:hidden">
-											<input type="radio" name="grade" value="chip" class="scale-150 change_text">
-											<span>По убыванию цены</span>
-										</label>
+											<label class="item flex gap-2 items-center lg:hidden">
+												<input type="radio" name="grade" value="chip" class="scale-150 change_text">
+												<span>По убыванию цены</span>
+											</label>
 
-										<label class="hidden gap-2 items-center lg:flex">
-											<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
-											<span>Возрастанию цены</span>
-										</label>
+											<label class="item hidden gap-2 items-center lg:flex">
+												<input type="radio" name="grade" value="expensive" class="scale-150 change_text ">
+												<span>Возрастанию цены</span>
+											</label>
 
-										<label class="hidden gap-2 items-center lg:flex">
-											<input type="radio" name="grade" value="chip" class="scale-150 change_text">
-											<span>Убыванию цены</span>
-										</label>
+											<label class="item hidden gap-2 items-center lg:flex">
+												<input type="radio" name="grade" value="chip" class="scale-150 change_text">
+												<span>Убыванию цены</span>
+											</label>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="hidden items-center gap-2 lg:flex">
-							<label class="item flex gap-2 items-center cursor-pointer">
-								<input type="radio" name="grade" value="pops" class="hidden peer">
-								<span class=" peer-checked:text-[#FF7643]">По популярности</span>
-							</label>
-						</div>
-					</form>
+							<div class="hidden items-center gap-2 lg:flex">
+								<label class="item flex gap-2 items-center cursor-pointer">
+									<input type="radio" name="grade" value="pops" class="hidden peer">
+									<span class=" peer-checked:text-[#FF7A45]">По популярности</span>
+								</label>
+							</div>
+						</form>
+					</div>
 				</div>
 				<div class="flex flex-col" >
 
-					<div class="grid grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
+					<div class="grid grid-col-12 xs:grid-cols-12 gap-3 sm:gap-6 w-full mt-1 lg:mt-4 content__tours"  id="posts-container">
 						<?php
 						if ($current_term && isset($current_term->term_id)) {
 							$category_id = $current_term->term_id;
@@ -271,10 +274,10 @@ get_header();
 							<?php while ( $query->have_posts() ) : $query->the_post(); ?>
 
 								<details class="details w-full border border-[#e8e8e8] rounded-[30px] relative block mb-4" name="faq" open>
-									<summary class="details__title py-6 ps-6 lg:ps-8 pe-14 sm:pe-10 text-[#393488] font-bold cursor-pointer list-none">
+									<summary class="details__title py-6 ps-4 lg:ps-8 pe-[60px] xs:pe-14 sm:pe-10 text-[#393488] font-bold cursor-pointer list-none">
 										<?php echo get_the_title(); ?>
 									</summary>
-									<div class="details__content ps-4 pe-14 lg:ps-8 pb-6 lg:pb-7 text-[#393488]">
+									<div class="details__content ps-4 pe-14 lg:ps-8 pb-6 lg:pb-7 text-[14px]">
 										<?php the_content(); ?>
 									</div>
 								</details>
@@ -310,37 +313,38 @@ get_header();
 						<div class="entry-content col-span-12 lg:col-span-9">
 							<h2 class="mt-3 sm:mt-10">Отзывы</h2>
 							<div class="swiper mySwiper3">
-								<div class="swiper-wrapper">
+								<div class="swiper-wrapper text-[14px]">
 									<?php while ( $query->have_posts() ) : $query->the_post(); $fieldsRev = get_fields();?>
-										<div class="swiper-slide h-[235px] bg-white flex flex-col gap-2 py-8 px-4 rounded-xl">
+										<div class="swiper-slide h-[240px] bg-white flex flex-col gap-2 pt-7 pb-8 px-4 rounded-xl">
 											<div class="text-[#393488] lines min-h-[18px]">
 												<div class="lines one-lines font-semibold"><?php the_title() ?></div>
 											</div>
 											<div class="h-[106px]">
 												<div class="lines six-lines"><?php the_content(); ?></div>
 											</div>
-											<div class="text-[12px] text-[#abb7b9] font-semibold">
+											<div class="text-[14px] text-[#abb7b9] font-semibold lines two-lines">
 												<?php if(isset($fieldsRev['date'])) :?>
 													<?php echo strtr($fieldsRev['date'], $sub);?>
 												<?php endif;?>
 
-												<?php if(isset($fieldsRev['date']) && isset($fieldsRev['excursion'])) :?>
+												<?php if(isset($fieldsRev['date']) && isset($fieldsRev['excursion']) && $fieldsRev['excursion']) :?>
 													,
 												<?php endif; ?>
-
-												<?php if( isset($fieldsRev['excursion'])) :?>
+												<?php if( isset($fieldsRev['excursion']) && $fieldsRev['excursion']) :?>
 													<?php echo $fieldsRev['excursion'];?>
+												<?php elseif(isset($fieldsRev['excursion_obj']) && $fieldsRev['excursion_obj']): ?>
+													<?php echo get_the_title($fieldsRev['excursion_obj']) ;?>
 												<?php endif; ?>
 											</div>
 										</div>
 									<?php endwhile; ?>
 								</div>
 
-								<div class="swiper-pagination block sm:hidden"></div>
+								<div class="swiper-pagination block sm:hidden relative mt-6"></div>
 							</div>
 
-							<div class="flex mt-6 mb-8 lg:mb-[64px] items-center justify-center">
-								<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#ff7642] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#ff7642] rounded-3xl hover:text-white hover:bg-[#FF7643]">Все отзывы</a>
+							<div class="flex mt-3 mb-8 lg:mb-[64px] items-center justify-center">
+								<a href="<?php echo esc_url(get_permalink(73)); ?>" class="inline-block font-bold text-[#FF7A45] py-2 sm:py-2.5 px-4 text-[14px] sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Все отзывы</a>
 							</div>
 						</div>
 					</div>
@@ -353,6 +357,37 @@ get_header();
 		// Восстановление оригинального поста
 		wp_reset_postdata();
 	?>
+	<div class="container py-6 block sm:hidden">
+		<div class="flex flex-col gap-4">
+		<div class="font-bold">Работаем официально по лицензии №</div>
+		<div class="image_block relative flex justify-center">
+			<?php if(!empty($options['sert'])): ?>
+				<?php foreach($options['sert'] as $key => $item): ?>
+					<?php if($key === 0) :?>
+						<img src="<?php echo $item['sizes']['medium']?>" alt="<?php echo $item['name']?>" class="h-[158px] w-[105px] object-contain">
+					<?php else: ?>
+						<img src="<?php echo $item['sizes']['medium']?>" alt="<?php echo $item['name']?>" class="h-[158px] w-[105px] absolute left-[80px] top-4  object-contain">
+					<?php endif; ?>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
 
+		<div class="tracking-tight flex flex-col gap-2 mt-3">
+			<div class="ext-sm font-bold">Страхование пассажиров</div>
+			<?php if(!empty($options['logo_sigur'])): ?>
+				<div class="flex h-8">
+					<img src="<?php echo $options['logo_sigur']?>" alt="logo" class="object-contain">
+				</div>
+			<?php endif; ?>
+			<?php if(!empty($options['about_sig'])): ?>
+				<div class="text-[#878787]"><?php echo $options['about_sig']?></div>
+			<?php endif; ?>
+			<?php if(!empty($options['strahovki'])): ?>
+				<div class="text-[#878787]">№ страховки <span class="text-[#000]"><?php echo $options['strahovki']?></span> </div>
+			<?php endif; ?>
+
+		</div>
+	</div>
+	</div>
 <?php
 get_footer();

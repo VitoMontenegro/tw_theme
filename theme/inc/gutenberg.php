@@ -121,6 +121,22 @@ function review_block_init() {
             ),
             'example'           => [],
         ));
+        acf_register_block_type(array(
+            'name'      => 'contacts',
+            'title'     => 'Блок контакты',
+            'description'       => 'Блок контакты',
+            'render_callback'   => 'my_acf_block_render_callback',
+            'category'      => 'bdt-category',
+            'icon' => array(
+                // Specifying a background color to appear with the icon e.g.: in the inserter.
+                'background' => '#eccb13',
+                // Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)
+                'foreground' => '#fff',
+                // Specifying a dashicon for the block
+                'src' => 'lpb',
+            ),
+            'example'           => [],
+        ));
 
     }
 }
