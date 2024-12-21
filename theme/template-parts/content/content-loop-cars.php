@@ -16,7 +16,7 @@
 			$fields = get_fields();
 			?>
 			<div class="card flex flex-col col-span-6 md:col-span-4 bg-white rounded-2xl"  data-cost="<?php echo $fields['cost']; ?>"  data-popular="<?php echo $fields['duration']; ?>">
-				<div class="relative mb-2 lg:mb-3">
+				<div class="relative mb-2 lg:mb-3 p-4">
 					<img class="rounded-2xl w-full h-[250px] xs:h-[163px] lg:h-[193px] object-cover" src="<?php echo $fields['gallery'][0]['sizes']['medium_large']; ?>" alt="<?php echo $fields['gallery'][0]['name']; ?>" loading="lazy">
 				</div>
 				<div class="px-4">

@@ -252,10 +252,10 @@ ul.vertical-dash>li:not(:last-child)::before {
 	}
 }
 @media (max-width: 650px) {
-	.details::after {
+	/*.details::after {
 		top: 50%;
 		transform: translate(50%, -50%);
-	}
+	}*/
 	.clouds {
 		background-image: url(images/banner_sm.webp);
 	}
