@@ -323,18 +323,21 @@ get_header();
 												<div class="lines six-lines"><?php the_content(); ?></div>
 											</div>
 											<div class="text-[14px] text-[#abb7b9] font-semibold lines two-lines">
-												<?php if(isset($fieldsRev['date'])) :?>
-													<?php echo strtr($fieldsRev['date'], $sub);?>
-												<?php endif;?>
-
-												<?php if(isset($fieldsRev['date']) && isset($fieldsRev['excursion']) && $fieldsRev['excursion']) :?>
-													,
-												<?php endif; ?>
-												<?php if( isset($fieldsRev['excursion']) && $fieldsRev['excursion']) :?>
-													<?php echo $fieldsRev['excursion'];?>
-												<?php elseif(isset($fieldsRev['excursion_obj']) && $fieldsRev['excursion_obj']): ?>
-													<?php echo get_the_title($fieldsRev['excursion_obj']) ;?>
-												<?php endif; ?>
+												<?php
+													$text = '';
+													if (isset($fieldsRev['date'])) {
+														$text .= trim(strtr($fieldsRev['date'], $sub));
+													}
+													if(isset($fieldsRev['date']) && ( (isset($fieldsRev['excursion']) && $fieldsRev['excursion']) || (isset($fieldsRev['excursion_obj']) && $fieldsRev['excursion_obj']))) {
+														$text .= ', ';
+													}
+													if(isset($fieldsRev['excursion']) && $fieldsRev['excursion']) {
+														$text .= $fieldsRev['excursion'];
+													} elseif(isset($fieldsRev['excursion_obj']) && $fieldsRev['excursion_obj']) {
+														$text .= get_the_title($fieldsRev['excursion_obj']);
+													}
+													echo $text;
+												?>
 											</div>
 										</div>
 									<?php endwhile; ?>

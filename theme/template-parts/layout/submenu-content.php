@@ -35,9 +35,7 @@
 							<ul class="submenu absolute top-[60px] bg-[#E9E4FF] w-full px-4 py-4 z-10  flex-col gap-3 border hidden group-hover:flex rounded-md">
 								<?php foreach ($category["children"] as $child) : ?>
 									<li>
-										<a href="<?php echo esc_url($child['link']) ?>" class="font-semibold p-1.5 rounded-md<?php echo is_current_category($child["id"]) ? ' bg-[#C2B6FF] text-[#393488]' : ''; ?> hover:bg-[#C2B6FF] text-[#393488]">
-											<?php echo esc_html($child['name'])?>
-										</a>
+										<a href="<?php echo esc_url($child['link']) ?>" class="font-semibold py-1.5 rounded-md<?php echo is_current_category($child["id"]) ? ' bg-[#C2B6FF] text-[#393488]' : ''; ?> hover:bg-[#C2B6FF] text-[#393488]"><?php echo trim($child['name'])?></a>
 									</li>
 								<?php endforeach; ?>
 							</ul>

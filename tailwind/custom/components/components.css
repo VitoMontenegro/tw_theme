@@ -304,3 +304,16 @@ ul.vertical-dash>li:not(:last-child)::before {
 .details__content p {
 	margin-bottom: 0;
 }
+
+.placeholder input:focus + span,
+.placeholder input:not(:placeholder-shown) + span {
+	opacity: 0;
+	visibility: hidden;
+}
+
+/* Начальные настройки стилизованного текста */
+.placeholder span {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 0.2s ease, visibility 0.2s ease;
+}

@@ -365,11 +365,136 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.cookie = name + "=" + value + ";" + expires + ";path=/";
 	}
 
-	//Форма отзыва
-	let filestoupload = [];
-	function previewFiles() {
-		const preview = document.querySelector('#preview');
-		const files = document.querySelector('input[type=file]').files;
+
+
+	function applyShowMore() {
+		// Получаем все элементы с текстами
+		const textElements = document.querySelectorAll('.reviews_slider__text');
+		if (textElements.length) {
+			textElements.forEach(function(textElement) {
+				// Если текст слишком длинный (например, больше 90 символов)
+				console.log(textElement.textContent.length)
+				if (textElement.textContent.length > 250 && !textElement.classList.contains('has-show-more')) {
+					// Создаем кнопку "Читать полностью"
+					const showMoreButton = document.createElement('div');
+					showMoreButton.classList.add('reviews_slider__show_more','text-[#FF7A45]', 'cursor-pointer');
+					showMoreButton.textContent = 'Читать полностью';
+
+					// Вставляем кнопку после текста
+					const textWrapper = textElement.closest('.reviews_slider__text_wrapper');
+					textWrapper.appendChild(showMoreButton);
+
+					// Добавляем обработчик клика на кнопку
+					showMoreButton.addEventListener('click', function() {
+
+						if (textElement.classList.contains('lines')) {
+							// Если текст уже полный, скрываем его
+							textElement.classList.remove('lines');
+							showMoreButton.textContent = 'Скрыть';
+						} else {
+							// Если текст скрыт, показываем его
+							textElement.classList.add('lines');
+							showMoreButton.textContent = 'Читать полностью';
+						}
+					});
+
+					// Помечаем элемент, чтобы не добавлять кнопку повторно
+					textElement.classList.add('has-show-more');
+				}
+			});
+		}
+
+	}
+	applyShowMore();
+
+
+
+
+	const formContainer = document.querySelector('.reviews_form');
+	if(formContainer) {
+
+		//Работа с файлами
+		const inputField = document.getElementById("inputField");
+		const suggestionsBox = document.getElementById("suggestions");
+
+		const dataItems = Array.from(document.querySelectorAll(".data-item"));
+
+		function showAllSuggestions() {
+			dataItems.forEach(item => {
+				item.style.display = "block";
+			});
+			suggestionsBox.classList.remove("hidden");
+		}
+
+		function showSuggestions() {
+			const query = inputField.value.toLowerCase();
+
+			// Если поле ввода пустое, скрываем список
+			if (query === "") {
+				suggestionsBox.classList.add("hidden");
+				return;
+			}
+
+			let hasMatches = false;
+
+			// Фильтруем данные и обновляем отображение
+			dataItems.forEach(item => {
+				if (item.textContent.toLowerCase().includes(query)) {
+					item.style.display = "block";
+					hasMatches = true;
+				} else {
+					item.style.display = "none";
+				}
+			});
+
+			// Если нет совпадений, скрываем список
+			if (!hasMatches) {
+				suggestionsBox.classList.add("hidden");
+			} else {
+				suggestionsBox.classList.remove("hidden");
+			}
+		}
+
+		inputField.addEventListener("focus", showAllSuggestions);
+
+		inputField.addEventListener("input", showSuggestions);
+
+		dataItems.forEach(item => {
+			item.addEventListener("click", () => {
+				inputField.value = item.textContent;
+				suggestionsBox.classList.add("hidden");
+			});
+		});
+
+
+		// Удаление файлов
+		document.body.addEventListener("click", function (event) {
+			if (!event.target.closest('#inputField') && !event.target.closest('#suggestions')) {
+				suggestionsBox.classList.add("hidden");
+			}
+
+			if (event.target.classList.contains("delete")) {
+				const index = Array.from(document.querySelectorAll('.delete')).indexOf(event.target);
+				console.log('Удаляем файл:', index);
+
+				filestoupload.splice(index, 1); // Удаляем из массива
+				event.target.parentElement.remove(); // Удаляем из DOM
+
+				console.log('Files to upload:', filestoupload.length);
+			}
+		});
+
+		let filestoupload = [];
+
+		function previewFiles() {
+			const preview = document.querySelector('#preview');
+			const files = document.querySelector('input[type=file]').files;
+
+
+			if (files) {
+				Array.from(files).forEach(readAndPreview);
+			}
+		}
 
 		function readAndPreview(file) {
 			// Убедимся, что файл имеет допустимое расширение
@@ -392,10 +517,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 						const div = document.createElement('div');
 						const divdel = document.createElement('div');
-						divdel.className = 'delete';
+						divdel.className = 'delete font-bold cursor-pointer';
 						divdel.textContent = 'X';
 
-						div.className = 'fileprew';
+						div.className = 'fileprew flex gap-2 text-[#FF7A45] text-[14px] mb-2 items-center mt-4';
 						div.appendChild(divdel);
 						div.appendChild(z);
 						preview.appendChild(div);
@@ -410,26 +535,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 
-		if (files) {
-			Array.from(files).forEach(readAndPreview);
-		}
-	}
+		document.getElementById('popup-input-file').addEventListener('change', function() {
+			previewFiles();
+		});
 
-	// Удаление файлов
-	document.body.addEventListener("click", function (event) {
-		if (event.target.classList.contains("delete")) {
-			const index = Array.from(document.querySelectorAll('.delete')).indexOf(event.target);
-			console.log('Удаляем файл:', index);
 
-			filestoupload.splice(index, 1); // Удаляем из массива
-			event.target.parentElement.remove(); // Удаляем из DOM
 
-			console.log('Files to upload:', filestoupload.length);
-		}
-	});
-
-	const formContainer = document.querySelector('.reviews_form');
-	if(formContainer) {
 		formContainer.addEventListener('submit', function (e) {
 			e.preventDefault();
 
@@ -472,10 +583,10 @@ document.addEventListener('DOMContentLoaded', function() {
 				})
 				.then(data => {
 					console.log('Ответ сервера:', data);
-					// document.querySelectorAll('.modal').forEach(modal => modal.style.display = 'none');
-					// document.body.style.overflow = 'visible';
-					// closeModal();
-					// openModal(document.querySelector('.modal__reviews--success'));
+					const popup = document.querySelector('.popup[data-popup="popup-success-rev"]');
+					if (popup) {
+						popup.classList.remove("hidden");
+					}
 				})
 				.catch(error => {
 					console.error('Ошибка:', error);
@@ -486,6 +597,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				});
 		});
 	}
+
+
+
+
+
+
+
+
 
 	function adjustCardLayout() {
 		let cards = document.querySelectorAll('.card');
@@ -511,7 +630,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 				// Вычисляем, сколько строк занимает заголовок
 				const titleLines = Math.floor(titleHeight / lineHeight);
-
 				// Применяем стили в зависимости от числа строк в заголовке
 				if (titleLines >= 4) {
 					title.classList.add('four-lines', 'mb-3');
@@ -531,6 +649,126 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	adjustCardLayout();
 
+	function isValidPhone(phone) {
+		if (!phone.trim()) {
+			return false; // Возвращаем false, если строка пустая или состоит только из пробелов
+		}
+		const phoneRegex = /^(\+7|8)?[\s-]?(\(?\d{3}\)?)?[\s-]?\d{3}[\s-]?\d{2}[\s-]?\d{2}$/;
+		return phoneRegex.test(phone.trim());
+
+	}
+
+	// Отправка формы
+	document.querySelectorAll(".send-letter").forEach(form => {
+		form.addEventListener("submit", function(e) {
+			e.preventDefault()
+
+			const thisForm = e.target;
+			const name = thisForm.getAttribute('data-api');
+			const formData = new FormData(thisForm);
+			const phoneField = thisForm.querySelector('input[name="tel"]');
+
+			if (phoneField) { // Если поле существует
+				const phone = formData.get("tel");
+
+				if (!isValidPhone(phone)) { // Проверяем, если значение есть и оно некорректное
+					phoneField.classList.add('border', 'border-[#FF7A45]');
+					return false;
+				} else if ( isValidPhone(phone)) { // Если поле пустое или значение валидное
+					phoneField.classList.remove('border', 'border-[#FF7A45]');
+				}
+			}
+
+
+			if(name) {
+				fetch(`/wp-json/custom/v1/${name}`, {
+					method: 'POST',
+					headers: {
+						// Убедитесь, что REST API доступен без авторизации или передайте токен авторизации.
+						//'X-WP-Nonce': wpApiSettings.nonce // Если требуется авторизация
+					},
+					body: formData
+				})
+					.then(response => {
+						if (!response.ok) {
+							return response.json().then(err => {
+								throw new Error(err.message || 'Ошибка при отправке формы');
+							});
+						}
+						return response.json();
+					})
+					.then(data => {
+						if (!data.success) {
+							throw new Error(data.message || 'Ошибка при отправке формы');
+						}
+						thisForm.reset();
+						closeModal();
+						const popup = document.querySelector(".popup[data-popup='popup-success']");
+						popup.classList.remove("hidden")
+						return true;
+					})
+					.catch(error => {
+						console.error('Ошибка:', error);
+						alert(error.message || 'Что-то пошло не так');
+					})
+					.finally(() => {
+						//document.querySelector('.page-loader').style.display = 'none';
+					});
+
+			}
+
+		});
+	});
+
+	//popups
+	document.querySelectorAll("[data-open]").forEach(button => {
+		// Открываем popup по data-open
+		button.addEventListener("click", function() {
+			const popupName = button.getAttribute("data-open");
+			const popup = document.querySelector(`.popup[data-popup="${popupName}"]`);
+			if (popup) {
+				popup.classList.remove("hidden");
+			}
+		});
+	});
+
+	function openModal(queryElement) {
+		queryElement.classList.remove("hidden")
+	}
+	function closeModal() {
+		document.querySelectorAll(".popup-close").forEach(closeButton => {
+			const popup = closeButton.closest(".popup");
+			if (popup) {
+				popup.classList.add("hidden");
+			}
+		});
+	}
+
+	document.querySelectorAll(".popup-close").forEach(closeButton => {
+		// Закрываем все popups по клику на кнопку close
+		closeButton.addEventListener("click", function() {
+			const popup = closeButton.closest(".popup");
+			if (popup) {
+				popup.classList.add("hidden");
+			}
+		});
+	});
+
+	// Закрытие popup по клику вне его
+	document.querySelectorAll(".popup").forEach(popup => {
+		popup.addEventListener("click", function(e) {
+			if (e.target === popup) {
+				popup.classList.add("hidden");
+				const popupContainer = popup.querySelector(".popup-media-container");
+				if (popupContainer) {
+					popupContainer.innerHTML = "";
+				}
+			}
+		});
+	});
+
+
+
 	// Находим элемент с data-category-id
 	const container = document.querySelector('.excursions-container');
 	if(container) {
@@ -544,9 +782,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Обработка клика по кнопке "Ещё"
 		document.addEventListener('click', function(event) {
 			const button = event.target.closest('.load-more');
-
 			if (button) {
-				const page = button.getAttribute('data-page');
+				const page = Number(button.getAttribute('data-page'));
 
 				// Отправка запроса с использованием fetch
 				fetch('/wp-json/my-api/v1/load-more/', {
@@ -579,104 +816,41 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
-	// Swiper
-/*	const swiperTour = document.querySelectorAll('.swiper_tour');
-	const swiperRev = document.querySelectorAll('.swiper_reviews');
 
-	if(swiperTour.length) {
-		const swiper = new Swiper(".mySwiper", {
-			spaceBetween: 8,
-			direction: "horizontal", // Вертикальное направление для превью
-			slidesPerView: 5,
-			freeMode: true,
-			watchSlidesProgress: true,
-			breakpoints: {
-				640: {
-					direction: "vertical", // Горизонтальная ориентация на мобильных устройствах
-					slidesPerView: 4,
-				},
-			},
-		});
-		const swiper2 = new Swiper(".mySwiper2", {
-			spaceBetween: 8,
-			navigation: {
-				nextEl: ".swiper-button-next",
-				prevEl: ".swiper-button-prev",
-			},
-			thumbs: {
-				swiper: swiper,
-			},
-		});
+	const revContainer = document.querySelector('.rev-container');
+	if (revContainer) {
+		document.addEventListener('click', function(event) {
+			const buttonRev = event.target.closest('.load-more-excursion');
+			if (buttonRev) {
+				const pageNum = Number(buttonRev.getAttribute('data-page'));
+				console.log(pageNum)
+				// Отправка запроса с использованием fetch
+				fetch('/wp-json/my-api/v1/load-more-reviews/', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						page: pageNum
+					})
+				})
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Failed to fetch the template.');
+						}
+						return response.text();
+					})
+					.then(html => {
+						document.querySelector('.load-more-excursion').remove();
+						//document.getElementById('posts-container').innerHTML = html;
+						document.getElementById('rev-container').insertAdjacentHTML('beforeend', html);
+						applyShowMore()
 
-		const swiperSlides = document.querySelectorAll('.mySwiper2 .swiper-slide img');
-
-		if(swiperSlides) {
-
-		}
-
-
-		// Элементы попапа
-		const popup = document.getElementById('popup');
-		const popupContainer = document.getElementById('popup-media-container');
-		const popupClose = document.getElementById('popup-close');
-
-		// Открытие попапа при клике на слайд (изображение или превью)
-		swiperSlides.forEach(slide => {
-			slide.addEventListener('click', function () {
-				const mediaSrc = slide.getAttribute('src');
-				const mediaAlt = slide.getAttribute('alt');
-				const videoId = slide.getAttribute('data-video-id'); // Получаем ID видео, если это превью
-				const videoType = slide.getAttribute('data-video-type'); // Получаем ID видео, если это превью
-				popupContainer.innerHTML = ''; // Очищаем контейнер попапа
-
-				if (videoId) {
-					// Если это превью видео, создаем iframe для воспроизведения
-
-					const iframeElement = document.createElement('iframe');
-
-					if (videoType === 'dzen') {
-						iframeElement.src = videoId;
-					}
-					else if (videoType === 'rutube') {
-						iframeElement.src = "https://rutube.ru/play/embed/" + videoId + "?autoplay=1";
-					}  else if(videoType === 'youtube') {
-						iframeElement.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-					}
-
-					iframeElement.allow = "autoplay; fullscreen; accelerometer; gyroscope; encrypted-media; picture-in-picture";
-					iframeElement.frameBorder = '0';
-					iframeElement.allowFullscreen = true;
-					iframeElement.classList.add('max-w-full', 'max-h-full', 'object-contain');
-					popupContainer.appendChild(iframeElement);
-				} else {
-					// Если это изображение, создаем элемент img
-					const imgElement = document.createElement('img');
-					imgElement.src = mediaSrc;
-					imgElement.alt = mediaAlt;
-					imgElement.classList.add('max-w-full', 'max-h-full', 'object-contain');
-
-					popupContainer.appendChild(imgElement);
-				}
-
-				// Показываем попап
-				popup.classList.remove('hidden');
-			});
-		});
-
-		// Закрытие попапа
-		popupClose.addEventListener('click', function () {
-			popup.classList.add('hidden'); // Скрываем попап
-			popupContainer.innerHTML = ''; // Очищаем контейнер попапа
-		});
-
-		// Закрытие попапа при клике вне области контента
-		popup.addEventListener('click', function (e) {
-			if (e.target === popup) {
-				popup.classList.add('hidden');
-				popupContainer.innerHTML = ''; // очищаем контейнер
+					})
+					.catch(error => console.error('Error loading posts:', error));
 			}
 		});
-	}*/
+	}
 
 	const swiperTour = document.querySelectorAll('.swiper_tour');
 	const swiperRev = document.querySelectorAll('.swiper_reviews');

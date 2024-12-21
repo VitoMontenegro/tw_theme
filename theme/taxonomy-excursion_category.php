@@ -153,7 +153,7 @@ get_header();
 										<div class="text-[14px] leading-[1.2]"><?php echo $fields["p_desc"]; ?></div>
 									<?php endif; ?>
 
-									<?php if(isset($fields["galereya_1"]) && count($fields["galereya_1"])): ?>
+									<?php if(isset($fields["galereya_1"]) && is_array($fields["galereya_1"])): ?>
 										<div class="flex sm:grid sm:grid-cols-4 gap-4 overflow-x-auto scroll-left">
 											<?php foreach($fields["galereya_1"] as $image): ?>
 													<a data-fancybox="gallery<?php echo get_the_ID(); ?>"  class="w-full" href="<?php echo $image['url']; ?>">
@@ -171,7 +171,7 @@ get_header();
 										</div>
 									<?php endif; ?>
 
-									<?php if(isset($fields["galereya_2"]) && count($fields["galereya_2"])): ?>
+									<?php if(isset($fields["galereya_2"]) && is_array($fields["galereya_2"])): ?>
 										<div class="flex sm:grid sm:grid-cols-4 gap-[10px] overflow-x-auto scroll-left">
 											<?php foreach($fields["galereya_2"] as $image): ?>
 													<a data-fancybox="gallery<?php echo get_the_ID(); ?>" class="w-full h-full" href="<?php echo $image['url']; ?>">
@@ -199,7 +199,7 @@ get_header();
 
 
 
-							<?php if(isset($fields["title"]) && $fields["title"] && isset($fields["list"]) && count($fields["title"])>0): ?>
+							<?php if(isset($fields["title"]) && $fields["title"] && isset($fields["list"]) &&  is_array($fields["list"]) && count($fields["list"])>0): ?>
 								<?php
 									$color = isset($fields["color"]) && $fields["color"] ? $fields['color'] : '#08A500';
 									$cols = isset($fields["count_colls"]) && $fields["count_colls"] ? $fields['count_colls'] : 1;

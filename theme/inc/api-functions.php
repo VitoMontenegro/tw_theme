@@ -13,6 +13,21 @@ function custom_rest_filter_posts() {
 			'callback' => 'handle_reviews_form',
 			'permission_callback' => '__return_true',
 	]);
+	register_rest_route('custom/v1', '/send-form', [
+			'methods' => 'POST',
+			'callback' => 'handle_send_form',
+			'permission_callback' => '__return_true',
+	]);
+	register_rest_route('my-api/v1', '/load-more/', [
+			'methods' => 'POST',
+			'callback' => 'load_more_excursions',
+			'permission_callback' => '__return_true', // Открытый доступ для всех
+	]);
+	register_rest_route('my-api/v1', '/load-more-reviews/', [
+			'methods' => 'POST',
+			'callback' => 'load_more_reviews',
+			'permission_callback' => '__return_true', // Открытый доступ для всех
+	]);
 }
 add_action('rest_api_init', 'custom_rest_filter_posts');
 
@@ -292,6 +307,59 @@ function handle_reviews_form(WP_REST_Request $request) {
 	]);
 }
 
+function handle_send_form(WP_REST_Request $request) {
+	$params = $request->get_params();
+
+	$form = $params['form'] ? "<b>Тип:</b> ".trim($params['form']) ."\n": '';
+	$name = $params['name'] ? "<b>Имя:</b> ".trim($params['name']) ."\n": '';
+	$phone = $params['tel'] ? "<b>Телефон:</b> ".trim($params['tel']) ."\n": '';
+
+	$text = "С сайта flagman.ru поступил запрос: \n\n". $form . $name. $phone;
+
+
+	define('TELEGRAM_BOT_TOKEN', '7674258017:AAH1wb9S4ARTuNc3w9TqpOzHfXFoyXmaUBc'); // Замените на свой токен
+	define('TELEGRAM_CHAT_ID', '300193513'); // Замените на свой chat_id
+	$url = "https://api.telegram.org/bot" . TELEGRAM_BOT_TOKEN . "/sendMessage";
+	$telegram_data = [
+			'chat_id' => TELEGRAM_CHAT_ID,
+			'text' => $text,
+			'parse_mode' => 'HTML',
+	];
+
+	$options = [
+		'http' => [
+			'method'  => 'POST',
+			'header'  => 'Content-type: application/x-www-form-urlencoded',
+			'content' => http_build_query($telegram_data), // Передаем корректный массив
+		],
+	];
+
+    $context = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+
+
+	// Проверяем результат запроса
+	if ($result === false) {
+		return rest_ensure_response([
+				'success' => false,
+				'message' => 'Не удалось отправить сообщение в Telegram.',
+		]);
+	}
+
+	$response = json_decode($result, true);
+	if ($response['ok'] === true) {
+		return rest_ensure_response([
+				'success' => true,
+				'message' => 'Запрос успешно отправлен!',
+		]);
+	} else {
+		return rest_ensure_response([
+				'success' => false,
+				'message' => 'Ошибка Telegram API: ' . $response['description'],
+		]);
+	}
+}
+
 // Вспомогательная функция для обработки массива файлов
 function RemapFilesArray($name, $type, $tmp_name, $error, $size) {
     return array(
@@ -372,17 +440,6 @@ function my_update_attachment($f,$pid,$t='',$c='') {
   }
 }
 
-
-
-function register_load_more_excursions_endpoint() {
-	register_rest_route('my-api/v1', '/load-more/', [
-			'methods' => 'POST',
-			'callback' => 'load_more_excursions',
-			'permission_callback' => '__return_true', // Открытый доступ для всех
-	]);
-}
-
-add_action('rest_api_init', 'register_load_more_excursions_endpoint');
 
 function load_more_excursions(WP_REST_Request $request) {
 	$category_id = sanitize_text_field($request->get_param('category_id'));
@@ -491,13 +548,47 @@ function load_more_excursions(WP_REST_Request $request) {
 			</div>
 			<?php
 		}
-		if ($query->found_posts > ($page*9 + $query->current_post + 1)) {
-			echo '<div class="col-span-12 mt-6 mb-11 flex justify-center items-center">';
-			echo '<button class="load-more inline-block font-bold text-[#FF7A45] py-2 sm:py-2.5 px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl" data-page="'. $page+1 .'>Загрузить ещё</button>';
-			echo '</div>';
-		}
+		if ($query->found_posts > ($page*9)) : ?>
+			<button class="col-span-12 pt-1 load-more" data-page="<?php echo $page+1; ?>">
+				<span class="inline-block font-bold text-[#FF7A45] py-2  px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Загрузить ещё</span>
+			</button>
+		<?php endif;
 	} else {
 		echo '<p class="absolute bold text-lg">Нет записей для выбранных фильтров.</p>';
+	}
+	echo ob_get_clean();
+
+}
+
+
+
+
+function load_more_reviews(WP_REST_Request $request) {
+	$page = intval($request->get_param('page'));
+
+	// Получаем все дочерние категории для таксономии excursion
+
+	// Настройка WP_Query для подгрузки постов
+	$query = new WP_Query([
+		'post_type' => 'reviews',
+		'posts_per_page' => 4, // Показывать 9 постов на странице
+		'paged' => $page
+	]);
+
+	ob_start();
+	// Формируем ответ
+	if ($query->have_posts()) {
+		while ($query->have_posts()) {
+			$query->the_post();
+			get_template_part('template-parts/content/content', 'reviews');
+		}
+		if ($query->found_posts > ($page*4)) : ?>
+			<button class="col-span-2 pt-1 load-more-excursion" data-page="<?php echo $page+1; ?>">
+				<span class="inline-block font-bold text-[#FF7A45] py-2  px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Загрузить ещё</span>
+			</button>
+		<?php endif;
+	} else {
+		echo '<p class="absolute bold text-lg">Нет отзывов для показа</p>';
 	}
 	echo ob_get_clean();
 

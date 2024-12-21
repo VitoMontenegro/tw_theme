@@ -18,7 +18,8 @@ if (isset($category_id)) {
 	// Настройка WP_Query
 	$query = new WP_Query([
 		'post_type' => 'excursion', // Замените на ваш тип записей, если это не стандартный
-		'posts_per_page' => 9, // Показывать все посты (или укажите ограничение)
+			'paged' => 1,
+			'posts_per_page' => 9, // Показывать все посты (или укажите ограничение)
 		'tax_query' => [
 			[
 				'taxonomy' => 'excursion_category',
@@ -107,7 +108,7 @@ if (isset($category_id)) {
 			</div>
 			<?php
 		}
-		if ($query->found_posts > $query->current_post + 1) {
+		if ($query->found_posts > 9) {
 			echo '<button class="col-span-12 pt-1 load-more" data-page="2"><span class="inline-block font-bold text-[#FF7A45] py-2  px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Загрузить ещё</span></button>';
 		}
 	} else {

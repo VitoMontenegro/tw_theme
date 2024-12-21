@@ -25,7 +25,7 @@ get_header();
 						<h1 class="text-2xl sm:text-3xl font-bold tracking-tight mb-[22px] sm:mb-6"><?php the_title() ; ?></h1>
 						<div class="sub_slide mt-5 sm:-mt-1 lg:mt-6 relative">
 							<div class="flex gap-3 overflow-x-auto">
-								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#8FA9FF] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+								<div class="w-[266px] min-w-[266px]  lg:w-1/3 bg-[#8FA9FF] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
 									<div class="flex gap-2 items-center justify-start w-full">
 										<svg class="min-w-[35px] lg:min-w-[57px]" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 											<g clip-path="url(#clip0_245_1598)">
@@ -61,7 +61,7 @@ get_header();
 										</div>
 									</div>
 								</div>
-								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FF7A45] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+								<div class="w-[266px] min-w-[266px]  lg:w-1/3 bg-[#FF7A45] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
 									<div class="flex gap-2 items-center justify-start w-full">
 										<svg class="min-w-[35px] lg:min-w-[50px]" xmlns="http://www.w3.org/2000/svg" width="50" height="55" viewBox="0 0 50 55" fill="none">
 											<g clip-path="url(#clip0_283_5317)">
@@ -79,7 +79,7 @@ get_header();
 										</div>
 									</div>
 								</div>
-								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#FDC401] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+								<div class="w-[266px] min-w-[266px]  lg:w-1/3 bg-[#FDC401] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
 									<div class="flex gap-2 items-center justify-start w-full">
 										<svg class="min-w-[35px] lg:min-w-[57px]" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 											<path d="M40.8484 47.7276C40.8484 49.5707 39.3696 51.0659 37.5466 51.0659H3.30026C1.47732 51.0659 0 49.5707 0 47.7276V4.33801C0 2.49491 1.47732 0.999672 3.30026 0.999672H25.174L26.7657 11.8998C28.5887 11.8998 30.0675 13.395 30.0675 15.2381L40.8484 16.8308V47.7276Z" fill="#FFF2DF"/>
@@ -104,7 +104,7 @@ get_header();
 										</div>
 									</div>
 								</div>
-								<div class="w-[266px] min-w-[266px] md:min-w-0 lg:w-1/3 bg-[#927CF5] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
+								<div class="w-[266px] min-w-[266px]  lg:w-1/3 bg-[#927CF5] rounded-2xl h-[78px] lg:h-[108px] flex justify-center items-center px-3 lg:px-4 tracking-[-0.2px] leading-[18px]">
 									<div class="flex gap-2 items-center justify-start w-full">
 										<svg class="min-w-[35px] lg:min-w-[57px]" xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57" fill="none">
 											<rect x="4" y="1" width="49" height="54" rx="3" fill="#373F41"/>

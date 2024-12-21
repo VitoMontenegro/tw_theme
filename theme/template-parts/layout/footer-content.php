@@ -129,11 +129,121 @@ $options = get_fields( 'option');
 				</div>
 			</div>
 		</div>
-
-
-
-
-
 	</div>
 
 </footer>
+<!--modals-->
+
+<div data-popup="popup-bus" class="popup hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-50 flex items-center justify-center">
+	<form
+			class="send-letter bg-white px-6 lg:px-8 py-5 lg:py-7 w-full md:w-[270px] min-w-[270px] lg:w-[325px] lg:min-w-[325px] bg-white rounded-2xl"
+			data-api="send-form"
+	>
+		<input type="hidden" name="form" value="Заказ автобуса">
+		<div class="flex flex-col gap-[18px]">
+			<div class="title text-lg font-bold">Забронировать автобус</div>
+			<div class="text-[#373F41] text-[14px]">Мы свяжемся с вами для <br> обсуждения деталей</div>
+			<label class="placeholder relative">
+				<input
+						class="bg-[#F2F1FA] text-[#373F41] text-[14px] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none placeholder-transparent"
+						type="text"
+						name="name"
+						placeholder="Имя">
+				<span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#373F41] text-[14px] transition-opacity pointer-events-none">
+    			Имя
+  			</span>
+			</label>
+
+			<label class="placeholder relative">
+				<input
+						class="bg-[#F2F1FA] text-[#373F41] text-[14px] rounded-3xl w-full h-8 lg:h-10 px-4 focus:outline-none placeholder-transparent"
+						name="tel"
+						type="tel"
+						placeholder="Номер телефона*">
+				<span class="absolute left-4 top-1/2 -translate-y-1/2 text-[#373F41] text-[14px] transition-opacity pointer-events-none">
+    			Номер телефона<span class="text-[#FF7643]">*</span>
+  			</span>
+			</label>
+			<button class="px-7 lg:px-10 py-2.5 lg:py-3 bg-[#FF7A45] hover:bg-[#ff6931] rounded-full justify-center items-center inline-flex">
+				<span class="text-center text-white text-[12px] lg:text-sm font-bold leading-tight">Оставить заявку</span>
+			</button>
+			<label for="agree" class="flex gap-2 items-center cursor-pointer">
+				<input type="checkbox" name="agree" id="agree" checked="" class="w-[16px] h-[16px] accent-[#f56630]">
+				<span class="text-[9px] leading-[12px]">Соглашаюсь на обработку персональных данных</span>
+			</label>
+		</div>
+	</form>
+	<button class="popup-close absolute top-4 right-4 text-white text-2xl">X</button>
+</div>
+
+<div data-popup="popup-success" class="popup hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-50 flex items-center justify-center">
+	<div class="send-letter bg-white px-6 lg:px-8 py-5 lg:py-7 w-full md:w-[270px] min-w-[270px] lg:w-[325px] lg:min-w-[325px] rounded-2xl">
+		<div class="flex flex-col gap-[18px]">
+			<div class="title text-lg font-bold">Спасибо за обращение!</div>
+			<div class="text-[#373F41] text-[14px]">Мы получили вашу заявку
+				и свяжемся с вами как можно скорее. Если не хотите ждать, напишите нам:
+			</div>
+			<a target="_blank" href="https://api.whatsapp.com/send?phone=<?php echo preg_replace('/[^0-9]/', '', $options['watsapp']);  ?>&text=Здравствуйте.+Я+обращаюсь+с+сайта+flagmanspb.ru" class="w-full bg-[#30D26E] hover:bg-[#1ABF59] rounded-full justify-center items-center h-10 inline-flex gap-1">
+				<span class="flex gap-2 items-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M13.6894 2.33514C12.2071 0.821622 10.158 0 8.0654 0C3.61853 0 0.0435967 3.58919 0.0871935 7.95676C0.0871935 9.34054 0.479564 10.6811 1.13351 11.8919L0 16L4.22888 14.9189C5.40599 15.5676 6.7139 15.8703 8.0218 15.8703C12.4251 15.8703 16 12.2811 16 7.91351C16 5.79459 15.1717 3.80541 13.6894 2.33514ZM8.0654 14.5297C6.88828 14.5297 5.71117 14.227 4.70845 13.6216L4.44687 13.4919L1.91826 14.1405L2.57221 11.6757L2.39782 11.4162C0.479564 8.34595 1.3951 4.28108 4.53406 2.37838C7.67302 0.475676 11.7275 1.38378 13.6458 4.4973C15.564 7.61081 14.6485 11.6324 11.5095 13.5351C10.5068 14.1838 9.2861 14.5297 8.0654 14.5297ZM11.9019 9.72973L11.4223 9.51351C11.4223 9.51351 10.7248 9.21081 10.2888 8.99459C10.2452 8.99459 10.2016 8.95135 10.158 8.95135C10.0272 8.95135 9.94005 8.99459 9.85286 9.03784C9.85286 9.03784 9.80926 9.08108 9.19891 9.77297C9.15531 9.85946 9.06812 9.9027 8.98093 9.9027H8.93733C8.89373 9.9027 8.80654 9.85946 8.76294 9.81622L8.54496 9.72973C8.0654 9.51351 7.62943 9.25405 7.28065 8.90811C7.19346 8.82162 7.06267 8.73514 6.97548 8.64865C6.6703 8.34595 6.36512 8 6.14714 7.61081L6.10354 7.52432C6.05995 7.48108 6.05995 7.43784 6.01635 7.35135C6.01635 7.26486 6.01635 7.17838 6.05995 7.13514C6.05995 7.13514 6.23433 6.91892 6.36512 6.78919C6.45232 6.7027 6.49591 6.57297 6.58311 6.48649C6.6703 6.35676 6.7139 6.18378 6.6703 6.05405C6.6267 5.83784 6.10354 4.67027 5.97275 4.41081C5.88556 4.28108 5.79837 4.23784 5.66757 4.19459H5.53678C5.44959 4.19459 5.3188 4.19459 5.18801 4.19459C5.10082 4.19459 5.01362 4.23784 4.92643 4.23784L4.88283 4.28108C4.79564 4.32432 4.70845 4.41081 4.62125 4.45405C4.53406 4.54054 4.49046 4.62703 4.40327 4.71351C4.09809 5.1027 3.92371 5.57838 3.92371 6.05405C3.92371 6.4 4.0109 6.74595 4.14169 7.04865L4.18529 7.17838C4.57766 8 5.10082 8.73514 5.79837 9.38378L5.97275 9.55676C6.10354 9.68649 6.23433 9.77297 6.32153 9.9027C7.23706 10.6811 8.28338 11.2432 9.46049 11.5459C9.59128 11.5892 9.76567 11.5892 9.89646 11.6324C10.0272 11.6324 10.2016 11.6324 10.3324 11.6324C10.5504 11.6324 10.812 11.5459 10.9864 11.4595C11.1172 11.373 11.2044 11.373 11.2916 11.2865L11.3787 11.2C11.4659 11.1135 11.5531 11.0703 11.6403 10.9838C11.7275 10.8973 11.8147 10.8108 11.8583 10.7243C11.9455 10.5514 11.9891 10.3351 12.0327 10.1189C12.0327 10.0324 12.0327 9.9027 12.0327 9.81622C12.0327 9.81622 11.9891 9.77297 11.9019 9.72973Z" fill="white"/>
+					</svg>
+					<span class="text-white text-[12px] lg:text-sm font-semibold leading-tight">Написать в WhatsApp</span>
+				</span>
+			</a>
+			<a target="_blank" href="tg://resolve?domain=<?php echo $options['telegram'];  ?>" class="w-full h-10 bg-[#69C5FD] hover:bg-[#4ea8de] rounded-full justify-center items-center inline-flex gap-1">
+				<span class="flex gap-2 items-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+						<g clip-path="url(#clip0_189_21039)">
+						<path d="M10 0C4.48438 0 0 4.48438 0 10C0 15.5156 4.48438 20 10 20C15.5156 20 20 15.5156 20 10C20 4.48438 15.5156 0 10 0Z" fill="#419FD9"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2244 14.9521C12.9234 15.2579 13.1855 14.6172 13.1855 14.6172L15.0348 5.3268C15.0203 4.70065 14.1757 5.07925 14.1757 5.07925L3.82231 9.14197C3.82231 9.14197 3.32721 9.31672 3.37089 9.62251C3.41458 9.92831 3.80775 10.0739 3.80775 10.0739L6.41429 10.9476C6.41429 10.9476 7.20063 13.5251 7.3608 14.0202C7.50642 14.5007 7.63748 14.5152 7.63748 14.5152C7.78309 14.5735 7.91415 14.4716 7.91415 14.4716L9.60331 12.9426L12.2244 14.9521ZM12.6755 6.97208C12.6755 6.97208 13.0396 6.75365 13.025 6.97208C13.025 6.97208 13.0833 7.0012 12.894 7.20507C12.7192 7.37981 8.59826 11.0785 8.04491 11.5736C8.00123 11.6027 7.9721 11.6464 7.9721 11.7046L7.81193 13.0734C7.7828 13.2191 7.5935 13.2336 7.54981 13.1026L6.86541 10.8601C6.83629 10.7727 6.86541 10.6708 6.95278 10.6125L12.6755 6.97208Z" fill="white"/>
+						</g>
+						<defs>
+						<clipPath id="clip0_189_21039">
+						<rect width="20" height="20" fill="white"/>
+						</clipPath>
+						</defs>
+					</svg>
+					<span class="text-white text-[12px] lg:text-sm font-semibold leading-tight">Написать в Телеграм</span>
+				</span>
+			</a>
+		</div>
+	</div>
+	<button class="popup-close absolute top-4 right-4 text-white text-2xl">X</button>
+</div>
+
+<div data-popup="popup-success-rev" class="popup hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 z-50 flex items-center justify-center">
+	<div class="send-letter bg-white px-6 lg:px-8 py-5 lg:py-7 w-full md:w-[290px] min-w-[290px] lg:w-[325px] lg:min-w-[325px] rounded-2xl">
+		<div class="flex flex-col gap-[18px]">
+			<div class="title text-lg font-bold">Спасибо за отзыв!</div>
+			<div class="text-[#373F41] text-[14px]">Мы получили ваш отзыв
+				и рассмотрим его как можно скорее. Если не хотите ждать, напишите нам:
+			</div>
+			<a target="_blank" href="https://api.whatsapp.com/send?phone=<?php echo preg_replace('/[^0-9]/', '', $options['watsapp']);  ?>&text=Здравствуйте.+Я+обращаюсь+с+сайта+flagmanspb.ru" class="w-full bg-[#30D26E] hover:bg-[#1ABF59] rounded-full justify-center items-center h-10 inline-flex gap-1">
+				<span class="flex gap-2 items-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<path d="M13.6894 2.33514C12.2071 0.821622 10.158 0 8.0654 0C3.61853 0 0.0435967 3.58919 0.0871935 7.95676C0.0871935 9.34054 0.479564 10.6811 1.13351 11.8919L0 16L4.22888 14.9189C5.40599 15.5676 6.7139 15.8703 8.0218 15.8703C12.4251 15.8703 16 12.2811 16 7.91351C16 5.79459 15.1717 3.80541 13.6894 2.33514ZM8.0654 14.5297C6.88828 14.5297 5.71117 14.227 4.70845 13.6216L4.44687 13.4919L1.91826 14.1405L2.57221 11.6757L2.39782 11.4162C0.479564 8.34595 1.3951 4.28108 4.53406 2.37838C7.67302 0.475676 11.7275 1.38378 13.6458 4.4973C15.564 7.61081 14.6485 11.6324 11.5095 13.5351C10.5068 14.1838 9.2861 14.5297 8.0654 14.5297ZM11.9019 9.72973L11.4223 9.51351C11.4223 9.51351 10.7248 9.21081 10.2888 8.99459C10.2452 8.99459 10.2016 8.95135 10.158 8.95135C10.0272 8.95135 9.94005 8.99459 9.85286 9.03784C9.85286 9.03784 9.80926 9.08108 9.19891 9.77297C9.15531 9.85946 9.06812 9.9027 8.98093 9.9027H8.93733C8.89373 9.9027 8.80654 9.85946 8.76294 9.81622L8.54496 9.72973C8.0654 9.51351 7.62943 9.25405 7.28065 8.90811C7.19346 8.82162 7.06267 8.73514 6.97548 8.64865C6.6703 8.34595 6.36512 8 6.14714 7.61081L6.10354 7.52432C6.05995 7.48108 6.05995 7.43784 6.01635 7.35135C6.01635 7.26486 6.01635 7.17838 6.05995 7.13514C6.05995 7.13514 6.23433 6.91892 6.36512 6.78919C6.45232 6.7027 6.49591 6.57297 6.58311 6.48649C6.6703 6.35676 6.7139 6.18378 6.6703 6.05405C6.6267 5.83784 6.10354 4.67027 5.97275 4.41081C5.88556 4.28108 5.79837 4.23784 5.66757 4.19459H5.53678C5.44959 4.19459 5.3188 4.19459 5.18801 4.19459C5.10082 4.19459 5.01362 4.23784 4.92643 4.23784L4.88283 4.28108C4.79564 4.32432 4.70845 4.41081 4.62125 4.45405C4.53406 4.54054 4.49046 4.62703 4.40327 4.71351C4.09809 5.1027 3.92371 5.57838 3.92371 6.05405C3.92371 6.4 4.0109 6.74595 4.14169 7.04865L4.18529 7.17838C4.57766 8 5.10082 8.73514 5.79837 9.38378L5.97275 9.55676C6.10354 9.68649 6.23433 9.77297 6.32153 9.9027C7.23706 10.6811 8.28338 11.2432 9.46049 11.5459C9.59128 11.5892 9.76567 11.5892 9.89646 11.6324C10.0272 11.6324 10.2016 11.6324 10.3324 11.6324C10.5504 11.6324 10.812 11.5459 10.9864 11.4595C11.1172 11.373 11.2044 11.373 11.2916 11.2865L11.3787 11.2C11.4659 11.1135 11.5531 11.0703 11.6403 10.9838C11.7275 10.8973 11.8147 10.8108 11.8583 10.7243C11.9455 10.5514 11.9891 10.3351 12.0327 10.1189C12.0327 10.0324 12.0327 9.9027 12.0327 9.81622C12.0327 9.81622 11.9891 9.77297 11.9019 9.72973Z" fill="white"/>
+					</svg>
+					<span class="text-white text-[12px] lg:text-sm font-semibold leading-tight">Написать в WhatsApp</span>
+				</span>
+			</a>
+			<a target="_blank" href="tg://resolve?domain=<?php echo $options['telegram'];  ?>" class="w-full h-10 bg-[#69C5FD] hover:bg-[#4ea8de] rounded-full justify-center items-center inline-flex gap-1">
+				<span class="flex gap-2 items-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+						<g clip-path="url(#clip0_189_21039)">
+						<path d="M10 0C4.48438 0 0 4.48438 0 10C0 15.5156 4.48438 20 10 20C15.5156 20 20 15.5156 20 10C20 4.48438 15.5156 0 10 0Z" fill="#419FD9"/>
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2244 14.9521C12.9234 15.2579 13.1855 14.6172 13.1855 14.6172L15.0348 5.3268C15.0203 4.70065 14.1757 5.07925 14.1757 5.07925L3.82231 9.14197C3.82231 9.14197 3.32721 9.31672 3.37089 9.62251C3.41458 9.92831 3.80775 10.0739 3.80775 10.0739L6.41429 10.9476C6.41429 10.9476 7.20063 13.5251 7.3608 14.0202C7.50642 14.5007 7.63748 14.5152 7.63748 14.5152C7.78309 14.5735 7.91415 14.4716 7.91415 14.4716L9.60331 12.9426L12.2244 14.9521ZM12.6755 6.97208C12.6755 6.97208 13.0396 6.75365 13.025 6.97208C13.025 6.97208 13.0833 7.0012 12.894 7.20507C12.7192 7.37981 8.59826 11.0785 8.04491 11.5736C8.00123 11.6027 7.9721 11.6464 7.9721 11.7046L7.81193 13.0734C7.7828 13.2191 7.5935 13.2336 7.54981 13.1026L6.86541 10.8601C6.83629 10.7727 6.86541 10.6708 6.95278 10.6125L12.6755 6.97208Z" fill="white"/>
+						</g>
+						<defs>
+						<clipPath id="clip0_189_21039">
+						<rect width="20" height="20" fill="white"/>
+						</clipPath>
+						</defs>
+					</svg>
+					<span class="text-white text-[12px] lg:text-sm font-semibold leading-tight">Написать в Телеграм</span>
+				</span>
+			</a>
+		</div>
+	</div>
+	<button class="popup-close absolute top-4 right-4 text-white text-2xl">X</button>
+</div>
