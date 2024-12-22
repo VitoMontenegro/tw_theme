@@ -289,9 +289,10 @@ if ($current_category && isset($current_category->term_id)) : ?>
 
 									<?php if (isset($child["children"]) && is_array($child["children"]) && count($child["children"]) > 0) : ?>
 										<details class="sidebar_link">
-											<summary class="flex items-center justify-between cursor-pointer group-[open]:text-[#927CF5] groups mb-1.5 pe-1">
+											<summary class="flex items-center justify-between cursor-pointer group-[open]:text-[#927CF5] groups pe-1">
 												<a href="<?php echo $link; ?>" class="inline-block group-[.active]:text-[#927CF5] hover:text-[#927CF5]">
-													<?php echo esc_html($child['name']); ?>
+													<?php $childtFields = get_fields(get_term_by('id', $child["id"],'excursion_category')); ?>
+													<?php echo (isset($childtFields['title_double']) && !empty($childtFields['title_double']) ) ? $childtFields['title_double'] : esc_html($child['name']); ?>
 												</a>
 												<span class="ml-2">
 													<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none" class="arrow">
@@ -299,7 +300,7 @@ if ($current_category && isset($current_category->term_id)) : ?>
 													</svg>
 												</span>
 											</summary>
-											<ul class="flex flex-col gap-1.5 pl-4">
+											<ul class="flex flex-col gap-1.5 pl-4 mt-1.5">
 												<?php foreach ($child["children"] as $subchild) : ?>
 													<li class="group<?php echo is_current_category($subchild["id"]) ? ' active' : ''; ?>">
 														<?php $sublink = $subchild["single_post_slug"] ?? $subchild['link']; ?>
@@ -313,7 +314,9 @@ if ($current_category && isset($current_category->term_id)) : ?>
 										</details>
 									<?php else : ?>
 										<a href="<?php echo $link; ?>" class="group-[.active]:text-[#927CF5] hover:text-[#927CF5]">
-											<?php echo esc_html($child['name']); ?>
+
+											<?php $childtFields = get_fields(get_term_by('id', $child["id"],'excursion_category')); ?>
+											<?php echo (isset($childtFields['title_double']) && !empty($childtFields['title_double']) ) ? $childtFields['title_double'] : esc_html($child['name']); ?>
 										</a>
 
 									<?php endif; ?>

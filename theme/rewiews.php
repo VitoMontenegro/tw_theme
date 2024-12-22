@@ -79,7 +79,7 @@ wp_reset_postdata();
 												<input
 														class="bg-[#F2F1FA] text-[#373F41] text-[14px] rounded-3xl w-full h-10 px-4 focus:outline-none placeholder-[#373F41]"
 														type="text"
-														name="name"
+														name="excurs"
 														id="inputField"
 														autocomplete="off"
 														placeholder="Экскурсия/тур" >
@@ -107,7 +107,7 @@ wp_reset_postdata();
 
 										</div>
 										<div class="flex flex-col gap-[18px] w-full">
-											<textarea class="bg-[#F2F1FA] rounded-[12px] w-full px-4 py-[11px] focus:outline-none h-[200px] text-[14px]" name="" id="" placeholder="Ваши впечатления"></textarea>
+											<textarea class="bg-[#F2F1FA] rounded-[12px] w-full px-4 py-[11px] focus:outline-none h-[200px] text-[14px]" name="message" id="" placeholder="Ваши впечатления"></textarea>
 										</div>
 									</div>
 

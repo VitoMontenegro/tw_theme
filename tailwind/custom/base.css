@@ -24,7 +24,7 @@ h2 {
 	@apply text-[#373f41] text-[24px] leading-[1.2] lg:text-3xl tracking-tight mt-10 mb-6
 }
 h2.big-title {
-	@apply text-[23px] mt-0 tracking-[0.7px] mb-[14px] leading-[1.2];
+	@apply mt-0 text-[24px] leading-[1.2] font-bold mb-[18px];
 }
 .big-title  h2{
 	@apply text-[23px] mt-0 tracking-[0.7px] mb-[14px] leading-[1.2];
@@ -41,4 +41,9 @@ table th {
 table td {
 	@apply px-[14px] text-center
 }
-
+.p-bottom p {
+	margin-bottom: 8px;
+}
+.p-last p:last-child {
+	margin-bottom: 0;
+}

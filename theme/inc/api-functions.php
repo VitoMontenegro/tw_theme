@@ -2,6 +2,9 @@
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 require_once(ABSPATH . 'wp-admin/includes/image.php');
 
+define('TELEGRAM_BOT_TOKEN', '7674258017:AAH1wb9S4ARTuNc3w9TqpOzHfXFoyXmaUBc'); // Замените на свой токен
+define('TELEGRAM_CHAT_ID', '300193513'); // Замените на свой chat_id
+
 function custom_rest_filter_posts() {
 	register_rest_route('my_namespace/v1', '/filter-posts/', [
 		'methods' => 'GET',
@@ -241,30 +244,35 @@ function handle_reviews_form(WP_REST_Request $request) {
 	$recepient = 'testdev@kometatek.ru';
 	$sitename = "Flagman";
 	$name = sanitize_text_field($params["name"]);
-	$email = sanitize_email($params["email"]);
 	$text = sanitize_textarea_field($params["message"]);
-
 	$excurs = isset($params["excurs"]) ? wp_strip_all_tags($params["excurs"]) : '';
-	$rating = isset($params["rating"]) ? (int)$params["rating"] : 0;
 
-	$message = "Дата: " . date('d/m/Y') . "<br><br>\r\n";
-	$message .= "Имя: " .  $name . "<br><br>\r\n";
-	$message .= "Экскурсия: " .  $excurs . "<br><br>";
-	$message .= "Рейтинг: " .  $rating . "<br><br>";
-	$message .= "Телефон или Email: " .  $email . "<br><br>";
-	$message .= "Сообщение: " .  $text . "<br><br>";
+
+	// Создание сообщения
+	$message = "<b>Новый отзыв на сайте</b>". "\r\n";
+	$message .= "<b>Дата:</b> " . esc_html(date('d/m/Y')) . "\r\n";
+	$message .= "<b>Имя:</b> " . esc_html($name) . "\r\n";
+	$message .= "<b>Экскурсия:</b> " . esc_html($excurs) . "\r\n";
+	$message .= "<b>Сообщение:</b> " . esc_html($text) . "\r\n";
 
 	$pagetitle = "Новый отзыв с сайта \"$sitename\"";
 
 	// Создание записи "Отзыв"
 	$post_data = [
-			'post_title'   => $name,
-			'post_content' => $text,
+			'post_title'   => esc_html($name),
+			'post_content' =>  esc_html($text),
 			'post_status'  => 'pending',
 			'post_author'  => 1,
 			'post_type'    => 'reviews',
 	];
 	$post_id = wp_insert_post($post_data);
+
+	if (is_wp_error($post_id)) {
+		return rest_ensure_response([
+				'success' => false,
+				'message' => 'Ошибка при создании отзыва',
+		]);
+	}
 
 	// Обработка файлов
 	if ($files) {
@@ -277,34 +285,52 @@ function handle_reviews_form(WP_REST_Request $request) {
 		);
 
 		$gallery = [];
+		$allowed_mime_types = ['image/jpeg', 'image/png', 'image/gif'];
 
 		foreach ($uploaded_files as $file) {
-			if($file["name"] && $file["type"] && $file["tmp_name"]) {
-				$attachment = my_update_attachment($file, $post_id);
-				if (isset($attachment['attach_id'])) {
-					$gallery[] = $attachment['attach_id'];
-				}
+			if (!in_array($file['type'], $allowed_mime_types)) {
+				continue;
+			}
+			$attachment = my_update_attachment($file, $post_id);
+			if (isset($attachment['attach_id'])) {
+				$gallery[] = $attachment['attach_id'];
 			}
 		}
 
-		// Сохранение дополнительных полей (ACF или meta)
-		update_field('field_5fad894783054', $gallery, $post_id); // Поле для галереи
+		// Сохранение дополнительных полей
+		update_field('field_5fad894783054', $gallery, $post_id);
+		update_field('field_5ea7e567e12c6', date('d/m/Y'), $post_id);
 	}
 
-	// Сохранение дополнительных данных
 	update_field('field_5fad895583055', $excurs, $post_id);
-	update_field('field_5fad897183057', $rating, $post_id);
-	update_field('field_612cc6d2ad914', $email, $post_id);
 
-	// Добавление ссылки на запись в сообщение
-	$message .= "Ссылка на отзыв: https://parus-peterburg.ru/wp-admin/post.php?post=$post_id&action=edit<br><br>";
+	$message .= "Ссылка на отзыв: ".site_url()."/wp-admin/post.php?post=$post_id&action=edit". "\r\n";
+	wp_telegram($message);
+	wp_mail( 'vitaliy060282@gmail.com', $pagetitle, $message );
 
-	// Возвращаем ответ REST API
 	return rest_ensure_response([
 			'success' => true,
 			'message' => 'Отзыв успешно отправлен!',
 			'post_id' => $post_id,
 	]);
+}
+
+function wp_telegram($text) {
+	$url = "https://api.telegram.org/bot" . TELEGRAM_BOT_TOKEN . "/sendMessage";
+	$telegram_data = [
+			'chat_id' => TELEGRAM_CHAT_ID,
+			'text' => $text,
+			'parse_mode' => 'HTML',
+	];
+	$options = [
+			'http' => [
+					'method'  => 'POST',
+					'header'  => 'Content-type: application/x-www-form-urlencoded',
+					'content' => http_build_query($telegram_data), // Передаем корректный массив
+			],
+	];
+	$context = stream_context_create($options);
+	return file_get_contents($url, false, $context);
 }
 
 function handle_send_form(WP_REST_Request $request) {
@@ -317,25 +343,7 @@ function handle_send_form(WP_REST_Request $request) {
 	$text = "С сайта flagman.ru поступил запрос: \n\n". $form . $name. $phone;
 
 
-	define('TELEGRAM_BOT_TOKEN', '7674258017:AAH1wb9S4ARTuNc3w9TqpOzHfXFoyXmaUBc'); // Замените на свой токен
-	define('TELEGRAM_CHAT_ID', '300193513'); // Замените на свой chat_id
-	$url = "https://api.telegram.org/bot" . TELEGRAM_BOT_TOKEN . "/sendMessage";
-	$telegram_data = [
-			'chat_id' => TELEGRAM_CHAT_ID,
-			'text' => $text,
-			'parse_mode' => 'HTML',
-	];
-
-	$options = [
-		'http' => [
-			'method'  => 'POST',
-			'header'  => 'Content-type: application/x-www-form-urlencoded',
-			'content' => http_build_query($telegram_data), // Передаем корректный массив
-		],
-	];
-
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
+    $result = wp_telegram($text);
 
 
 	// Проверяем результат запроса

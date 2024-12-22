@@ -97,9 +97,33 @@ function get_prices() {
 	return $min_price . ' руб.';
 }
 
+//Шорткод %%price%% - вывода минимальной цены категории в метатегах
+function get_excursion_price() {
+		$fields = get_fields();
+		if (isset($fields['discount_price']) && $fields['discount_price']) {
+			return (int)$fields['discount_price'] . ' руб.';
+		} else if(isset($fields['price']) && $fields['price']) {
+			return (int)$fields['price'] . ' руб.';
+		}
+		return 'по запросу';
+}
+
+//Шорткод %%duration%% - вывода минимальной цены категории в метатегах
+function get_excursion_duration() {
+		$fields = get_fields();
+		if (isset($fields['duration_main']) && !empty($fields['duration_main'])) {
+			return $fields['duration_main'];
+		} else if(isset($fields['duration']) && $fields['duration']) {
+			return $fields['duration'];
+		}
+		return 'уточняйте';
+}
+
 // define the action for register yoast_variable replacments
 function register_custom_yoast_variables() {
 	wpseo_register_var_replacement( '%%prices%%', 'get_prices', 'advanced', ' ' );
+	wpseo_register_var_replacement( '%%price%%', 'get_excursion_price', 'advanced', ' ' );
+	wpseo_register_var_replacement( '%%duration%%', 'get_excursion_duration', 'advanced', ' ' );
 }
 // Add action
 add_action('wpseo_register_extra_replacements', 'register_custom_yoast_variables');

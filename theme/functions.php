@@ -15,7 +15,7 @@ if ( ! defined( 'TW_VERSION' ) ) {
 	 * to create your production build, the value below will be replaced in the
 	 * generated zip file with a timestamp, converted to base 36.
 	 */
-	define( 'TW_VERSION', '0.1.1' );
+	define( 'TW_VERSION', '0.1.12' );
 }
 
 if ( ! defined( 'TW_TYPOGRAPHY_CLASSES' ) ) {
@@ -226,3 +226,13 @@ function remove_wp_block_styles() {
 add_action( 'wp_enqueue_scripts', 'remove_wp_block_styles', 100 );
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+
+add_filter('wp_terms_checklist_args', 'remove_checked_sorting_in_admin', 10, 2);
+
+function remove_checked_sorting_in_admin($args, $post_id) {
+	if (is_admin() && isset($args['taxonomy']) && $args['taxonomy'] === 'excursion_category') {
+		$args['checked_ontop'] = false; // Отключаем вывод отмеченных категорий первыми
+	}
+	return $args;
+}

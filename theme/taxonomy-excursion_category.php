@@ -9,6 +9,7 @@
 $current_term = get_queried_object();
 $options = get_fields( 'option');
 $fields = get_fields($current_term);
+$title = (isset($fields['h1']) && $fields['h1']) ? $fields['h1'] : $current_term->name;
 $image = (isset($fields['kartinka_kategorii']) && $fields['kartinka_kategorii']) ? $fields['kartinka_kategorii'] :  get_template_directory_uri() . "/images/hero.jpg";
 if ($current_term && isset($current_term->slug) && $current_term->slug === 'ekskursii-peterburg') {
 	wp_redirect('/' , 301);
@@ -24,15 +25,17 @@ get_header();
 		<main id="main">
 			<?php get_template_part( 'template-parts/layout/breadcrumbs', 'content' ); ?>
 			<div class="container">
-				<h1 class="mt-0 md:whitespace-nowrap"><?php echo $current_term->name; ?></h1>
+				<h1 class="mt-0 md:whitespace-nowrap">
+					<?php echo $title ?>
+				</h1>
 			</div>
 			<section class="container mt-[13px]">
 				<div class="flex gap-3 flex-col lg:flex-row">
 
-					<div class="flex-row gap-8 p-4 bg-white rounded-2xl h-[323px] w-full hidden sm:flex  bg-bottom bg-no-repeat bg-cover relative" style="background-image:url(<?php echo $image ?>)">
+					<div class="flex-row gap-8 p-4 bg-white rounded-2xl h-[323px] w-full hidden sm:flex  bg-bottom bg-no-repeat bg-cover relative bg-center" style="background-image:url(<?php echo $image ?>)">
 						<?php if( term_description()): ?>
-							<div class="absolute image_block w-[320px] p-6 bg-white right-4 top-8 rounded-3xl">
-								<div class="text-[#000] text-[14px]"><?php echo term_description() ?></div>
+							<div class="absolute image_block w-[360px] p-6 bg-white right-4 top-4 rounded-3xl">
+								<div class="p-bottom text-[#000] text-[14px] p-last"><?php echo term_description() ?></div>
 							</div>
 					<?php endif; ?>
 					</div>
@@ -146,15 +149,15 @@ get_header();
 
 						<div class="entry-content mt-11">
 							<?php if(isset($fields["p_title"]) && $fields["p_title"]): ?>
-								<div class="flex py-5 sm:py-8 px-5 sm:px-7 gap-[18px] flex-col bg-white rounded-xl overflow-hidden w-full">
-									<h3 class="text-[24px] leading-[1.2] font-bold"><?php echo $fields["p_title"]; ?></h3>
+								<div class="flex py-5 sm:py-8 px-5 sm:px-7 flex-col bg-white rounded-xl overflow-hidden w-full">
+									<h3 class="text-[24px] leading-[1.2] font-bold mb-[18px]"><?php echo $fields["p_title"]; ?></h3>
 
 									<?php if(isset($fields["p_desc"]) && $fields["p_desc"]): ?>
-										<div class="text-[14px] leading-[1.2]"><?php echo $fields["p_desc"]; ?></div>
+										<div class="text-[14px] leading-[1.2] p-last"><?php echo $fields["p_desc"]; ?></div>
 									<?php endif; ?>
 
 									<?php if(isset($fields["galereya_1"]) && is_array($fields["galereya_1"])): ?>
-										<div class="flex sm:grid sm:grid-cols-4 gap-4 overflow-x-auto scroll-left">
+										<div class="flex sm:grid sm:grid-cols-4 gap-4 overflow-x-auto scroll-left mb-[18px]">
 											<?php foreach($fields["galereya_1"] as $image): ?>
 													<a data-fancybox="gallery<?php echo get_the_ID(); ?>"  class="w-full" href="<?php echo $image['url']; ?>">
 														<img src="<?php echo $image['sizes']['medium_large']; ?>" alt="<?php echo $image['alt']; ?>" class="h-[118px] sm:h-[158px] w-full min-w-[118px] object-cover rounded-xl">
@@ -165,14 +168,14 @@ get_header();
 
 
 									<?php if(isset($fields["g_desc"]) && $fields["g_desc"]): ?>
-										<div class="text-[14px] leading-[1.3] p-3 bg-[#FFE2D7] rounded-xl">
+										<div class="text-[14px] leading-[1.3] p-3 bg-[#FFE2D7] rounded-xl mb-[18px] p-last">
 											<!--<span class="text-[#FF7A45] font-bold"><?php /*echo $fields["g_title"]; */?></span> -->
 											<?php echo $fields["g_desc"]; ?>
 										</div>
 									<?php endif; ?>
 
 									<?php if(isset($fields["galereya_2"]) && is_array($fields["galereya_2"])): ?>
-										<div class="flex sm:grid sm:grid-cols-4 gap-[10px] overflow-x-auto scroll-left">
+										<div class="flex sm:grid sm:grid-cols-4 gap-[10px] overflow-x-auto scroll-left mb-[18px]">
 											<?php foreach($fields["galereya_2"] as $image): ?>
 													<a data-fancybox="gallery<?php echo get_the_ID(); ?>" class="w-full h-full" href="<?php echo $image['url']; ?>">
 														<img src="<?php echo $image['sizes']['medium_large']; ?>" alt="<?php echo $image['alt']; ?>" class="h-[118px] sm:h-[158px] w-full min-w-[118px] w-full object-cover rounded-xl">
@@ -183,12 +186,17 @@ get_header();
 
 
 									<?php if(isset($fields["b_desc"]) && $fields["b_desc"]): ?>
-										<div class="text-[14px] leading-[1.3] p-3 bg-[#E7E1FF] rounded-xl">
+										<div class="text-[14px] leading-[1.3] p-3 bg-[#E7E1FF] rounded-xl mb-[18px] p-last">
 											<!--<span class="text-[#3A21AA] font-bold"><?php /*echo $fields["b_title"]; */?></span> -->
 											<?php echo $fields["b_desc"]; ?>
 										</div>
 									<?php endif; ?>
-									<div class="text-[14px] font-bold leading-[1.3]">Программа экскурсий на фабрику может быть построена по индивидуальному запросу или пересчитана по нужному количеству участников.</div>
+
+									<?php if(isset($fields["text_end"]) && $fields["text_end"]): ?>
+										<div class="text-[14px] font-bold leading-[1.3]">
+											<?php echo $fields["text_end"]; ?>
+										</div>
+									<?php endif; ?>
 
 
 								</div>
@@ -197,37 +205,43 @@ get_header();
 
 
 
+							<?php $title = isset($fields["title"]) && $fields["title"] ? $fields["title"] : 'Что входит в стоимость экскурсии'; ?>
 
-
-							<?php if(isset($fields["title"]) && $fields["title"] && isset($fields["list"]) &&  is_array($fields["list"]) && count($fields["list"])>0): ?>
 								<?php
 									$color = isset($fields["color"]) && $fields["color"] ? $fields['color'] : '#08A500';
 									$cols = isset($fields["count_colls"]) && $fields["count_colls"] ? $fields['count_colls'] : 1;
-									$list = isset($fields["list"]) && $fields["list"] ? $fields['list'] : [];
+									$list = isset($fields["list"]) && $fields["list"] ? $fields['list'] : [
+											['element_spiska' => 'Бесплатные места для сопровождающих'],
+											['element_spiska' => 'Сбор пакета документов для перевозки'],
+											['element_spiska' => 'Услуги экскурсовода'],
+											['element_spiska' => 'Страхование пассажиров'],
+											['element_spiska' => 'Входные билеты'],
+											['element_spiska' => 'Аренда туристического автобуса'],
+											['element_spiska' => 'Уведомление в ГИБДД'],
+									];
 								?>
 								<div class="bg-white rounded-xl p-8 mt-8">
-									<h2 class="big-title"><?php echo $fields['title']; ?></h2>
+									<h2 class="big-title"><?php echo $title; ?></h2>
 									<?php echo $fields['desc']; ?>
-									<ul class="grid grid-cols-1 sm:grid-cols-<?php echo $cols; ?> pt-4 gap-4 text-[14px]">
-										<?php foreach ($list as $item) : ?>
-											<li class="flex gap-4 items-center">
-												<?php if($item['element_spiska']) : ?>
-													<span class="rounded-full flex items-center justify-center" style="background: <?php echo $color; ?>">
+									<ul class="grid grid-cols-1 sm:grid-cols-2 pt-4 gap-4 text-[14px]">
+											<?php foreach ($list as $item) : ?>
+												<li class="flex gap-4 items-center">
+													<?php if($item['element_spiska']) : ?>
+														<span class="rounded-full flex items-center justify-center" style="background: <?php echo $color; ?>">
 														<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
 															<g clip-path="url(#clip0_135_6057)">
 																<path d="M7.11719 13.8406L10.479 17.2024L18.8835 8.79785" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 															</g>
 														</svg>
 													</span>
-												<?php endif; ?>
-												<span>
-												<?php echo $item['element_spiska'] ?>
-											</span>
-											</li>
-										<?php endforeach; ?>
+													<?php endif; ?>
+													<span>
+														<?php echo $item['element_spiska'] ?>
+													</span>
+												</li>
+											<?php endforeach; ?>
 									</ul>
 								</div>
-							<?php endif; ?>
 
 
 							<div class="bg-white pt-6 sm:pt-4 lg:pt-7 px-5 sm:px-8 pb-5 sm:pb-5 rounded-3xl mt-5 sm:mt-6l" id="sectionNeed">
