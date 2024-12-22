@@ -580,7 +580,6 @@ function get_all_descendant_categories($parent_id, $taxonomy) {
 	return $categories;
 }
 
-
 function is_current_category($term_id) {
 	if (is_tax() || is_category()) {
 		$current_term = get_queried_object();
@@ -590,6 +589,7 @@ function is_current_category($term_id) {
 	}
 	return false;
 }
+
 function is_active_category($category) {
 	// Если это главная страница и категория с ID 16
 	if (is_home() || is_front_page()) {
@@ -621,9 +621,6 @@ function is_active_category($category) {
 	return false;
 }
 
-
-
-
 function my_custom_template($id, $part) {
 	set_query_var('custom_id', $id);
 	get_template_part($part);
@@ -634,6 +631,7 @@ function getYoutubeEmbedUrl($url) {
 	preg_match($pattern, $url, $matches);
 	return (isset($matches[1])) ? $matches[1] : false;
 }
+
 function getDzenEmbedUrl($url) {
 	if(!$url) return false;
 
@@ -642,6 +640,7 @@ function getDzenEmbedUrl($url) {
 
 	return (isset($matches[1])) ? $matches[1] : false;
 }
+
 function getRuTubeEmbedUrl($url) {
 	// Регулярное выражение для извлечения идентификатора видео
 	if (preg_match('/\/video\/([a-f0-9]{32})/', $url, $matches)) {
@@ -649,7 +648,6 @@ function getRuTubeEmbedUrl($url) {
 	}
 	return null; // Если идентификатор не найден, возвращаем null
 }
-
 
 function get_cost($fields) {
 
@@ -667,61 +665,6 @@ function get_cost($fields) {
 	return ['cost' =>$cost, 'cost_sale'=>$cost_sale];
 }
 
-
-
-
-add_shortcode( 'min_price', 'min_price' );
-function min_price($atts) {
-	ob_start();
-
-	$atts = shortcode_atts(array(
-			'min' => '',
-	), $atts);
-
-	if (is_front_page()) {
-		$terms_items = 'ekskursii-peterburg';
-	} else {
-		$terms_items = get_queried_object()->slug;
-	}
-	$items = get_posts( array(
-			'numberposts' => -1,
-			'post_type' => 'excursion'
-	) );
-
-	wp_reset_postdata(); // сброс
-
-
-	$items_prices = [];
-	foreach ($items as $item) {
-		$fields = get_fields($item->ID);
-
-		if (isset($fields['price']) && $fields['price']) {
-			$cost = $fields['price'];
-		}
-
-		if (isset($fields['discount_price']) && $fields['discount_price']) {
-			$m=(int)$fields['discount_price'];
-		} else {
-			$m=(int)$fields['price'];
-		}
-
-		if ($m<1) continue;
-		$items_prices[] = $m;
-	}
-
-	if (count($items_prices)>1)
-		$min_price = min($items_prices);
-	else
-		$min_price = 850;
-
-	$min_price = $atts['min'] ? $atts['min'] : $min_price;
-
-	echo $min_price;
-	$result = ob_get_clean();
-	return $result;
-}
-
-
 function custom_excerpt_without_title() {
 	// Получаем контент поста
 	$content = get_the_content();
@@ -732,5 +675,3 @@ function custom_excerpt_without_title() {
 	// Выводим результат (контент без заголовков <h2>)
 	echo $content_without_h2;
 }
-
-add_filter('term_description', 'do_shortcode');
