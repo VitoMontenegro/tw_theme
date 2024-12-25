@@ -365,8 +365,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		document.cookie = name + "=" + value + ";" + expires + ";path=/";
 	}
 
-
-
+	// Кнопка "Показать еще"
 	function applyShowMore() {
 		// Получаем все элементы с текстами
 		const textElements = document.querySelectorAll('.reviews_slider__text');
@@ -374,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			textElements.forEach(function(textElement) {
 				// Если текст слишком длинный (например, больше 90 символов)
 				console.log(textElement.textContent.length)
-				if (textElement.textContent.length > 250 && !textElement.classList.contains('has-show-more')) {
+				if (textElement.textContent.length > 750 && !textElement.classList.contains('has-show-more')) {
 					// Создаем кнопку "Читать полностью"
 					const showMoreButton = document.createElement('div');
 					showMoreButton.classList.add('reviews_slider__show_more','text-[#FF7A45]', 'cursor-pointer');
@@ -403,13 +402,10 @@ document.addEventListener('DOMContentLoaded', function() {
 				}
 			});
 		}
-
 	}
 	applyShowMore();
 
-
-
-
+	//форма отзывов
 	const formContainer = document.querySelector('.reviews_form');
 	if(formContainer) {
 
@@ -598,14 +594,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
-
-
-
-
-
-
-
-
 	function adjustCardLayout() {
 		let cards = document.querySelectorAll('.card');
 		if (cards) {
@@ -631,18 +619,21 @@ document.addEventListener('DOMContentLoaded', function() {
 				// Вычисляем, сколько строк занимает заголовок
 				const titleLines = Math.floor(titleHeight / lineHeight);
 				// Применяем стили в зависимости от числа строк в заголовке
-				if (titleLines >= 4) {
-					title.classList.add('four-lines', 'mb-3');
+				if (titleLines > 4) {
+					title.classList.add('five-lines', 'mb-3');
 					description.classList.add('one-lines');
-				} else if (titleLines >= 3) {
-					title.classList.add('three-lines', 'mb-3');
+				}else if (titleLines === 4) {
+					title.classList.add('four-lines', 'mb-3');
 					description.classList.add('two-lines');
+				} else if (titleLines === 3) {
+					title.classList.add('three-lines', 'mb-3');
+					description.classList.add('three-lines');
 				} else if(titleLines === 1) {
 					title.classList.add('one-lines', 'mb-2', 'lg:mb-4');
-					description.classList.add('four-lines');
+					description.classList.add('five-lines');
 				} else {
 					title.classList.add('two-lines', 'mb-2', 'lg:mb-4');
-					description.classList.add('three-lines');
+					description.classList.add('four-lines');
 				}
 			});
 		}

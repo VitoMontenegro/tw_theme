@@ -37,7 +37,7 @@ wp_reset_postdata();
 								<?php the_content(); ?>
 
 								<?php
-									$args = ['post_type' => 'reviews',	'posts_per_page' => 4];
+									$args = ['post_type' => 'reviews',	'posts_per_page' => 10];
 									$query = new WP_Query( $args );
 								?>
 
@@ -47,7 +47,7 @@ wp_reset_postdata();
 											<?php get_template_part('template-parts/content/content', 'reviews'); ?>
 										<?php endwhile; ?>
 										<?php
-											if ($query->found_posts > 4) {
+											if ($query->found_posts > 10) {
 												echo '<button class="col-span-2 pt-1 load-more-excursion" data-page="2"><span class="inline-block font-bold text-[#FF7A45] py-2  px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Загрузить ещё</span></button>';
 											}
 										?>

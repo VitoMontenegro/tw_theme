@@ -1,10 +1,11 @@
 <?php
 $options = get_fields( 'option');
+$fields = get_fields();
 
 ?>
 <div class="rounded-3xl mt-10 sm:mt-6l flex flex-col gap-4 mb-14 sm:flex-row" id="sendMe">
 	<div class="w-full bg-white rounded-2xl px-6 lg:px-8 py-5 lg:py-7 text-[14px] leading-[18px] flex flex-col gap-[18px]">
-		<div class="title text-[18px] font-bold">Контакты</div>
+		<div class="title text-[18px] font-bold">Контактная информация</div>
 		<div class="flex gap-1 items-start">
 			<svg class="mt-1 min-w-5" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 				<path d="M13.6611 12.5888C13.0045 13.2454 11.5718 14.6781 10.7061 15.5438C10.3156 15.9343 9.68424 15.9343 9.29371 15.5438C8.44257 14.6926 7.03961 13.2897 6.33877 12.5888C4.31676 10.5668 4.31676 7.28851 6.33877 5.2665C8.36078 3.2445 11.6391 3.2445 13.6611 5.2665C15.6831 7.28851 15.6831 10.5668 13.6611 12.5888Z" stroke="#373F41" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"/>
@@ -78,14 +79,19 @@ $options = get_fields( 'option');
 <div >
 	<iframe src="https://yandex.ru/map-widget/v1/?ll=30.473152%2C59.760634&mode=usermaps&source=constructorLink&um=constructor%3A604981676471e4aa52d9846e115c1f1f43fbc383be5168562bcdf2808a31f264&z=16" allowfullscreen="true" class="w-full h-[294px] mb-6"></iframe>
 </div>
-<div class="text-[#878787] text-[14px] leading-[18px] tracking-tight">
-	Реквизиты:ИП Руссков Алексей Александрович <br>
-	ИНН 782006227523<br>
-	ОГРНИП 313784709900015<br>
-	р/с 40802810500000900077 АО Банк «ПСКБ»<br>
-	БИК 044030852 Корсчет 30101810000000000852 в Северо-Западном ГУ Банка России<br>
-	Адрес: 196627, г. Санкт-Петербург, поселок Шушары, территория Ленсоветовский, д.3, кв. 41<br>
-	Почтовый адрес: 196625, Россия , город Санкт-Петербург, пос.Тярлево, ул. Большая, д.34<br>
+<div class="text-[#878787] text-[1p6x] leading-[21px] tracking-tight">
+	<?php if(isset($fields['details']) && !empty($fields['details'])) : ?>
+		<?php echo $fields['details']; ?>
+	<?php else: ?>
+		Реквизиты: <br>
+		ИП Руссков Алексей Александрович <br>
+		ИНН 782006227523<br>
+		ОГРНИП 313784709900015<br>
+		р/с 40802810500000900077 АО Банк «ПСКБ»<br>
+		БИК 044030852 Корсчет 30101810000000000852 в Северо-Западном ГУ Банка России<br>
+		Адрес: 196627, г. Санкт-Петербург, поселок Шушары, территория Ленсоветовский, д.3, кв. 41<br>
+		Почтовый адрес: 196625, Россия , город Санкт-Петербург, пос.Тярлево, ул. Большая, д.34<br>
+	<?php endif; ?>
 </div>
 
 <div class="container py-6 block sm:hidden">

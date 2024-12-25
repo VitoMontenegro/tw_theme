@@ -102,7 +102,7 @@ if (isset($category_id)) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
 					</div>
 				</div>
 			</div>

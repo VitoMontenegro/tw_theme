@@ -18,23 +18,26 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 <div class="flex flex-col gap-3 p-4 sm:p-8 bg-white rounded-xl reviews_slider__item">
 	<div class="header">
 		<div class="text-[#393488] text-[18px] font-bold leading-normal"><?php the_title(); ?></div>
-		<div class="text-[12px] text-[#373F41] opacity-50 h-8">
-			<?php if(isset($fields['date'])) :?>
-				<?php echo strtr($fields['date'], $sub);?>
-			<?php endif;?>
-
-			<?php if(isset($fields['date']) && isset($fields['excursion']) && $fields['excursion']) :?>
-				,
-			<?php endif; ?>
-			<?php if( isset($fields['excursion']) && $fields['excursion']) :?>
-				<?php echo $fields['excursion'];?>
-			<?php elseif(isset($fields['excursion_obj']) && $fields['excursion_obj']): ?>
-				<?php echo get_the_title($fields['excursion_obj']) ;?>
-			<?php endif; ?>
+		<div class="text-[14px] text-[#373F41] opacity-50">
+			<?php
+				$text = '';
+				if (isset($fields['date'])) {
+					$text .= trim(strtr($fields['date'], $sub));
+				}
+				if(isset($fields['date']) && ( (isset($fields['excursion']) && $fields['excursion']) || (isset($fields['excursion_obj']) && $fields['excursion_obj']))) {
+					$text .= ', ';
+				}
+				if(isset($fields['excursion']) && $fields['excursion']) {
+					$text .= $fields['excursion'];
+				} elseif(isset($fields['excursion_obj']) && $fields['excursion_obj']) {
+					$text .= get_the_title($fields['excursion_obj']);
+				}
+				echo $text;
+			?>
 		</div>
 	</div>
 	<div class="text-[14px] text-[#373F41] reviews_slider__text_wrapper">
-		<div class="reviews_slider__text lines six-lines mb-2">
+		<div class="reviews_slider__text lines fifteen-lines mb-2">
 			<?php the_content(); ?>
 		</div>
 	</div>

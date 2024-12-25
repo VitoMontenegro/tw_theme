@@ -223,7 +223,7 @@ function handle_filter_posts_request(WP_REST_Request $request) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
 					</div>
 				</div>
 			</div>
@@ -550,7 +550,7 @@ function load_more_excursions(WP_REST_Request $request) {
 						<?php endif ?>
 					</div>
 					<div class="relative mb-4">
-						<a href="<?php echo get_permalink() ?>" class="inline-block font-bold text-[#FF7A45] py-1.5 lg:py-2 py-2 px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
+						<a href="<?php echo get_permalink() ?>" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Подробнее</a>
 					</div>
 				</div>
 			</div>
@@ -579,7 +579,7 @@ function load_more_reviews(WP_REST_Request $request) {
 	// Настройка WP_Query для подгрузки постов
 	$query = new WP_Query([
 		'post_type' => 'reviews',
-		'posts_per_page' => 4, // Показывать 9 постов на странице
+		'posts_per_page' => 10, // Показывать 9 постов на странице
 		'paged' => $page
 	]);
 
@@ -590,7 +590,7 @@ function load_more_reviews(WP_REST_Request $request) {
 			$query->the_post();
 			get_template_part('template-parts/content/content', 'reviews');
 		}
-		if ($query->found_posts > ($page*4)) : ?>
+		if ($query->found_posts > ($page*10)) : ?>
 			<button class="col-span-2 pt-1 load-more-excursion" data-page="<?php echo $page+1; ?>">
 				<span class="inline-block font-bold text-[#FF7A45] py-2  px-4 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45]">Загрузить ещё</span>
 			</button>

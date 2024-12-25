@@ -81,8 +81,14 @@ button {
 .four-lines {
 	-webkit-line-clamp: 4;
 }
+.five-lines {
+	-webkit-line-clamp: 5;
+}
 .six-lines {
 	-webkit-line-clamp: 6;
+}
+.fifteen-lines {
+	-webkit-line-clamp: 15;
 }
 
 .details, .program {
