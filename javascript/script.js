@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				posts_per_page: postsPerPage,
 				category_id: categoryId,
 			});
-
+			document.getElementById('posts-container').innerHTML = 'whait';
 			fetch('/wp-json/my_namespace/v1/filter-posts/?' + params.toString())
 				.then(response => {
 					if (!response.ok) {
@@ -758,8 +758,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	});
 
-
-
 	// Находим элемент с data-category-id
 	const container = document.querySelector('.excursions-container');
 	if(container) {
@@ -807,7 +805,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
-
 	const revContainer = document.querySelector('.rev-container');
 	if (revContainer) {
 		document.addEventListener('click', function(event) {
@@ -843,9 +840,30 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
-	const swiperTour = document.querySelectorAll('.swiper_tour');
-	const swiperRev = document.querySelectorAll('.swiper_reviews');
+	const swiperBlock = document.querySelectorAll('.swiper_block');
+	if(swiperBlock) {
+		const newSwiperBlock = new Swiper(".swiperBlock", {
+			slidesPerView: 2,
+			spaceBetween: 14,
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+			breakpoints: {
+				640: {
+					slidesPerView: 3,
+					spaceBetween: 14,
+				},
+				960: {
+					slidesPerView: 4,
+					spaceBetween: 14,
+				}
+			},
+		});
 
+	}
+
+	const swiperTour = document.querySelectorAll('.swiper_tour');
 	if (swiperTour.length) {
 		const swiper = new Swiper(".mySwiper", {
 			spaceBetween: 8,
@@ -913,8 +931,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 	}
 
-
-
+	const swiperRev = document.querySelectorAll('.swiper_reviews');
 	if(swiperRev) {
 		const swiper3 = new Swiper(".mySwiper3", {
 			slidesPerView: 1.3,
@@ -964,6 +981,5 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 
 	}
-
 
 });

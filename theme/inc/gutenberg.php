@@ -137,6 +137,54 @@ function review_block_init() {
             ),
             'example'           => [],
         ));
+        acf_register_block_type(array(
+            'name'      => 'promos',
+            'title'     => 'Блок с акциями',
+            'description'       => 'Блок акции',
+            'render_callback'   => 'my_acf_block_render_callback',
+            'category'      => 'bdt-category',
+            'icon' => array(
+                // Specifying a background color to appear with the icon e.g.: in the inserter.
+                'background' => '#eccb13',
+                // Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)
+                'foreground' => '#fff',
+                // Specifying a dashicon for the block
+                'src' => 'lpb',
+            ),
+            'example'           => [],
+        ));
+        acf_register_block_type(array(
+            'name'      => 'salesexcursion',
+            'title'     => 'Блок с экскурсиями по акции',
+            'description'       => 'Блок акции',
+            'render_callback'   => 'my_acf_block_render_callback',
+            'category'      => 'bdt-category',
+            'icon' => array(
+                // Specifying a background color to appear with the icon e.g.: in the inserter.
+                'background' => '#eccb13',
+                // Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)
+                'foreground' => '#fff',
+                // Specifying a dashicon for the block
+                'src' => 'lpb',
+            ),
+            'example'           => [],
+        ));
+        acf_register_block_type(array(
+            'name'      => 'slider',
+            'title'     => 'Блок слайдер',
+            'description'       => 'Блок слайдер',
+            'render_callback'   => 'my_acf_block_render_callback',
+            'category'      => 'bdt-category',
+            'icon' => array(
+                // Specifying a background color to appear with the icon e.g.: in the inserter.
+                'background' => '#eccb13',
+                // Specifying a color for the icon (optional: if not set, a readable color will be automatically defined)
+                'foreground' => '#fff',
+                // Specifying a dashicon for the block
+                'src' => 'lpb',
+            ),
+            'example'           => [],
+        ));
 
     }
 }

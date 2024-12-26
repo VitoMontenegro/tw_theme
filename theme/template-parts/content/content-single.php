@@ -9,48 +9,26 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" class="mb-8">
 
-	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+	<div class="container"><article id="post-<?php the_ID(); ?>" class="mb-8">
 
-		<?php if ( ! is_page() ) : ?>
-			<div class="entry-meta">
-				<?php tw_entry_meta(); ?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+			<div class="flex gap-6">
+				<?php get_sidebar('simple'); ?>
+				<div class="overflow-x-hidden w-full">
+					<div class="entry-content">
+						<h1 class="mt-0 text-2xl sm:text-3xl font-bold tracking-tight mb-[22px] sm:mb-6"><?php the_title() ; ?></h1>
+						<img class="w-full max-h-[320px] w-full rounded-xl overflow-hidden object-cover mb-6" src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>" alt="">
 
-	<?php tw_post_thumbnail(); ?>
+						<div class="content big-title">
+							<?php the_content(); ?>
+						</div>
+					</div>
+				</div>
 
-	<div <?php tw_content_class( 'entry-content' ); ?>>
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers. */
-					__( 'Continue reading<span class="sr-only"> "%s"</span>', 'tw' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				get_the_title()
-			)
-		);
+			</div>
+	</div>
 
-		wp_link_pages(
-			array(
-				'before' => '<div>' . __( 'Pages:', 'tw' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
 
-	<footer class="entry-footer">
-		<?php tw_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
 
 </article><!-- #post-${ID} -->

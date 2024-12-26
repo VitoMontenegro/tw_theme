@@ -207,6 +207,97 @@ function tw_html5_comment( $comment, $args, $depth ) {
 }
 
 function register_custom_post_type() {
+
+	/**
+	 * Post Type: Акции.
+	 */
+
+	$labels = [
+			"name" =>"Акции",
+			"singular_name" =>"Акция",
+			"menu_name" =>"Акции",
+			"all_items" =>"Все акции",
+			"add_new" =>"Добавить акцию",
+			"add_new_item" =>"Добавить новую акцию",
+			"edit_item" =>"Редактировать акцию",
+			"new_item" =>"Новая акция",
+			"view_item" =>"Смотреть акцию",
+			"view_items" =>"Смотреть акции",
+			"search_items" =>"Найти акцию",
+			"not_found" =>"Акции не найдены",
+			"not_found_in_trash" =>"Акции не найдены в корзине",
+			"parent" =>"Родительская акция",
+			"featured_image" =>"Картинка к этой акции",
+			"set_featured_image" =>"Установить картинку к этой акции",
+			"remove_featured_image" =>"Удалить картинку акции",
+			"use_featured_image" =>"Использовать как изображение к акции",
+			"archives" =>"Архивы акций",
+			"insert_into_item" =>"Вставить в акцию",
+			"uploaded_to_this_item" =>"Загружено к этой акции",
+			"filter_items_list" =>"Фильтровать список акций",
+			"items_list_navigation" =>"Навигация по списку акций",
+			"items_list" =>"Список акций",
+			"attributes" =>"Атрибуты акции",
+			"name_admin_bar" =>"Акция",
+			"parent_item_colon" =>"Родительская акция",
+	];
+
+
+
+	register_post_type( "promos",  [
+			'labels' => [
+
+					"name" => "Акции",
+					"singular_name" =>"Акция",
+					"menu_name" =>"Акции",
+					"all_items" =>"Все акции",
+					"add_new" =>"Добавить акцию",
+					"add_new_item" =>"Добавить новую акцию",
+					"edit_item" =>"Редактировать акцию",
+					"new_item" =>"Новая акция",
+					"view_item" =>"Смотреть акцию",
+					"view_items" =>"Смотреть акции",
+					"search_items" =>"Найти акцию",
+					"not_found" =>"Акции не найдены",
+					"not_found_in_trash" =>"Акции не найдены в корзине",
+					"parent" =>"Родительская акция",
+					"featured_image" =>"Картинка к этой акции",
+					"set_featured_image" =>"Установить картинку к этой акции",
+					"remove_featured_image" =>"Удалить картинку акции",
+					"use_featured_image" =>"Использовать как изображение к акции",
+					"archives" =>"Архивы акций",
+					"insert_into_item" =>"Вставить в акцию",
+					"uploaded_to_this_item" =>"Загружено к этой акции",
+					"filter_items_list" =>"Фильтровать список акций",
+					"items_list_navigation" =>"Навигация по списку акций",
+					"items_list" =>"Список акций",
+					"attributes" =>"Атрибуты акции",
+					"name_admin_bar" =>"Акция",
+					"parent_item_colon" =>"Родительская акция",
+			],
+			"description" => "",
+			"public" => true,
+			"publicly_queryable" => true,
+			"show_ui" => true,
+			"show_in_rest" => true,
+			"rest_base" => "",
+			"rest_controller_class" => "WP_REST_Posts_Controller",
+			"rest_namespace" => "wp/v2",
+			"has_archive" => true,
+			"show_in_menu" => true,
+			"show_in_nav_menus" => true,
+			"delete_with_user" => false,
+			"exclude_from_search" => false,
+			"capability_type" => "post",
+			"map_meta_cap" => true,
+			"hierarchical" => false,
+			"can_export" => true,
+			"rewrite" => [ "slug" => "promos", "with_front" => true ],
+			"query_var" => true,
+			"supports" => [ "title", "editor", "thumbnail" ],
+			"show_in_graphql" => false,
+	] );
+
 	/**
 	 * Post Type: Экскурсии.
 	 */
@@ -675,3 +766,27 @@ function custom_excerpt_without_title() {
 	// Выводим результат (контент без заголовков <h2>)
 	echo $content_without_h2;
 }
+
+function darken_color($hex, $percent) {
+	// Удаляем символ "#" если он есть
+	$hex = str_replace('#', '', $hex);
+
+	// Разбиваем цвет на компоненты RGB
+	$r = hexdec(substr($hex, 0, 2));
+	$g = hexdec(substr($hex, 2, 2));
+	$b = hexdec(substr($hex, 4, 2));
+
+	// Затемняем каждую компоненту на указанный процент
+	$r = max(0, min(255, $r - ($r * $percent / 100)));
+	$g = max(0, min(255, $g - ($g * $percent / 100)));
+	$b = max(0, min(255, $b - ($b * $percent / 100)));
+
+	// Составляем новый цвет и возвращаем его
+	return sprintf("#%02x%02x%02x", $r, $g, $b);
+}
+add_action('template_redirect', function() {
+	if (is_category()) {
+		wp_redirect(home_url('/')); // Перенаправление на главную
+		exit;
+	}
+});

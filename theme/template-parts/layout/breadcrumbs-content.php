@@ -12,6 +12,14 @@ $i=0
 				<li itemprop="itemListElement" itemscope
 					itemtype="http://schema.org/ListItem" class="inline">
 					<a itemprop="item"  href="<?php echo get_site_url();?>">
+						<span itemprop="name">Главная</span>
+					</a>
+					<meta itemprop="position" content="<?php echo ++$i; ?>" />
+				</li>
+				<li class="inline">-</li>
+				<li itemprop="itemListElement" itemscope
+					itemtype="http://schema.org/ListItem" class="inline">
+					<a itemprop="item"  href="<?php echo get_permalink(203); ?>">
 						<span itemprop="name">Блог</span>
 					</a>
 					<meta itemprop="position" content="<?php echo ++$i; ?>" />
@@ -88,9 +96,18 @@ $i=0
 							<?php endforeach; ?>
 						<?php endif; ?>
 						<li itemprop="itemListElement" itemscope
-							itemtype="https://schema.org/ListItem" class="inline">
-							<a itemprop="item" href="<?php echo get_term_link($category); ?>">
-								<span itemprop="name"><?php echo $category->name; ?></span></a>
+							itemtype="http://schema.org/ListItem" class="inline">
+							<a itemprop="item"  href="<?php echo get_site_url();?>">
+								<span itemprop="name">Главная</span>
+							</a>
+							<meta itemprop="position" content="<?php echo ++$i; ?>" />
+						</li>
+						<li class="inline">-</li>
+						<li itemprop="itemListElement" itemscope
+							itemtype="http://schema.org/ListItem" class="inline">
+							<a itemprop="item"  href="<?php echo get_permalink(203); ?>">
+								<span itemprop="name">Блог</span>
+							</a>
 							<meta itemprop="position" content="<?php echo ++$i; ?>" />
 						</li>
 						<li class="inline">-</li>
