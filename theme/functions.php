@@ -15,7 +15,7 @@ if ( ! defined( 'TW_VERSION' ) ) {
 	 * to create your production build, the value below will be replaced in the
 	 * generated zip file with a timestamp, converted to base 36.
 	 */
-	define( 'TW_VERSION', '0.1.12' );
+	define( 'TW_VERSION', '0.1.13' );
 }
 
 if ( ! defined( 'TW_TYPOGRAPHY_CLASSES' ) ) {
@@ -236,3 +236,19 @@ function remove_checked_sorting_in_admin($args, $post_id) {
 	}
 	return $args;
 }
+
+function add_webp_upload_mimes($mimes) {
+    $mimes['webp'] = 'image/webp';
+    return $mimes;
+}
+add_filter('mime_types', 'add_webp_upload_mimes');
+
+// Проверка наличия WEBP
+function check_webp_support($result, $path) {
+    $info = @getimagesize($path);
+    if ($info['mime'] === 'image/webp') {
+        $result = true;
+    }
+    return $result;
+}
+add_filter('file_is_displayable_image', 'check_webp_support', 10, 2);

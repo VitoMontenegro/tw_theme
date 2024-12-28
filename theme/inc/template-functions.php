@@ -538,14 +538,37 @@ function get_nested_categories($taxonomy = 'category') {
 	}
 
 	$categories = [];
+
 	foreach ($terms as $term) {
-		$categories[] = [
-				'id' => $term->term_id,
-				'name' => $term->name,
-				'slug' => $term->slug,
-				'link' => get_term_link($term),
-				'children' => get_child_categories($term->term_id, $taxonomy),
-		];
+		$all_category_ids = get_all_descendant_categories($term->term_id, $taxonomy);
+
+		$posts_in_categories = get_posts([
+				'post_type' => 'excursion',
+				'post_status' => 'publish',
+				'tax_query' => [
+						[
+								'taxonomy' => $taxonomy,
+								'field' => 'term_id',
+								'terms' => $all_category_ids,
+								'include_children' => false,
+						],
+				],
+				'fields' => 'ids',
+		]);
+
+		$unique_post_ids = array_unique($posts_in_categories);
+		$post_count = count($unique_post_ids);
+
+
+		if($post_count) {
+			$categories[] = [
+					'id' => $term->term_id,
+					'name' => $term->name,
+					'slug' => $term->slug,
+					'link' => get_term_link($term),
+					'children' => get_child_categories($term->term_id, $taxonomy),
+			];
+		}
 	}
 
 	return $categories;
@@ -564,13 +587,35 @@ function get_child_categories($parent_id, $taxonomy) {
 
 	$children = [];
 	foreach ($child_terms as $child_term) {
-		$children[] = [
-				'id' => $child_term->term_id,
-				'name' => $child_term->name,
-				'slug' => $child_term->slug,
-				'link' => get_term_link($child_term),
-				'children' => get_child_categories($child_term->term_id, $taxonomy), // Рекурсивный вызов
-		];
+
+		$all_category_ids = get_all_descendant_categories($child_term->term_id, $taxonomy);
+
+		$posts_in_categories = get_posts([
+				'post_type' => 'excursion',
+				'post_status' => 'publish',
+				'tax_query' => [
+						[
+								'taxonomy' => $taxonomy,
+								'field' => 'term_id',
+								'terms' => $all_category_ids,
+								'include_children' => false,
+						],
+				],
+				'fields' => 'ids',
+		]);
+
+		$unique_post_ids = array_unique($posts_in_categories);
+		$post_count = count($unique_post_ids);
+
+		if($post_count) {
+			$children[] = [
+					'id' => $child_term->term_id,
+					'name' => $child_term->name,
+					'slug' => $child_term->slug,
+					'link' => get_term_link($child_term),
+					'children' => get_child_categories($child_term->term_id, $taxonomy), // Рекурсивный вызов
+			];
+		}
 	}
 
 	return $children;
@@ -621,12 +666,12 @@ function get_nested_categories_by_parent($parent_id, $taxonomy = 'excursion_cate
 				'post_type' => 'excursion',
 				'post_status' => 'publish',
 				'tax_query' => [
-						[
-								'taxonomy' => $taxonomy,
-								'field' => 'term_id',
-								'terms' => $all_category_ids,
-								'include_children' => false,
-						],
+					[
+							'taxonomy' => $taxonomy,
+							'field' => 'term_id',
+							'terms' => $all_category_ids,
+							'include_children' => false,
+					],
 				],
 				'fields' => 'ids',
 		]);
@@ -634,23 +679,25 @@ function get_nested_categories_by_parent($parent_id, $taxonomy = 'excursion_cate
 		$unique_post_ids = array_unique($posts_in_categories);
 		$post_count = count($unique_post_ids);
 
-		$single_post_slug = null;
+		/*$single_post_slug = null;
 		if ($post_count === 1) {
 			$single_post = get_post(reset($unique_post_ids));
 			if ($single_post) {
 				$single_post_slug = $single_post->post_name;
 			}
-		}
+		}*/
 
-		$categories[] = [
-				'id' => $term->term_id,
-				'name' => $term->name,
-				'slug' => $term->slug,
-				'link' => get_term_link($term),
-				'post_count' => $post_count,
-				'single_post_slug' => $single_post_slug,
-				'children' => get_nested_categories_by_parent($term->term_id, $taxonomy)
-		];
+		if($post_count) {
+			$categories[] = [
+					'id' => $term->term_id,
+					'name' => $term->name,
+					'slug' => $term->slug,
+					'link' => get_term_link($term),
+					'post_count' => $post_count,
+				//'single_post_slug' => $single_post_slug,
+					'children' => get_nested_categories_by_parent($term->term_id, $taxonomy)
+			];
+		}
 	}
 
 	return $categories;

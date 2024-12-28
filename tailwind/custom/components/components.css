@@ -41,6 +41,9 @@
 .entry-content p {
 	@apply leading-[1.3] mb-4;
 }
+.big-title ul {
+	@apply mb-4;
+}
 
 .entry-content > .alignfull {
 	@apply max-w-none;

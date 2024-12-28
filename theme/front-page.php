@@ -149,7 +149,7 @@ get_header();
 
     <div class="container mt-10 lg:mt-14">
 		<div class="flex gap-8">
-            <aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full text-[14px] transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px]">
+            <aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full text-[14px] transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px] md:mb-10">
 				<?php get_sidebar(); ?>
 			</aside>
 

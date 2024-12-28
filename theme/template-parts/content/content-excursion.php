@@ -238,6 +238,8 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 					<div class="bg-white pt-6 sm:pt-4 lg:pt-7 px-5 sm:px-8 md:pb-5 pb-2 sm:pb-8 rounded-3xl big-title" id="sectionDesc">
 						<?php if(isset($fields['h2']) && !empty($fields['h2'])): ?>
 							<h2><?php echo $fields['h2']; ?></h2>
+						<?php else: ?>
+							<h2>Краткий обзор путешествия</h2>
 						<?php endif; ?>
 						<?php the_content(); ?>
 
@@ -512,7 +514,7 @@ $sub = array(".01." => " января ", ".02." => " февраля ",
 							</div>
 						</div>
 						<div class="flex mt-6 items-center justify-center">
-							<a href="<?php echo esc_url(get_permalink(83)); ?>" class="flex items-center justify-center font-bold text-[#FF7A45] h-10 px-7 sm:px-10 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Все автобусы</a>
+							<a href="<?php echo esc_url(get_permalink(83)); ?>" class="flex items-center justify-center font-bold text-[#FF7A45] h-10 px-7 sm:px-10 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[14px]">Все автобусы</a>
 						</div>
 					</div>
 

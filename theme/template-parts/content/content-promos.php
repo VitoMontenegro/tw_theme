@@ -6,6 +6,8 @@
  *
  * @package _tw
  */
+
+
 ?>
 
 
@@ -23,8 +25,20 @@
 							</div>
 						</div>
 					<div class="flex mt-6 gap-4">
-						<a href="http://flagman.loc/excursion/ekskursiya-v-krepost-oreshek-s-kvestom-krepkij-oreshek-novye-priklyucheniya" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Назад к спецпредложеням</a>
-						<a href="http://flagman.loc/excursion/ekskursiya-v-krepost-oreshek-s-kvestom-krepkij-oreshek-novye-priklyucheniya" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Дальше</a>
+						<a href="<?php echo get_permalink(199); ?>" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Назад к спецпредложеням</a>
+						<?php
+						// Получаем следующую запись
+						$next_post = get_next_post();
+
+						// Проверяем, есть ли следующая запись
+						if ($next_post) :
+							// Получаем URL следующей записи
+							$next_post_url = get_permalink($next_post->ID);
+							?>
+							<a href="<?php echo esc_url($next_post_url); ?>" class="inline-flex h-10 items-center justify-center font-bold text-[#FF7A45]  px-7 sm:px-8 border-2 border-[#FF7A45] rounded-3xl hover:text-white hover:bg-[#FF7A45] text-[12px] lg:text-sm">Дальше</a>
+						<?php endif; ?>
+
+
 					</div>
 				</div>
 			</div>

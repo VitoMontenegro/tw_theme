@@ -16,7 +16,8 @@ $options = get_fields( 'option');
 						<ul class="flex flex-col gap-1.5">
 							<?php foreach ($category["children"] as $child) : ?>
 								<li class="group<?php echo is_current_category($child["id"]) ? ' active' : ''; ?>">
-									<?php $link = $child["single_post_slug"] ?? $child['link']; ?>
+									<?php /* $link = $child["single_post_slug"] ?? $child['link']; */ ?>
+									<?php $link = $child['link']; ?>
 
 									<?php if (isset($child["children"]) && is_array($child["children"]) && count($child["children"]) > 0) : ?>
 										<details class="sidebar_link">
@@ -33,7 +34,8 @@ $options = get_fields( 'option');
 											<ul class="flex flex-col gap-1.5 pl-4 mt-1.5">
 												<?php foreach ($child["children"] as $subchild) : ?>
 													<li class="group<?php echo is_current_category($subchild["id"]) ? ' active' : ''; ?>">
-														<?php $sublink = $subchild["single_post_slug"] ?? $subchild['link']; ?>
+														<?php $sublink =  $subchild['link']; ?>
+														<?php /* $sublink = $subchild["single_post_slug"] ?? $subchild['link']; */ ?>
 														<a href="<?php echo $sublink; ?>" class="group-[.active]:text-[#927CF5] hover:text-[#927CF5]">
 															<?php $catFields = get_fields(get_term_by('id', $subchild["id"],'excursion_category')); ?>
 															<?php echo (isset($catFields['title_double']) && !empty($catFields['title_double']) ) ? $catFields['title_double'] : esc_html($subchild['name']); ?>

@@ -30,7 +30,7 @@ if ($fields) {
 					<a href="<?php echo get_permalink($val["item"]->ID); ?>" class="w-full h-[236px] sm:h-auto rounded-2xl  bg-cover bg-center relative p-6" style="background-image: url(<?php echo get_the_post_thumbnail_url($val["item"]->ID, $size = 'full'); ?>)">
 						<div class="text-white text-[18px] text-5 top-6 leading-[1.1] tracking-[0.4px] font-bold"><?php echo $val['bamr'] ?? $val['item']->post_title; ?></div>
 						<div class="flex items-center justify-start lg:justify-center absolute bottom-5 left-5">
-							<span class="bg-[var(--btn-bg)] hover:bg-[var(--btn-hover)] px-8 py-3 rounded-full justify-center items-center hidden sm:inline-flex text-sm font-bold text-white leading-tight" style="--btn-bg: <?php echo $btn_color; ?>">
+							<span class="bg-[var(--btn-bg)] hover:bg-[var(--btn-hover)] px-8 py-3 rounded-full justify-center items-center sm:hidden inline-flex text-sm font-bold text-white leading-tight" style="--btn-bg: <?php echo $btn_color; ?>">
 								Подробнее
 							</span>
 						</div>

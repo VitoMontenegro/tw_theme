@@ -10,7 +10,16 @@ $current_term = get_queried_object();
 $options = get_fields( 'option');
 $fields = get_fields($current_term);
 $title = (isset($fields['h1']) && $fields['h1']) ? $fields['h1'] : $current_term->name;
-$image = (isset($fields['kartinka_kategorii']) && $fields['kartinka_kategorii']) ? $fields['kartinka_kategorii'] :  get_template_directory_uri() . "/images/hero.jpg";
+
+
+if(isset($fields['kartinka_kategorii']) && $fields['kartinka_kategorii']) {
+	$image = $fields['kartinka_kategorii'];
+} elseif(isset($options['cat_img']) && $options['cat_img']) {
+	$image = $options['cat_img'];
+} else {
+	$image = get_template_directory_uri() . "/images/hero.jpg";
+}
+
 if ($current_term && isset($current_term->slug) && $current_term->slug === 'ekskursii-peterburg') {
 	wp_redirect('/' , 301);
 	exit();
@@ -37,12 +46,12 @@ get_header();
 							<div class="absolute image_block w-[360px] p-6 bg-white right-4 top-4 rounded-3xl">
 								<div class="p-bottom text-[#000] text-[14px] p-last"><?php echo term_description() ?></div>
 							</div>
-					<?php endif; ?>
+						<?php endif; ?>
 					</div>
 
 
 					<div class="clouds relative lg:w-[240px] sm:min-w-[240px] h-[146px] lg:h-[323px] bg-[#FF7A45] rounded-2xl py-6 px-4 relative">
-						<div class="text-white text-[18px] lg:text-[17px] max-w-[295px] lg:max-w-[205px] lg:text-center absolute top-6 lg:top-[25px] left-8 lg:left-[18px] leading-[1.1] lg:leading-[20px] tracking-[0.4px] font-bold">Честный абонемент экскурсий для класса</div>
+						<div class="text-white text-[18px] lg:text-[17px] max-w-[295px] lg:max-w-[205px] lg:text-center lg:absolute top-6 lg:top-[25px] left-8 lg:left-[18px] leading-[1.1] lg:leading-[20px] tracking-[0.4px] font-bold">Честный абонемент экскурсий для класса</div>
 						<div class="flex items-center justify-start lg:justify-center absolute bottom-5 lg:left-1/2 lg:transform lg:-translate-x-1/2 left-4 lg:transform">
 							<a href="#" class="px-8 py-3 bg-[#3A21AA] hover:bg-[#301a8e] rounded-full justify-center items-center inline-flex text-sm font-bold text-white leading-tight">
 								Подробнее
@@ -55,7 +64,7 @@ get_header();
 
 			<div class="container mt-10 lg:mt-14">
 				<div class="flex gap-7">
-					<aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full text-[14px] transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px]">
+					<aside id="sidebar-menu" class="z-10 fixed top:105px top-0 left-0 w-full max-w-[455px] h-full text-[14px] transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:-translate-x-0 filter lg:w-[268px] min-w-[268px] md:mb-10">
 						<?php get_sidebar(); ?>
 					</aside>
 
@@ -146,6 +155,13 @@ get_header();
 
 							</div>
 						</div>
+
+						<?php if( term_description()): ?>
+							<div class="flex sm:hidden flex-col px-5 pt-5 pb-3 bg-white rounded-xl overflow-hidden w-full mt-4 sm:mt-0">
+								<img src="<?php echo $image ?>" alt="image" class="rounded-xl h-[200px] object-cover">
+								<div class="p-bottom mt-4"><?php echo term_description() ?></div>
+							</div>
+						<?php endif; ?>
 
 						<div class="entry-content mt-11">
 							<?php if(isset($fields["p_title"]) && $fields["p_title"]): ?>
@@ -263,7 +279,7 @@ get_header();
 										</div>
 									</div>
 								</div>
-								<div class="mt-4 text-[14px] leading-[1.2]">После чего мы в течение 24 часов отправим на ваш номер телефона и почту детальные сведения об экскурсии, транспорте и экскурсоводе. </div>
+								<div class="mt-4 leading-[1.2]">После чего мы в течение 24 часов отправим на ваш номер телефона и почту детальные сведения об экскурсии, транспорте и экскурсоводе. </div>
 							</div>
 							<?php ?>
 							<?php ?>
