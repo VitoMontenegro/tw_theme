@@ -421,6 +421,7 @@ function register_custom_post_type() {
 			"rewrite" => array( "slug" => "faqs", "with_front" => true ),
 			"query_var" => true,
 			"supports" => array( "title", "editor"),
+			'taxonomies' => ['faqs_category'], // Подключаем таксономию
 	]);
 }
 add_action('init', 'register_custom_post_type');
@@ -451,8 +452,56 @@ function register_custom_taxonomy() {
 					'with_front' => false,
 			],
 	]);
+	/**
+	 * Таксономия: Категория экскурсий.
+	 */
+	register_taxonomy('faqs_category', 'faqs', [
+			'hierarchical' => true, // Позволяет создавать подкатегории
+			'labels' => [
+					'name' => 'Категории опросов',
+					'singular_name' => 'Категория вопросов',
+					"add_new_item" => "Добавить новую категорию",
+					'search_items'      => 'Найти категорию',
+					'all_items'         => 'Все категории',
+					'view_item '        => 'Смотреть категорию',
+					'parent_item'       => 'Родительская категория',
+					'parent_item_colon' => 'Родительская категория:',
+					'edit_item'         => 'Редактировать категорию',
+					'update_item'       => 'Обновить',
+					'menu_name'         => 'Категории опросов',
+					'back_to_items'     => '← Назад к категории',
+			],
+			'rewrite' => [
+					'slug' => 'faqs_category',
+					'hierarchical' => false,
+					'with_front' => false,
+			],
+			'public' => false, // Категория не доступна на фронтенде
+			'show_ui' => true, // Доступна в админ-панели
+			'show_in_rest' => true, // Можно редактировать через REST API
+	]);
 }
 add_action('init', 'register_custom_taxonomy');
+
+// Добавляем новый столбец для категории
+add_filter('manage_faqs_posts_columns', function ($columns) {
+	$columns['faqs_category'] = 'Категории';
+	return $columns;
+});
+// Заполняем столбец данными
+add_action('manage_faqs_posts_custom_column', function ($column, $post_id) {
+	if ($column === 'faqs_category') {
+		$terms = get_the_terms($post_id, 'faqs_category');
+		if (!empty($terms) && !is_wp_error($terms)) {
+			$term_links = array_map(function ($term) {
+				return sprintf('<a href="%s">%s</a>', esc_url(admin_url('edit.php?faqs_category=' . $term->slug)), esc_html($term->name));
+			}, $terms);
+			echo implode(', ', $term_links); // Выводим ссылки на категории
+		} else {
+			echo 'Нет категории'; // Если категорий нет
+		}
+	}
+}, 10, 2);
 
 add_action('pre_get_posts', 'set_home_to_category');
 function set_home_to_category($query) {

@@ -352,6 +352,51 @@ get_header();
 
 		</main><!-- #main -->
 	</section><!-- #primary -->
+	<?php
+	$args = array(
+			'post_type'      => 'faqs',          // Тип записи
+			'posts_per_page' => -1,              // Количество записей
+			'tax_query'      => array(
+					array(
+							'taxonomy' => 'faqs_category', // Таксономия
+							'field'    => 'slug',          // Ищем по слагу
+							'terms'    => $current_term->slug,      // Укажите слаг категории
+					),
+			),
+	);
+
+	$query = new WP_Query( $args );
+
+	// Если записи найдены
+	if ( $query->have_posts() ) : ?>
+		<section class="bg-white pb-10 lg:pb-14">
+			<div class="container">
+				<div class="gap-6 grid grid-cols-12 w-full">
+					<div class="col-span-12 lg:col-span-3"></div>
+					<div class="entry-content col-span-12 lg:col-span-9">
+						<h2 class="lg:mb-8">Популярные вопросы</h2>
+						<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+
+							<details class="details w-full border border-[#e8e8e8] rounded-[30px] relative block mb-4" name="faq" open>
+								<summary class="details__title py-6 ps-4 lg:ps-8 pe-[60px] xs:pe-14 sm:pe-10 text-[#393488] font-bold cursor-pointer list-none">
+									<?php echo get_the_title(); ?>
+								</summary>
+								<div class="details__content ps-4 pe-14 lg:ps-8 pb-6 lg:pb-7 text-[14px]">
+									<?php the_content(); ?>
+								</div>
+							</details>
+
+						<?php endwhile; ?>
+					</div>
+				</div>
+			</div>
+		</section>
+	<?php
+	endif;
+
+	// Восстановление оригинального поста
+	wp_reset_postdata();
+	?>
 
 	<div class="container py-6 block sm:hidden">
 		<div class="flex flex-col gap-4">

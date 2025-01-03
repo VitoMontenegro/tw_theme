@@ -300,6 +300,12 @@ get_header();
 		$args = array(
 				'post_type'      => 'reviews',      // Тип записи 'faqs'
 				'posts_per_page' => 7,          // Выводим все записи
+				'tax_query'      => array(
+						array(
+								'taxonomy' => 'faqs_category', // Таксономия
+								'operator' => 'NOT EXISTS',    // Исключаем записи, имеющие термины
+						),
+				),
 		);
 
 		$query = new WP_Query( $args );
@@ -353,8 +359,7 @@ get_header();
 					</div>
 				</div>
 			</section>
-		<?php else :
-			echo 'Нет вопросов для отображения.';
+		<?php
 		endif;
 
 		// Восстановление оригинального поста
